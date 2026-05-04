@@ -24,78 +24,73 @@ function loadEnvFile() {
 }
 
 export const POST = async ({ request }) => {
-    let name, email, message, website, formToken;
+    let name, email, message, website, formToken, songFile;
 
     try {
-        const text = await request.text();
-        const body = JSON.parse(text);
-        name = body.name;
-        email = body.email;
-        message = body.message;
-        website = body.website; // Honeypot
-        formToken = body.form_token; // Timestamp
+        const data = await request.formData();
+        name = data.get("name");
+        email = data.get("email");
+        message = data.get("message");
+        website = data.get("website");
+        formToken = data.get("form_token");
+        songFile = data.get("song_demo");
     } catch (e) {
         return new Response(
-            JSON.stringify({ message: "Ungültige Anfrage." }),
+            JSON.stringify({ message: "Ungültige Anfrage (FormData Fehler)." }),
             { status: 400, headers: { "Content-Type": "application/json" } }
         );
     }
 
-    // SPAM PROTECTION CHECKS
-    // 1. Honeypot check (website should be empty)
-    // 2. Time-trap check (should take at least 3 seconds)
+    // SPAM PROTECTION
     const isSpam = website || (formToken && Date.now() - parseInt(formToken) < 3000);
-
     if (isSpam) {
-        // We pretend it worked to not tip off the bot
-        return new Response(
-            JSON.stringify({ message: "Erfolgreich gesendet!" }),
-            { status: 200, headers: { "Content-Type": "application/json" } }
-        );
+        return new Response(JSON.stringify({ message: "Erfolgreich gesendet!" }), { status: 200, headers: { "Content-Type": "application/json" } });
     }
 
-    // Basic Validation
     if (!name || !email || !message) {
-        return new Response(
-            JSON.stringify({ message: "Bitte alle Felder ausfüllen!" }),
-            { status: 400, headers: { "Content-Type": "application/json" } }
-        );
+        return new Response(JSON.stringify({ message: "Bitte alle Felder ausfüllen!" }), { status: 400, headers: { "Content-Type": "application/json" } });
     }
 
-    // Read the webhook URL - try all available methods
     const env = loadEnvFile();
-    const discordUrl = import.meta.env.DISCORD_WEBHOOK_URL
-        || process.env.DISCORD_WEBHOOK_URL
-        || env.DISCORD_WEBHOOK_URL;
+    const discordUrl = import.meta.env.DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL || env.DISCORD_WEBHOOK_URL;
 
     if (!discordUrl) {
-        return new Response(
-            JSON.stringify({ message: "Server-Konfiguration fehlt!" }),
-            { status: 500, headers: { "Content-Type": "application/json" } }
-        );
+        return new Response(JSON.stringify({ message: "Server-Konfiguration fehlt!" }), { status: 500, headers: { "Content-Type": "application/json" } });
     }
 
     try {
+        // Prepare Discord Payload
+        const discordFormData = new FormData();
+        
+        const payload = {
+            username: "Studio Bot",
+            content: "🚀 **Neue Studio-Anfrage mit Demo!**",
+            embeds: [
+                {
+                    title: "Anfragedetails",
+                    color: 9196287,
+                    fields: [
+                        { name: "👤 Name", value: name, inline: true },
+                        { name: "📧 Email", value: email, inline: true },
+                        { name: "📝 Nachricht", value: message },
+                        { name: "🎵 Demo", value: songFile && songFile.size > 0 ? `Datei: ${songFile.name}` : "Keine Datei angehängt" }
+                    ],
+                    footer: { text: "Rawlabs Studios - Website Contact Form" },
+                    timestamp: new Date().toISOString(),
+                },
+            ],
+        };
+
+        discordFormData.append('payload_json', JSON.stringify(payload));
+
+        // Add file if exists
+        if (songFile && songFile.size > 0) {
+            discordFormData.append('files[0]', songFile, songFile.name);
+        }
+
         const response = await fetch(discordUrl, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                username: "Studio Bot",
-                content: "🚀 **Neue Studio-Anfrage erhalten!**",
-                embeds: [
-                    {
-                        title: "Anfragedetails",
-                        color: 9196287,
-                        fields: [
-                            { name: "👤 Name", value: name, inline: true },
-                            { name: "📧 Email", value: email, inline: true },
-                            { name: "📝 Nachricht", value: message },
-                        ],
-                        footer: { text: "RawTone Studio - Website Contact Form" },
-                        timestamp: new Date().toISOString(),
-                    },
-                ],
-            }),
+            body: discordFormData
         });
 
         if (!response.ok) {
@@ -103,14 +98,8 @@ export const POST = async ({ request }) => {
             throw new Error(`Discord API error: ${response.status} - ${errText}`);
         }
 
-        return new Response(
-            JSON.stringify({ message: "Erfolgreich gesendet!" }),
-            { status: 200, headers: { "Content-Type": "application/json" } }
-        );
+        return new Response(JSON.stringify({ message: "Erfolgreich gesendet!" }), { status: 200, headers: { "Content-Type": "application/json" } });
     } catch (error) {
-        return new Response(
-            JSON.stringify({ message: `Senden fehlgeschlagen: ${error.message}` }),
-            { status: 500, headers: { "Content-Type": "application/json" } }
-        );
+        return new Response(JSON.stringify({ message: `Senden fehlgeschlagen: ${error.message}` }), { status: 500, headers: { "Content-Type": "application/json" } });
     }
 };

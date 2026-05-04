@@ -9,9 +9,10 @@ import logo from '../assets/rawlabs logo.png';
 -->
 <html>
 	<head>
-		<title>Hyperspace by HTML5 UP</title>
+		<title>Rawlabs Studios</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" type="image/png" href="/logo.png" />
 		<link rel="stylesheet" href="/assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
 	</head>
@@ -20,7 +21,7 @@ import logo from '../assets/rawlabs logo.png';
 		<!-- Sidebar -->
 			<section id="sidebar">
 				<div class="inner">
-					<a href="/" style="border-bottom: none;"><img src={logo.src} alt="Rawlabs Logo" style="max-width: 150px; display: block; margin: 0 auto 2em;" /></a>
+					<a href="/" class="sidebar-logo-link"><img src={logo.src} alt="Rawlabs Logo" class="sidebar-logo" /></a>
 					<nav>
 						<ul>
 							<li><a href="#intro">Studio</a></li>
@@ -166,6 +167,75 @@ import logo from '../assets/rawlabs logo.png';
 												<textarea name="message" id="message" rows="5" required></textarea>
 											</div>
 
+											<div class="field">
+												<label for="song_demo">Song Demo Anhängen (Max. 8MB)</label>
+												<div class="file-upload-wrapper">
+													<input type="file" name="song_demo" id="song_demo" accept="audio/*" class="hidden-file-input" />
+													<label for="song_demo" class="button primary icon solid fa-upload">Datei auswählen</label>
+													<span id="file-name-display" style="margin-left: 1em; opacity: 0.7; font-style: italic;">Keine Datei ausgewählt</span>
+												</div>
+												<p style="font-size: 0.8em; margin-top: 1em; opacity: 0.7;">Tipp: Für größere Dateien sende uns einfach einen Dropbox/WeTransfer Link in der Nachricht.</p>
+											</div>
+
+											<style>
+												#sidebar .inner {
+													padding-top: 2em; /* Balanced top padding */
+												}
+
+												.sidebar-logo-link {
+													display: flex !important;
+													justify-content: center;
+													align-items: center;
+													border-bottom: none !important;
+													margin-bottom: 2em;
+												}
+
+												.sidebar-logo {
+													max-width: 150px;
+													height: auto;
+													display: block;
+													margin: 0 !important;
+													transition: all 0.3s ease;
+												}
+
+												@media screen and (max-width: 1280px) {
+													#sidebar .inner {
+														padding-top: 0;
+														display: flex;
+														align-items: center;
+														justify-content: space-between;
+														padding-right: 1.5em; /* Match left padding */
+													}
+
+													.sidebar-logo-link {
+														margin-bottom: 0;
+														justify-content: flex-start;
+														padding-left: 1.5em;
+													}
+
+													.sidebar-logo {
+														max-width: 40px;
+													}
+												}
+
+												.hidden-file-input {
+													width: 0.1px;
+													height: 0.1px;
+													opacity: 0;
+													overflow: hidden;
+													position: absolute;
+													z-index: -1;
+												}
+												.file-upload-wrapper {
+													display: flex;
+													align-items: center;
+													margin-top: 0.5em;
+												}
+												.file-upload-wrapper .button {
+													margin-bottom: 0;
+												}
+											</style>
+
 											<!-- Honeypot (Spam protection) -->
 											<div class="field" style="display:none !important;" aria-hidden="true">
 												<label for="website">Leave this field empty</label>
@@ -182,6 +252,15 @@ import logo from '../assets/rawlabs logo.png';
 									<script is:inline>
 										// Set timestamp on load for spam protection
 										document.querySelector('input[name="form_token"]').value = Date.now();
+										
+										// Update filename display
+										const fileInput = document.getElementById('song_demo');
+										const fileNameDisplay = document.getElementById('file-name-display');
+
+										fileInput.addEventListener('change', (e) => {
+											const fileName = e.target.files[0] ? e.target.files[0].name : 'Keine Datei ausgewählt';
+											fileNameDisplay.innerText = fileName;
+										});
 
 										const form = document.getElementById('contact-form');
 										const status = document.getElementById('form-status');
@@ -194,15 +273,11 @@ import logo from '../assets/rawlabs logo.png';
 											status.innerText = 'Wird gesendet...';
 
 											const formData = new FormData(form);
-											const data = Object.fromEntries(formData.entries());
 											
 											try {
 												const response = await fetch('/api/contact', {
 													method: 'POST',
-													headers: {
-														'Content-Type': 'application/json'
-													},
-													body: JSON.stringify(data)
+													body: formData // Sending raw FormData handles the file automatically
 												});
 
 												const result = await response.json();
@@ -254,7 +329,7 @@ import logo from '../assets/rawlabs logo.png';
 			<footer id="footer" class="wrapper style1-alt">
 				<div class="inner">
 					<ul class="menu">
-						<li>&copy; Rawlabs Studio. All rights reserved.</li><li><a href="http://html5up.net">Impressum</a></li>
+						<li>&copy; Rawlabs Studios. Alle Rechte vorbehalten.</li><li><a href="/generic">Impressum</a></li>
 					</ul>
 				</div>
 			</footer>
