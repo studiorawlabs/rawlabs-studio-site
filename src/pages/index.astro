@@ -3,7 +3,6 @@ import logo from "../assets/rawlabs logo.png";
 ---
 
 <!DOCTYPE html>
-
 <head>
 	<title>Rawlabs Studios</title>
 	<meta charset="utf-8" />
@@ -27,6 +26,7 @@ import logo from "../assets/rawlabs logo.png";
 			<nav>
 				<ul>
 					<li><a href="#intro">Studio</a></li>
+					<li><a href="#packages">Pakete</a></li>
 					<li><a href="#two">Referenzen</a></li>
 					<li><a href="#three">Services</a></li>
 					<li><a href="#contact">Kontaktiere uns</a></li>
@@ -55,6 +55,76 @@ import logo from "../assets/rawlabs logo.png";
 						>
 					</li>
 				</ul>
+			</div>
+		</section>
+
+		<!-- Packages -->
+		<section id="packages" class="wrapper style3 fade-up">
+			<div class="inner">
+				<h2>Unsere Pakete</h2>
+				<p>Wähle das passende Paket für dein Projekt.</p>
+				<div class="pricing-grid">
+					<!-- Essentials -->
+					<div class="pricing-card">
+						<h3>Essentials</h3>
+						<ul class="pricing-features">
+							<li>
+								3 Vocal Stems <span class="detail"
+									>(z.B. 1 Lead Vocal + 2 Doubles)</span
+								>
+							</li>
+							<li>1 Beatstem</li>
+							<li class="plus">Mastering Inklusive</li>
+						</ul>
+						<a
+							href="#contact"
+							class="button scrolly"
+							data-package="essentials">Ab 30€</a
+						>
+					</div>
+
+					<!-- Advanced -->
+					<div class="pricing-card popular">
+						<div class="popular-badge">Am beliebtesten!</div>
+						<h3>Advanced</h3>
+						<ul class="pricing-features">
+							<li>Vocal Editing</li>
+							<li>
+								Vocal Stems <span class="detail"
+									>(bis 12 Spuren)</span
+								>
+							</li>
+							<li>Beat Mixing</li>
+							<li class="plus">Mastering Inklusive</li>
+						</ul>
+						<a
+							href="#contact"
+							class="button scrolly primary"
+							data-package="advanced">Ab 60€</a
+						>
+					</div>
+
+					<!-- Ultimate -->
+					<div class="pricing-card">
+						<h3>Ultimate</h3>
+						<ul class="pricing-features">
+							<li>Manuelles Timing &amp; Pitch Correction</li>
+							<li>Vocal Editing</li>
+							<li>
+								Vocal Stems <span class="detail"
+									>(bis 20 Spuren)</span
+								>
+							</li>
+							<li>Beat Stems Mixing</li>
+							<li class="plus">Mastering Inklusive</li>
+						</ul>
+						<a
+							href="#contact"
+							class="button scrolly"
+							data-package="ultimate">Ab 150€</a
+						>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -227,7 +297,8 @@ import logo from "../assets/rawlabs logo.png";
 								</div>
 								<div class="field">
 									<label for="message"
-										>Was können wir für dich tun?</label
+										>Gibt es noch etwas was wir wissen
+										sollten?</label
 									>
 									<textarea
 										name="message"
@@ -237,60 +308,79 @@ import logo from "../assets/rawlabs logo.png";
 								</div>
 
 								<div class="field">
-									<label>Wähle deine Services:</label>
-									<div class="grid-checkboxes">
-										<div class="checkbox-item">
-											<input
-												type="checkbox"
-												id="service-mixing"
-												name="services"
-												value="Mixing"
-												data-price="50"
-												class="service-checkbox"
-											/>
-											<label for="service-mixing"
-												>Mixing (50€)</label
-											>
-										</div>
-										<div class="checkbox-item">
-											<input
-												type="checkbox"
-												id="service-mastering"
-												name="services"
-												value="Mastering"
-												data-price="30"
-												class="service-checkbox"
-											/>
-											<label for="service-mastering"
-												>Mastering (30€)</label
-											>
-										</div>
-										<div class="checkbox-item">
-											<input
-												type="checkbox"
-												id="service-beats"
-												name="services"
-												value="Beat Production"
-												data-price="100"
-												class="service-checkbox"
-											/>
-											<label for="service-beats"
-												>Beat Production (100€)</label
-											>
-										</div>
-										<div class="checkbox-item">
-											<input
-												type="checkbox"
-												id="service-assets"
-												name="services"
-												value="Asset Creation"
-												data-price="15"
-												class="service-checkbox"
-											/>
-											<label for="service-assets"
-												>Asset Creation (15€ pro Asset)</label
-											>
-										</div>
+									<label>Wähle dein Studio-Paket:</label>
+									<div class="package-button-group">
+										<button
+											type="button"
+											class="package-btn"
+											data-value="Raw Labs Essentials"
+											data-price="30"
+											>Essentials (30€)</button
+										>
+										<button
+											type="button"
+											class="package-btn active"
+											data-value="Raw Labs Advanced"
+											data-price="60"
+											>Advanced (60€)</button
+										>
+										<button
+											type="button"
+											class="package-btn"
+											data-value="Raw Labs Ultimate"
+											data-price="150"
+											>Ultimate (150€)</button
+										>
+									</div>
+									<input
+										type="hidden"
+										name="package"
+										id="package-input"
+										value="Raw Labs Advanced"
+									/>
+								</div>
+
+								<div class="field">
+									<label
+										>Zusätzliche Services (Add-ons):</label
+									>
+									<div class="checkbox-item">
+										<input
+											type="checkbox"
+											id="addon-express"
+											name="addons"
+											value="Express Lieferung (48h)"
+											data-price="20"
+											class="addon-checkbox"
+										/>
+										<label
+											id="express-label"
+											for="addon-express"
+											>Express-Lieferung (48h) (+20€)</label
+										>
+									</div>
+								</div>
+
+								<div class="field">
+									<label
+										id="songs-label"
+										for="additional-songs"
+										>Zusätzliche Songs (mit 20% Rabatt):<br
+										/><strong
+											style="color: rgba(255,255,255,0.4)"
+											>Keine</strong
+										>
+									</label>
+									<div class="slider-wrapper">
+										<input
+											type="range"
+											name="additional_songs"
+											id="additional-songs"
+											min="0"
+											max="6"
+											value="0"
+											class="songs-slider"
+										/>
 									</div>
 								</div>
 
@@ -347,6 +437,137 @@ import logo from "../assets/rawlabs logo.png";
 								</div>
 
 								<style>
+									.pricing-grid {
+										display: grid;
+										grid-template-columns: repeat(3, 1fr);
+										gap: 2em;
+										margin-top: 2em;
+										margin-bottom: 2em;
+									}
+
+									.pricing-card {
+										background: rgba(255, 255, 255, 0.05);
+										border: 1px solid
+											rgba(255, 255, 255, 0.1);
+										border-radius: 12px;
+										padding: 2.5em 2em; /* Mehr padding für mehr "Breathing Room" */
+										display: flex;
+										flex-direction: column;
+										position: relative;
+										transition: transform 0.3s ease,
+											border-color 0.3s ease,
+											box-shadow 0.3s ease;
+										box-sizing: border-box;
+									}
+
+									.pricing-card:hover {
+										transform: translateY(-5px);
+										border-color: rgba(255, 255, 255, 0.3);
+										box-shadow: 0 10px 25px
+											rgba(0, 0, 0, 0.2);
+									}
+
+									.pricing-card.popular {
+										border-color: #a891ff; /* Accent color */
+										background: linear-gradient(
+											180deg,
+											rgba(168, 145, 255, 0.1) 0%,
+											rgba(168, 145, 255, 0.02) 100%
+										);
+										transform: scale(1.05);
+										z-index: 1;
+										padding: 3em 2.5em; /* Noch mehr Platz für die beliebte Karte */
+										box-shadow: 0 0 30px
+											rgba(168, 145, 255, 0.15);
+									}
+
+									.pricing-card.popular:hover {
+										transform: scale(1.05) translateY(-5px);
+										box-shadow: 0 15px 40px
+											rgba(168, 145, 255, 0.25);
+									}
+
+									.popular-badge {
+										position: absolute;
+										top: -16px;
+										left: 50%;
+										transform: translateX(-50%);
+										background: #a891ff;
+										color: #fff;
+										padding: 0.4em 1.5em;
+										border-radius: 30px;
+										font-size: 0.85em;
+										font-weight: 700;
+										letter-spacing: 0.05em;
+										white-space: nowrap;
+										box-shadow: 0 4px 15px
+											rgba(168, 145, 255, 0.4);
+									}
+
+									.pricing-card h3 {
+										margin-bottom: 1em;
+										font-size: 1.6em;
+										text-align: center;
+										border-bottom: 1px solid
+											rgba(255, 255, 255, 0.1);
+										padding-bottom: 0.8em;
+									}
+
+									.pricing-card.popular h3 {
+										color: #a891ff;
+										font-size: 1.8em;
+									}
+
+									.pricing-card .pricing-features {
+										list-style: none;
+										padding: 0;
+										margin: 0 0 2em 0;
+										flex-grow: 1;
+									}
+
+									.pricing-card .pricing-features li {
+										padding: 0.5em 0; /* Etwas kompakter, da keine Linien mehr trennen */
+										border-bottom: none;
+										font-size: 0.85em;
+										line-height: 1.5;
+										text-align: center; /* Zentrierte Liste sieht oft eleganter aus in Preistabellen */
+									}
+
+									.pricing-card .pricing-features li.plus {
+										font-weight: bold;
+										color: #a891ff;
+									}
+
+									.pricing-card .pricing-features .detail {
+										display: block;
+										font-size: 0.75em;
+										margin-top: 0.3em;
+										opacity: 0.8;
+									}
+
+									.pricing-card .button {
+										width: 100%;
+										text-align: center;
+										margin-top: auto;
+									}
+
+									@media screen and (max-width: 980px) {
+										.pricing-grid {
+											grid-template-columns: 1fr;
+											max-width: 500px;
+											margin-left: auto;
+											margin-right: auto;
+										}
+
+										.pricing-card.popular {
+											transform: none;
+										}
+
+										.pricing-card.popular:hover {
+											transform: translateY(-5px);
+										}
+									}
+
 									#sidebar .inner {
 										padding-top: 2em; /* Balanced top padding */
 									}
@@ -529,6 +750,306 @@ import logo from "../assets/rawlabs logo.png";
 											width: 100%;
 										}
 									}
+
+									/* Slider styling */
+									.slider-wrapper {
+										display: block;
+										width: 100%;
+										padding: 0.5em 0;
+									}
+
+									.songs-slider {
+										-webkit-appearance: none !important;
+										appearance: none !important;
+										display: block !important;
+										width: 100% !important;
+										min-width: 100% !important;
+										max-width: 100% !important;
+										box-sizing: border-box !important;
+										height: 6px !important;
+										border-radius: 5px !important;
+										background: rgba(
+											255,
+											255,
+											255,
+											0.1
+										) !important;
+										outline: none !important;
+										border: none !important;
+										padding: 0 !important;
+										margin: 15px 0 !important;
+										transition: background 0.3s ease;
+									}
+
+									.songs-slider::-webkit-slider-runnable-track {
+										width: 100% !important;
+										height: 6px !important;
+										cursor: pointer !important;
+										border-radius: 5px !important;
+										background: rgba(
+											255,
+											255,
+											255,
+											0.1
+										) !important;
+										border: none !important;
+									}
+
+									.songs-slider::-webkit-slider-thumb {
+										height: 20px !important;
+										width: 20px !important;
+										border-radius: 50% !important;
+										background: #a891ff !important;
+										cursor: pointer !important;
+										-webkit-appearance: none !important;
+										appearance: none !important;
+										margin-top: -7px !important;
+										box-shadow: 0 0 10px
+											rgba(168, 145, 255, 0.5) !important;
+										border: none !important;
+										transition: transform 0.1s ease,
+											background-color 0.2s ease;
+									}
+
+									.songs-slider::-webkit-slider-thumb:hover {
+										transform: scale(1.2) !important;
+										background: #bfaaff !important;
+										box-shadow: 0 0 15px
+											rgba(168, 145, 255, 0.8) !important;
+									}
+
+									.songs-slider::-moz-range-track {
+										width: 100% !important;
+										height: 6px !important;
+										cursor: pointer !important;
+										border-radius: 5px !important;
+										background: rgba(
+											255,
+											255,
+											255,
+											0.1
+										) !important;
+										border: none !important;
+									}
+
+									.songs-slider::-moz-range-thumb {
+										height: 20px !important;
+										width: 20px !important;
+										border-radius: 50% !important;
+										background: #a891ff !important;
+										cursor: pointer !important;
+										box-shadow: 0 0 10px
+											rgba(168, 145, 255, 0.5) !important;
+										border: none !important;
+										transition: transform 0.1s ease,
+											background-color 0.2s ease;
+									}
+
+									.songs-slider::-moz-range-thumb:hover {
+										transform: scale(1.2) !important;
+										background: #bfaaff !important;
+									}
+
+									@keyframes pulse {
+										0% {
+											transform: scale(1);
+											display: inline-block;
+										}
+										50% {
+											transform: scale(1.08);
+											display: inline-block;
+										}
+										100% {
+											transform: scale(1);
+											display: inline-block;
+										}
+									}
+
+									/* Package Buttons Styling */
+									.package-button-group {
+										display: flex;
+										flex-wrap: wrap;
+										gap: 10px;
+										margin-bottom: 0.5em;
+										width: 100%;
+										padding: 8px !important;
+										margin-left: -8px !important;
+										margin-top: -8px !important;
+										overflow: visible !important;
+									}
+
+									.package-btn {
+										flex: 1;
+										min-width: 80px !important;
+										background: rgba(
+											255,
+											255,
+											255,
+											0.04
+										) !important;
+										border: 1px solid
+											rgba(255, 255, 255, 0.15) !important;
+										border-radius: 30px !important;
+										color: rgba(
+											255,
+											255,
+											255,
+											0.7
+										) !important;
+										padding: 0.4em 0.8em !important;
+										font-size: 0.65em !important;
+										font-family: "Heavitas", sans-serif !important;
+										font-weight: bold !important;
+										letter-spacing: normal !important;
+										text-align: center !important;
+										cursor: pointer !important;
+										transition: all 0.25s ease,
+											border-color 0.25s ease,
+											box-shadow 0.25s ease !important;
+										white-space: nowrap !important;
+										height: auto !important;
+										line-height: inherit !important;
+										text-transform: none !important;
+										overflow: visible !important;
+									}
+
+									.package-btn:hover {
+										cursor: pointer !important;
+									}
+
+									.package-btn.active {
+										background: rgba(
+											168,
+											145,
+											255,
+											0.1
+										) !important;
+										border-color: #a891ff !important;
+										color: #fff !important;
+										box-shadow: 0 0 20px 2px
+											rgba(168, 145, 255, 0.7) !important;
+									}
+
+									/* Custom Animated Checkbox Styling */
+									.checkbox-item {
+										display: flex;
+										align-items: center;
+										margin: 0.5em 0;
+										overflow: visible !important;
+									}
+
+									input[type="checkbox"].addon-checkbox {
+										position: absolute;
+										opacity: 0;
+										pointer-events: none;
+									}
+
+									input[type="checkbox"].addon-checkbox
+										+ label {
+										position: relative;
+										padding-left: 2.25em !important;
+										cursor: pointer !important;
+										user-select: none;
+										display: inline-block;
+										color: rgba(
+											255,
+											255,
+											255,
+											0.7
+										) !important;
+										transition: color 0.3s ease !important;
+										text-transform: none !important;
+										font-weight: 500 !important;
+									}
+
+									input[type="checkbox"].addon-checkbox:checked
+										+ label {
+										color: #fff !important;
+									}
+
+									/* Custom checkbox outer box */
+									input[type="checkbox"].addon-checkbox
+										+ label::before {
+										content: "" !important;
+										position: absolute;
+										left: 0;
+										top: 50%;
+										transform: translateY(-50%) !important;
+										width: 22px !important;
+										height: 22px !important;
+										background: rgba(
+											255,
+											255,
+											255,
+											0.04
+										) !important;
+										border: 1px solid
+											rgba(255, 255, 255, 0.15) !important;
+										border-radius: 6px !important;
+										transition: all 0.3s
+											cubic-bezier(0.4, 0, 0.2, 1) !important;
+										box-shadow: none !important;
+									}
+
+									/* Custom checkbox checkmark */
+									input[type="checkbox"].addon-checkbox
+										+ label::after {
+										content: "" !important;
+										position: absolute;
+										left: 8px;
+										top: calc(50% - 6px);
+										width: 6px !important;
+										height: 11px !important;
+										border: solid #fff !important;
+										border-width: 0 2px 2px 0 !important;
+										transform: rotate(45deg) scale(0) !important;
+										transition: transform 0.35s
+											cubic-bezier(
+												0.175,
+												0.885,
+												0.32,
+												1.5
+											) !important;
+										transform-origin: center !important;
+									}
+
+									/* Checked state: glowing background & border */
+									input[type="checkbox"].addon-checkbox:checked
+										+ label::before {
+										background: rgba(
+											168,
+											145,
+											255,
+											0.25
+										) !important;
+										border-color: #a891ff !important;
+										box-shadow: 0 0 12px
+											rgba(168, 145, 255, 0.5) !important;
+									}
+
+									/* Checked state: animate checkmark in */
+									input[type="checkbox"].addon-checkbox:checked
+										+ label::after {
+										transform: rotate(45deg) scale(1) !important;
+										border-color: #a891ff !important;
+									}
+
+									/* Hover state interaction */
+									input[type="checkbox"].addon-checkbox
+										+ label:hover::before {
+										border-color: rgba(
+											168,
+											145,
+											255,
+											0.5
+										) !important;
+										background: rgba(
+											255,
+											255,
+											255,
+											0.08
+										) !important;
+									}
 								</style>
 
 								<!-- Honeypot (Spam protection) -->
@@ -588,10 +1109,16 @@ import logo from "../assets/rawlabs logo.png";
 							});
 
 							// Price calculation logic with rolling animation
-							const checkboxes =
-								document.querySelectorAll(".service-checkbox");
+							const addons =
+								document.querySelectorAll(".addon-checkbox");
+							const additionalSongsInput =
+								document.getElementById("additional-songs");
 							const totalPriceDisplay =
 								document.getElementById("total-price");
+							const packageButtonsForm =
+								document.querySelectorAll(".package-btn");
+							const packageInput =
+								document.getElementById("package-input");
 							let currentTotal = 0;
 
 							function animateValue(obj, start, end, duration) {
@@ -615,11 +1142,53 @@ import logo from "../assets/rawlabs logo.png";
 
 							function updateTotal() {
 								let total = 0;
-								checkboxes.forEach((cb) => {
+								let packagePrice = 0;
+
+								// Add package price from active button
+								const activePkgBtn = document.querySelector(
+									".package-btn.active"
+								);
+								if (activePkgBtn) {
+									packagePrice = parseInt(
+										activePkgBtn.dataset.price || 0
+									);
+									total += packagePrice;
+								}
+
+								const additionalSongsCount =
+									additionalSongsInput
+										? parseInt(
+												additionalSongsInput.value || 0
+										  )
+										: 0;
+
+								// Add selected add-ons price (Express scales with total number of songs: 1 + additional songs)
+								addons.forEach((cb) => {
 									if (cb.checked) {
-										total += parseInt(cb.dataset.price);
+										const basePrice = parseInt(
+											cb.dataset.price || 0
+										);
+										if (cb.id === "addon-express") {
+											total +=
+												basePrice *
+												(1 + additionalSongsCount);
+										} else {
+											total += basePrice;
+										}
 									}
 								});
+
+								// Add additional songs price (each at 80% of the package price)
+								if (
+									additionalSongsCount > 0 &&
+									packagePrice > 0
+								) {
+									total += Math.round(
+										additionalSongsCount *
+											packagePrice *
+											0.8
+									);
+								}
 
 								if (total !== currentTotal) {
 									animateValue(
@@ -632,9 +1201,116 @@ import logo from "../assets/rawlabs logo.png";
 								}
 							}
 
-							checkboxes.forEach((cb) => {
+							packageButtonsForm.forEach((btn) => {
+								btn.addEventListener("click", () => {
+									packageButtonsForm.forEach((b) =>
+										b.classList.remove("active")
+									);
+									btn.classList.add("active");
+									if (packageInput) {
+										packageInput.value = btn.dataset.value;
+									}
+									updateTotal();
+									updateSongsLabel();
+								});
+							});
+
+							addons.forEach((cb) => {
 								cb.addEventListener("change", updateTotal);
 							});
+
+							if (additionalSongsInput) {
+								additionalSongsInput.addEventListener(
+									"input",
+									() => {
+										updateTotal();
+										updateSongsLabel();
+									}
+								);
+								additionalSongsInput.addEventListener(
+									"change",
+									() => {
+										updateTotal();
+										updateSongsLabel();
+									}
+								);
+							}
+
+							function updateSongsLabel() {
+								const songsCount = parseInt(
+									additionalSongsInput.value || 0
+								);
+								const activePkgBtn = document.querySelector(
+									".package-btn.active"
+								);
+								const packagePrice = activePkgBtn
+									? parseInt(activePkgBtn.dataset.price || 0)
+									: 0;
+								const label =
+									document.getElementById("songs-label");
+
+								if (!label) return;
+
+								if (songsCount === 0) {
+									label.innerHTML = `Zusätzliche Songs (mit 20% Rabatt):<br><strong style="color: rgba(255,255,255,0.4)">Keine</strong>`;
+								} else {
+									const extraCost = Math.round(
+										songsCount * packagePrice * 0.8
+									);
+									const songText =
+										songsCount === 1
+											? "1 Song"
+											: `${songsCount} Songs`;
+									label.innerHTML = `Zusätzliche Songs (mit 20% Rabatt):<br><span style="display: inline-block; color: #a891ff; font-weight: 800; animation: pulse 0.3s ease;">${songText} (+${extraCost}€)</span>`;
+								}
+
+								// Dynamically scale Express price label preserving custom HTML modifications
+								const expressLabel =
+									document.getElementById("express-label");
+								if (expressLabel) {
+									const expressCheckbox = document.getElementById("addon-express");
+									const baseExpressPrice = expressCheckbox ? parseInt(expressCheckbox.dataset.price || 50) : 50;
+									const totalExpressPrice =
+										baseExpressPrice * (1 + songsCount);
+									// Use regex to only replace the (+XX€) part, leaving text like "72h" untouched!
+									expressLabel.innerHTML =
+										expressLabel.innerHTML.replace(
+											/\(\+\d+€\)/,
+											`(+${totalExpressPrice}€)`
+										);
+								}
+							}
+
+							// Handle package card selection clicks
+							const packageButtons =
+								document.querySelectorAll("[data-package]");
+							packageButtons.forEach((btn) => {
+								btn.addEventListener("click", () => {
+									const targetPackage = btn.dataset.package;
+									let targetValue = "";
+
+									if (targetPackage === "essentials") {
+										targetValue = "Raw Labs Essentials";
+									} else if (targetPackage === "advanced") {
+										targetValue = "Raw Labs Advanced";
+									} else if (targetPackage === "ultimate") {
+										targetValue = "Raw Labs Ultimate";
+									}
+
+									const targetBtn = Array.from(
+										packageButtonsForm
+									).find(
+										(b) => b.dataset.value === targetValue
+									);
+									if (targetBtn) {
+										targetBtn.click();
+									}
+								});
+							});
+
+							// Calculate initial total
+							updateTotal();
+							updateSongsLabel();
 
 							const form =
 								document.getElementById("contact-form");

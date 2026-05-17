@@ -24,7 +24,7 @@ function loadEnvFile() {
 }
 
 export const POST = async ({ request }) => {
-    let name, email, message, website, formToken, songFile, services;
+    let name, email, message, website, formToken, songFile, selectedPackage, addons, additionalSongs;
 
     try {
         const data = await request.formData();
@@ -34,7 +34,9 @@ export const POST = async ({ request }) => {
         website = data.get("website");
         formToken = data.get("form_token");
         songFile = data.get("song_demo");
-        services = data.getAll("services");
+        selectedPackage = data.get("package");
+        addons = data.getAll("addons");
+        additionalSongs = parseInt(data.get("additional_songs") || 0);
     } catch (e) {
         return new Response(
             JSON.stringify({ message: "Ungültige Anfrage (FormData Fehler)." }),
@@ -61,13 +63,34 @@ export const POST = async ({ request }) => {
 
     try {
         // Prepare Discord Payload
-        const priceMap = {
-            "Mixing": 50,
-            "Mastering": 30,
-            "Beat Production": 100,
-            "Asset Creation": 15
+        const packagePriceMap = {
+            "Raw Labs Essentials": 30,
+            "Raw Labs Advanced": 60,
+            "Raw Labs Ultimate": 150
         };
-        const total = services.reduce((acc, s) => acc + (priceMap[s] || 0), 0);
+        
+        const addonPriceMap = {
+            "Express Lieferung (48h)": 20
+        };
+
+        let total = 0;
+        let packagePrice = 0;
+        if (selectedPackage && packagePriceMap[selectedPackage]) {
+            packagePrice = packagePriceMap[selectedPackage];
+            total += packagePrice;
+        }
+        addons.forEach(addon => {
+            if (addonPriceMap[addon]) {
+                if (addon === "Express Lieferung (48h)") {
+                    total += addonPriceMap[addon] * (1 + additionalSongs);
+                } else {
+                    total += addonPriceMap[addon];
+                }
+            }
+        });
+        if (additionalSongs > 0 && packagePrice > 0) {
+            total += Math.round(additionalSongs * packagePrice * 0.8);
+        }
 
         const discordFormData = new FormData();
         const payload = {
@@ -81,7 +104,9 @@ export const POST = async ({ request }) => {
                         { name: "👤 Name", value: name, inline: true },
                         { name: "📧 Email", value: email, inline: true },
                         { name: "💰 Preisvoranschlag", value: `${total}€`, inline: true },
-                        { name: "🛠️ Services", value: services.length > 0 ? services.join(", ") : "Keine ausgewählt" },
+                        { name: "🛠️ Paket", value: selectedPackage || "Kein Paket ausgewählt", inline: true },
+                        { name: "🎵 Zusätzliche Songs", value: `${additionalSongs}`, inline: true },
+                        { name: "➕ Add-ons", value: addons.length > 0 ? addons.join(", ") : "Keine ausgewählt" },
                         { name: "📝 Nachricht", value: message },
                         { name: "🎵 Demo", value: songFile && songFile.size > 0 ? `Datei: ${songFile.name}` : "Keine Datei angehängt" }
                     ],
