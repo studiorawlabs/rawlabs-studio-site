@@ -24,7 +24,7 @@ function loadEnvFile() {
 }
 
 export const POST = async ({ request }) => {
-    let name, email, message, website, formToken, songFile;
+    let name, email, message, website, formToken, songFile, services;
 
     try {
         const data = await request.formData();
@@ -34,6 +34,7 @@ export const POST = async ({ request }) => {
         website = data.get("website");
         formToken = data.get("form_token");
         songFile = data.get("song_demo");
+        services = data.getAll("services");
     } catch (e) {
         return new Response(
             JSON.stringify({ message: "Ungültige Anfrage (FormData Fehler)." }),
@@ -60,11 +61,18 @@ export const POST = async ({ request }) => {
 
     try {
         // Prepare Discord Payload
+        const priceMap = {
+            "Mixing": 50,
+            "Mastering": 30,
+            "Beat Production": 100,
+            "Asset Creation": 15
+        };
+        const total = services.reduce((acc, s) => acc + (priceMap[s] || 0), 0);
+
         const discordFormData = new FormData();
-        
         const payload = {
             username: "Studio Bot",
-            content: "🚀 **Neue Studio-Anfrage mit Demo!**",
+            content: "🚀 **Neue Studio-Anfrage!**",
             embeds: [
                 {
                     title: "Anfragedetails",
@@ -72,6 +80,8 @@ export const POST = async ({ request }) => {
                     fields: [
                         { name: "👤 Name", value: name, inline: true },
                         { name: "📧 Email", value: email, inline: true },
+                        { name: "💰 Preisvoranschlag", value: `${total}€`, inline: true },
+                        { name: "🛠️ Services", value: services.length > 0 ? services.join(", ") : "Keine ausgewählt" },
                         { name: "📝 Nachricht", value: message },
                         { name: "🎵 Demo", value: songFile && songFile.size > 0 ? `Datei: ${songFile.name}` : "Keine Datei angehängt" }
                     ],

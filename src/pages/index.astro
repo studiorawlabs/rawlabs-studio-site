@@ -1,7 +1,8 @@
 ---
-import logo from '../assets/rawlabs logo.png';
+import logo from "../assets/rawlabs logo.png";
 ---
-<!DOCTYPE HTML>
+
+<!DOCTYPE html>
 <!--
 	Hyperspace by HTML5 UP
 	html5up.net | @ajlkn
@@ -11,338 +12,760 @@ import logo from '../assets/rawlabs logo.png';
 	<head>
 		<title>Rawlabs Studios</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, user-scalable=no"
+		/>
 		<link rel="icon" type="image/png" href="/logo.png" />
 		<link rel="stylesheet" href="/assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+		<noscript
+			><link rel="stylesheet" href="/assets/css/noscript.css" />
+		</noscript>
 	</head>
 	<body class="is-preload">
-
 		<!-- Sidebar -->
-			<section id="sidebar">
+		<section id="sidebar">
+			<div class="inner">
+				<a href="/" class="sidebar-logo-link"
+					><img
+						src={logo.src}
+						alt="Rawlabs Logo"
+						class="sidebar-logo"
+					/>
+				</a>
+				<nav>
+					<ul>
+						<li><a href="#intro">Studio</a></li>
+						<li><a href="#two">Referenzen</a></li>
+						<li><a href="#three">Services</a></li>
+						<li><a href="#contact">Kontaktiere uns</a></li>
+					</ul>
+				</nav>
+			</div>
+		</section>
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+			<!-- Intro -->
+			<section id="intro" class="wrapper style1 fullscreen fade-up">
 				<div class="inner">
-					<a href="/" class="sidebar-logo-link"><img src={logo.src} alt="Rawlabs Logo" class="sidebar-logo" /></a>
-					<nav>
-						<ul>
-							<li><a href="#intro">Studio</a></li>
-							<li><a href="#two">Referenzen</a></li>
-							<li><a href="#three">Services</a></li>
-							<li><a href="#contact">Kontaktiere uns</a></li>
-						</ul>
-					</nav>
+					<h1>Willkommen im Studio!</h1>
+					<p>Von Home zu High-End</p>
+					<ul class="actions intro-actions">
+						<li>
+							<a href="#two" class="button scrolly"
+								>Schau dir unsere Arbeit an!</a
+							>
+						</li>
+						<li class="button-separator">oder</li>
+						<li>
+							<a href="#contact" class="button scrolly"
+								>Sende uns deine Demo!</a
+							>
+						</li>
+					</ul>
 				</div>
 			</section>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Intro -->
-					<section id="intro" class="wrapper style1 fullscreen fade-up">
-						<div class="inner">
-							<h1>Willkommen im Studio!</h1>
-							<p>Von Home zu High-End</p>
-							<ul class="actions">
-								<li><a href="#two" class="button scrolly">Schau dir unsere Arbeit an!</a></li>
-							</ul>
-						</div>
-					</section>
-
-				<!-- Two -->
-					<section id="two" class="wrapper style2">
-						<div class="inner">
-							<h2>Referenzen</h2>
-							<div class="references-grid">
-								<div class="reference-item">
-									<div class="reference-image">
-										<img src="/images/pic01.jpg" alt="" />
-									</div>
-									<div class="reference-content">
-										<h3>Referenz 1</h3>
-										<p>Mixing / Mastering für blablabla lorem impusum</p>
-										<ul class="actions">
-											<li><a href="/generic" class="button small">Details</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="reference-item">
-									<div class="reference-image">
-										<img src="/images/pic02.jpg" alt="" />
-									</div>
-									<div class="reference-content">
-										<h3>Referenz 2</h3>
-										<p>Beat Produktion für blablabla lorem impusum</p>
-										<ul class="actions">
-											<li><a href="/generic" class="button small">Details</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="reference-item">
-									<div class="reference-image">
-										<img src="/images/pic03.jpg" alt="" />
-									</div>
-									<div class="reference-content">
-										<h3>Refernz 3</h3>
-										<p>Zusammen mit unserem Partner Blabla haben wir dieses Album gemixt und gemastert, um ein erstklassiges Hörerlebnis zu schaffen. lorem impusum.</p>
-										<ul class="actions">
-											<li><a href="/generic" class="button small">Details</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<ul class="actions special" style="margin-top: 3em;">
-								<li><a href="/referenzen" class="button">Mehr Referenzen ansehen</a></li>
-							</ul>
-						</div>
-					</section>
-
-				<!-- Three -->
-					<section id="three" class="wrapper style3 fade-up">
-						<div class="inner">
-							<h2>Unsere Services</h2>
-							<p>Wir helfen mit allem, was dein Song braucht, um auf die nächste Stufe zu kommen.<br><br>Dein Sound, so wie du ihn dir vorstellst. <br>Dein Auftritt, so wie du als artist gesehen werden willst. </p>
-							<div class="services-list">
-								<div class="service-item">
-									<div class="service-icon">
-										<span class="icon solid major fa-sliders-h"></span>
-									</div>
-									<div class="service-details">
-										<h3>Mixing</h3>
-										<p>Professionelles Mixing von bis zu 15 Stems.</p>
-										<a href="#contact" class="service-link">Anfrage senden</a>
-									</div>
-								</div>
-								<div class="service-item">
-									<div class="service-icon">
-										<span class="icon solid major fa-wave-square"></span>
-									</div>
-									<div class="service-details">
-										<h3>Mastering</h3>
-										<p>Professionelles Mastering um jeden Track radio ready zu machen.</p>
-										<a href="#contact" class="service-link">Anfrage senden</a>
-									</div>
-								</div>
-								<div class="service-item">
-									<div class="service-icon">
-										<span class="icon solid major fa-drum"></span>
-									</div>
-									<div class="service-details">
-										<h3>Beat Production</h3>
-										<p>Individuelle Beat Produktion für Genres von Hip Hop, Rap, RnB bis hin zu Pop</p>
-										<a href="#contact" class="service-link">Anfrage senden</a>
-									</div>
-								</div>
-								<div class="service-item">
-									<div class="service-icon">
-										<span class="icon solid major fa-palette"></span>
-									</div>
-									<div class="service-details">
-										<h3>Assets</h3>
-										<p>Von Album Artwork bis hin zu Social Media Graphics, wir kümmern uns darum</p>
-										<a href="#contact" class="service-link">Anfrage senden</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-
-				<!-- Contact -->
-					<section id="contact" class="wrapper style1 fade-up">
-						<div class="inner">
-							<h2>Schreibe uns</h2>
-							<p></p>
-							<div class="split style1">
-								<section>
-									<form id="contact-form">
-										<div class="fields">
-											<div class="field half">
-												<label for="name">Name</label>
-												<input type="text" name="name" id="name" required />
-											</div>
-											<div class="field half">
-												<label for="email">Email</label>
-												<input type="email" name="email" id="email" required />
-											</div>
-											<div class="field">
-												<label for="message">Was können wir für dich tun?</label>
-												<textarea name="message" id="message" rows="5" required></textarea>
-											</div>
-
-											<div class="field">
-												<label for="song_demo">Song Demo Anhängen (Max. 8MB)</label>
-												<div class="file-upload-wrapper">
-													<input type="file" name="song_demo" id="song_demo" accept="audio/*" class="hidden-file-input" />
-													<label for="song_demo" class="button primary icon solid fa-upload">Datei auswählen</label>
-													<span id="file-name-display" style="margin-left: 1em; opacity: 0.7; font-style: italic;">Keine Datei ausgewählt</span>
-												</div>
-												<p style="font-size: 0.8em; margin-top: 1em; opacity: 0.7;">Tipp: Für größere Dateien sende uns einfach einen Dropbox/WeTransfer Link in der Nachricht.</p>
-											</div>
-
-											<style>
-												#sidebar .inner {
-													padding-top: 2em; /* Balanced top padding */
-												}
-
-												.sidebar-logo-link {
-													display: flex !important;
-													justify-content: center;
-													align-items: center;
-													border-bottom: none !important;
-													margin-bottom: 2em;
-												}
-
-												.sidebar-logo {
-													max-width: 150px;
-													height: auto;
-													display: block;
-													margin: 0 !important;
-													transition: all 0.3s ease;
-												}
-
-												@media screen and (max-width: 1280px) {
-													#sidebar .inner {
-														padding-top: 0;
-														display: flex;
-														align-items: center;
-														justify-content: space-between;
-														padding-right: 1.5em; /* Match left padding */
-													}
-
-													.sidebar-logo-link {
-														margin-bottom: 0;
-														justify-content: flex-start;
-														padding-left: 1.5em;
-													}
-
-													.sidebar-logo {
-														max-width: 40px;
-													}
-												}
-
-												.hidden-file-input {
-													width: 0.1px;
-													height: 0.1px;
-													opacity: 0;
-													overflow: hidden;
-													position: absolute;
-													z-index: -1;
-												}
-												.file-upload-wrapper {
-													display: flex;
-													align-items: center;
-													margin-top: 0.5em;
-												}
-												.file-upload-wrapper .button {
-													margin-bottom: 0;
-												}
-											</style>
-
-											<!-- Honeypot (Spam protection) -->
-											<div class="field" style="display:none !important;" aria-hidden="true">
-												<label for="website">Leave this field empty</label>
-												<input type="text" name="website" id="website" tabindex="-1" autocomplete="off" />
-											</div>
-											<input type="hidden" name="form_token" value={Date.now()} />
-										</div>
-										<ul class="actions">
-											<li><button type="submit" class="button primary">Nachricht senden</button></li>
-										</ul>
-										<div id="form-status" style="margin-top: 1em; display: none;"></div>
-									</form>
-
-									<script is:inline>
-										// Set timestamp on load for spam protection
-										document.querySelector('input[name="form_token"]').value = Date.now();
-										
-										// Update filename display
-										const fileInput = document.getElementById('song_demo');
-										const fileNameDisplay = document.getElementById('file-name-display');
-
-										fileInput.addEventListener('change', (e) => {
-											const fileName = e.target.files[0] ? e.target.files[0].name : 'Keine Datei ausgewählt';
-											fileNameDisplay.innerText = fileName;
-										});
-
-										const form = document.getElementById('contact-form');
-										const status = document.getElementById('form-status');
-
-										form.addEventListener('submit', async (e) => {
-											e.preventDefault();
-											
-											status.style.display = 'block';
-											status.style.color = '#fff';
-											status.innerText = 'Wird gesendet...';
-
-											const formData = new FormData(form);
-											
-											try {
-												const response = await fetch('/api/contact', {
-													method: 'POST',
-													body: formData // Sending raw FormData handles the file automatically
-												});
-
-												const result = await response.json();
-
-												if (response.ok) {
-													status.style.color = '#4CAF50';
-													status.innerText = 'Erfolgreich gesendet! Wir melden uns bei dir.';
-													form.reset();
-												} else {
-													status.style.color = '#f44336';
-													status.innerText = result.message || 'Etwas ist schiefgelaufen.';
-												}
-											} catch (error) {
-												status.style.color = '#f44336';
-												status.innerText = 'Fehler bei der Verbindung zum Server.';
-											}
-										});
-									</script>
-								</section>
-								<section>
-									<ul class="contact">
-										<li>
-											<h3>Email</h3>
-											<a href="#">user@untitled.tld</a>
-										</li>
-										<li>
-											<h3>Phone</h3>
-											<span>(000) 000-0000</span>
-										</li>
-										<li>
-											<h3>Social</h3>
-											<ul class="icons">
-												<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-												<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-												<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-												<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-											</ul>
-										</li>
-									</ul>
-								</section>
-							</div>
-						</div>
-					</section>
-
-			</div>
-
-		<!-- Footer -->
-			<footer id="footer" class="wrapper style1-alt">
+			<!-- Two -->
+			<section id="two" class="wrapper style2">
 				<div class="inner">
-					<ul class="menu">
-						<li>&copy; Rawlabs Studios. Alle Rechte vorbehalten.</li><li><a href="/generic">Impressum</a></li>
+					<h2>Referenzen</h2>
+					<div class="references-grid">
+						<div class="reference-item">
+							<div class="reference-image">
+								<img src="/images/pic01.jpg" alt="" />
+							</div>
+							<div class="reference-content">
+								<h3>Mixes / Masters</h3>
+								<p>
+									Check unsere Spotify Playlist mit Songs an
+									denen wir mitgearbetet haben!
+								</p>
+								<ul class="actions">
+									<li>
+										<a href="/generic" class="button small"
+											>Details</a
+										>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="reference-item">
+							<div class="reference-image">
+								<img src="/images/pic02.jpg" alt="" />
+							</div>
+							<div class="reference-content">
+								<h3>Beats / Arrangements</h3>
+								<p>Beatproduktionen von Rawlabs!</p>
+								<ul class="actions">
+									<li>
+										<a href="/generic" class="button small"
+											>Details</a
+										>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="reference-item">
+							<div class="reference-image">
+								<img src="/images/pic03.jpg" alt="" />
+							</div>
+							<div class="reference-content">
+								<h3>Künstler</h3>
+								<p>Künstler mit denen wir gearbeitet haben!</p>
+								<ul class="actions">
+									<li>
+										<a href="/generic" class="button small"
+											>Details</a
+										>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<ul class="actions special" style="margin-top: 3em;">
+						<li>
+							<a href="/referenzen" class="button"
+								>Mehr Referenzen ansehen</a
+							>
+						</li>
 					</ul>
 				</div>
-			</footer>
+			</section>
+
+			<!-- Three -->
+			<section id="three" class="wrapper style3 fade-up">
+				<div class="inner">
+					<h2>Unsere Services</h2>
+					<p>
+						Wir helfen mit allem, was dein Song braucht, um auf die
+						nächste Stufe zu kommen.<br /><br />Dein Sound, so wie
+						du ihn dir vorstellst. <br />Dein Auftritt, so wie du
+						als artist gesehen werden willst.
+					</p>
+					<div class="services-list">
+						<div class="service-item">
+							<div class="service-icon">
+								<span class="icon solid major fa-sliders-h"
+								></span>
+							</div>
+							<div class="service-details">
+								<h3>Mixing</h3>
+								<p>
+									Professionelles Mixing von bis zu 15 Stems.
+								</p>
+								<a href="#contact" class="service-link"
+									>Anfrage senden</a
+								>
+							</div>
+						</div>
+						<div class="service-item">
+							<div class="service-icon">
+								<span class="icon solid major fa-wave-square"
+								></span>
+							</div>
+							<div class="service-details">
+								<h3>Mastering</h3>
+								<p>
+									Professionelles Mastering um jeden Track
+									radio ready zu machen.
+								</p>
+								<a href="#contact" class="service-link"
+									>Anfrage senden</a
+								>
+							</div>
+						</div>
+						<div class="service-item">
+							<div class="service-icon">
+								<span class="icon solid major fa-drum"></span>
+							</div>
+							<div class="service-details">
+								<h3>Beat Production</h3>
+								<p>
+									Individuelle Beat Produktion für Genres von
+									Hip Hop, Rap, RnB bis hin zu Pop
+								</p>
+								<a href="#contact" class="service-link"
+									>Anfrage senden</a
+								>
+							</div>
+						</div>
+						<div class="service-item">
+							<div class="service-icon">
+								<span class="icon solid major fa-palette"
+								></span>
+							</div>
+							<div class="service-details">
+								<h3>Assets</h3>
+								<p>
+									Von Album Artwork bis hin zu Social Media
+									Graphics, wir kümmern uns darum
+								</p>
+								<a href="#contact" class="service-link"
+									>Anfrage senden</a
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Contact -->
+			<section id="contact" class="wrapper style1 fade-up">
+				<div class="inner">
+					<h2>Schreibe uns</h2>
+					<p></p>
+					<div class="split style1">
+						<section>
+							<form id="contact-form">
+								<div class="fields">
+									<div class="field half">
+										<label for="name">Name</label>
+										<input
+											type="text"
+											name="name"
+											id="name"
+											required
+										/>
+									</div>
+									<div class="field half">
+										<label for="email">Email</label>
+										<input
+											type="email"
+											name="email"
+											id="email"
+											required
+										/>
+									</div>
+									<div class="field">
+										<label for="message"
+											>Was können wir für dich tun?</label
+										>
+										<textarea
+											name="message"
+											id="message"
+											rows="5"
+											required></textarea>
+									</div>
+
+									<div class="field">
+										<label>Wähle deine Services:</label>
+										<div class="grid-checkboxes">
+											<div class="checkbox-item">
+												<input
+													type="checkbox"
+													id="service-mixing"
+													name="services"
+													value="Mixing"
+													data-price="50"
+													class="service-checkbox"
+												/>
+												<label for="service-mixing"
+													>Mixing (50€)</label
+												>
+											</div>
+											<div class="checkbox-item">
+												<input
+													type="checkbox"
+													id="service-mastering"
+													name="services"
+													value="Mastering"
+													data-price="30"
+													class="service-checkbox"
+												/>
+												<label for="service-mastering"
+													>Mastering (30€)</label
+												>
+											</div>
+											<div class="checkbox-item">
+												<input
+													type="checkbox"
+													id="service-beats"
+													name="services"
+													value="Beat Production"
+													data-price="100"
+													class="service-checkbox"
+												/>
+												<label for="service-beats"
+													>Beat Production (100€)</label
+												>
+											</div>
+											<div class="checkbox-item">
+												<input
+													type="checkbox"
+													id="service-assets"
+													name="services"
+													value="Asset Creation"
+													data-price="15"
+													class="service-checkbox"
+												/>
+												<label for="service-assets"
+													>Asset Creation (15€ pro
+													Asset)</label
+												>
+											</div>
+										</div>
+									</div>
+
+									<div class="field">
+										<div class="price-estimate-box">
+											<div class="price-row">
+												<span class="price-label"
+													>Preis Voranschlag:</span
+												>
+												<span class="price-amount"
+													>~<span id="total-price"
+														>0</span
+													>€</span
+												>
+											</div>
+											<p class="price-disclaimer">
+												Keine Sorge, das einsenden einer
+												Demo ist völlig unverbindlich.
+												Wir melden uns anschließend mit
+												einem Individuellen Angebot bei
+												dir!
+											</p>
+										</div>
+									</div>
+
+									<div class="field">
+										<label for="song_demo"
+											>Song Demo Anhängen (Max. 8MB)</label
+										>
+										<div class="file-upload-wrapper">
+											<input
+												type="file"
+												name="song_demo"
+												id="song_demo"
+												accept="audio/*"
+												class="hidden-file-input"
+											/>
+											<label
+												for="song_demo"
+												class="button primary icon solid fa-upload"
+												>Datei auswählen</label
+											>
+											<span
+												id="file-name-display"
+												style="margin-left: 1em; opacity: 0.7; font-style: italic;"
+												>Keine Datei ausgewählt</span
+											>
+										</div>
+										<p
+											style="font-size: 0.8em; margin-top: 1em; opacity: 0.7;"
+										>
+											Tipp: Für größere Dateien sende uns
+											einfach einen Dropbox/WeTransfer
+											Link in der Nachricht.
+										</p>
+									</div>
+
+									<style>
+										#sidebar .inner {
+											padding-top: 2em; /* Balanced top padding */
+										}
+
+										.sidebar-logo-link {
+											display: flex !important;
+											justify-content: center;
+											align-items: center;
+											border-bottom: none !important;
+											margin-bottom: 2em;
+										}
+
+										.sidebar-logo {
+											max-width: 150px;
+											height: auto;
+											display: block;
+											margin: 0 !important;
+											transition: all 0.3s ease;
+										}
+
+										@media screen and (max-width: 1280px) {
+											#sidebar .inner {
+												padding-top: 0;
+												display: flex;
+												align-items: center;
+												justify-content: space-between;
+												padding-right: 1.5em; /* Match left padding */
+											}
+
+											.sidebar-logo-link {
+												margin-bottom: 0;
+												justify-content: flex-start;
+												padding-left: 1.5em;
+											}
+
+											.sidebar-logo {
+												max-width: 40px;
+											}
+										}
+
+										.hidden-file-input {
+											width: 0.1px;
+											height: 0.1px;
+											opacity: 0;
+											overflow: hidden;
+											position: absolute;
+											z-index: -1;
+										}
+										.file-upload-wrapper {
+											display: flex;
+											align-items: center;
+											margin-top: 0.5em;
+										}
+										.file-upload-wrapper .button {
+											margin-bottom: 0;
+										}
+
+										.grid-checkboxes {
+											display: grid;
+											grid-template-columns: 1fr 1fr;
+											gap: 1em;
+											margin-top: 0.5em;
+										}
+
+										.checkbox-item {
+											position: relative;
+										}
+
+										.price-estimate-box {
+											background: rgba(
+												255,
+												255,
+												255,
+												0.05
+											);
+											padding: 1.5em;
+											border-radius: 8px;
+											border: 1px solid
+												rgba(255, 255, 255, 0.1);
+											display: flex;
+											flex-direction: column;
+											gap: 1em;
+											margin-top: 1em;
+										}
+
+										.price-row {
+											display: flex;
+											justify-content: space-between;
+											align-items: center;
+											width: 100%;
+										}
+
+										.price-label {
+											font-weight: bold;
+											font-size: 1.1em;
+											color: #fff;
+										}
+
+										.price-amount {
+											font-size: 1.5em;
+											font-weight: bold;
+											color: #a891ff; /* Accent color matching the theme */
+										}
+
+										.price-disclaimer {
+											font-size: 0.7em;
+											opacity: 0.6;
+											margin: 0.5em 0 0 0 !important;
+											line-height: 1.4;
+											border-top: 1px solid
+												rgba(255, 255, 255, 0.05);
+											padding-top: 0.8em;
+											width: 100%;
+										}
+
+										@media screen and (max-width: 736px) {
+											.grid-checkboxes {
+												grid-template-columns: 1fr;
+											}
+											.price-estimate-box {
+												flex-direction: column;
+												text-align: center;
+												gap: 0.5em;
+											}
+										}
+
+										#intro .inner .actions.intro-actions {
+											display: flex !important;
+											flex-direction: column !important;
+											align-items: stretch !important;
+											width: fit-content !important;
+											margin: 2em 0 0 0 !important;
+											padding: 0 !important;
+										}
+
+										#intro
+											.inner
+											.actions.intro-actions
+											li {
+											display: block !important;
+											padding: 0 !important;
+											margin: 0.5em 0 !important;
+											width: auto !important;
+											text-align: left !important;
+										}
+
+										#intro
+											.inner
+											.actions.intro-actions
+											li
+											.button {
+											width: 100% !important;
+											text-align: center !important;
+											white-space: nowrap !important; /* Prevents text from wrapping and ensures the button scales to fit */
+										}
+
+										#intro
+											.inner
+											.actions.intro-actions
+											li.button-separator {
+											display: flex !important;
+											justify-content: center !important;
+											align-items: center !important;
+											width: 100% !important;
+											margin: 0 !important;
+											padding: 0.5em 0 !important;
+											color: #fff !important;
+											opacity: 1 !important;
+											text-transform: lowercase !important;
+											font-size: 0.9em !important;
+											font-style: italic !important;
+										}
+
+										@media screen and (max-width: 736px) {
+											#intro
+												.inner
+												.actions.intro-actions {
+												width: 100% !important;
+												align-items: center !important;
+											}
+											#intro
+												.inner
+												.actions.intro-actions
+												li {
+												max-width: 300px !important;
+												width: 100% !important;
+											}
+											.button-separator {
+												padding: 0.5em 0;
+												width: 100%;
+											}
+										}
+									</style>
+
+									<!-- Honeypot (Spam protection) -->
+									<div
+										class="field"
+										style="display:none !important;"
+										aria-hidden="true"
+									>
+										<label for="website"
+											>Leave this field empty</label
+										>
+										<input
+											type="text"
+											name="website"
+											id="website"
+											tabindex="-1"
+											autocomplete="off"
+										/>
+									</div>
+									<input
+										type="hidden"
+										name="form_token"
+										value={Date.now()}
+									/>
+								</div>
+								<ul class="actions">
+									<li>
+										<button
+											type="submit"
+											class="button primary"
+											>Nachricht senden</button
+										>
+									</li>
+								</ul>
+								<div
+									id="form-status"
+									style="margin-top: 1em; display: none;"
+								>
+								</div>
+							</form>
+
+							<script is:inline>
+								// Set timestamp on load for spam protection
+								document.querySelector(
+									'input[name="form_token"]'
+								).value = Date.now();
+
+								// Update filename display
+								const fileInput =
+									document.getElementById("song_demo");
+								const fileNameDisplay =
+									document.getElementById(
+										"file-name-display"
+									);
+
+								fileInput.addEventListener("change", (e) => {
+									const fileName = e.target.files[0]
+										? e.target.files[0].name
+										: "Keine Datei ausgewählt";
+									fileNameDisplay.innerText = fileName;
+								});
+
+								// Price calculation logic with rolling animation
+								const checkboxes =
+									document.querySelectorAll(
+										".service-checkbox"
+									);
+								const totalPriceDisplay =
+									document.getElementById("total-price");
+								let currentTotal = 0;
+
+								function animateValue(
+									obj,
+									start,
+									end,
+									duration
+								) {
+									let startTimestamp = null;
+									const step = (timestamp) => {
+										if (!startTimestamp)
+											startTimestamp = timestamp;
+										const progress = Math.min(
+											(timestamp - startTimestamp) /
+												duration,
+											1
+										);
+										obj.innerHTML = Math.floor(
+											progress * (end - start) + start
+										);
+										if (progress < 1) {
+											window.requestAnimationFrame(step);
+										}
+									};
+									window.requestAnimationFrame(step);
+								}
+
+								function updateTotal() {
+									let total = 0;
+									checkboxes.forEach((cb) => {
+										if (cb.checked) {
+											total += parseInt(cb.dataset.price);
+										}
+									});
+
+									if (total !== currentTotal) {
+										animateValue(
+											totalPriceDisplay,
+											currentTotal,
+											total,
+											300
+										);
+										currentTotal = total;
+									}
+								}
+
+								checkboxes.forEach((cb) => {
+									cb.addEventListener("change", updateTotal);
+								});
+
+								const form =
+									document.getElementById("contact-form");
+								const status =
+									document.getElementById("form-status");
+
+								form.addEventListener("submit", async (e) => {
+									e.preventDefault();
+
+									status.style.display = "block";
+									status.style.color = "#fff";
+									status.innerText = "Wird gesendet...";
+
+									const formData = new FormData(form);
+
+									try {
+										const response = await fetch(
+											"/api/contact",
+											{
+												method: "POST",
+												body: formData, // Sending raw FormData handles the file automatically
+											}
+										);
+
+										const result = await response.json();
+
+										if (response.ok) {
+											status.style.color = "#4CAF50";
+											status.innerText =
+												"Erfolgreich gesendet! Wir melden uns bei dir.";
+											form.reset();
+										} else {
+											status.style.color = "#f44336";
+											status.innerText =
+												result.message ||
+												"Etwas ist schiefgelaufen.";
+										}
+									} catch (error) {
+										status.style.color = "#f44336";
+										status.innerText =
+											"Fehler bei der Verbindung zum Server.";
+									}
+								});
+							</script>
+						</section>
+						<section>
+							<ul class="contact">
+								<li>
+									<h3>Email</h3>
+									<a href="mailto:info@rawlabs-studio.com"
+										>info@rawlabs-studio.com</a
+									>
+								</li>
+								<li>
+									<h3>Social</h3>
+									<ul class="icons">
+										<li>
+											<a
+												href="https://www.instagram.com/rawlabs_studios/"
+												class="icon brands fa-instagram"
+												><span class="label"
+													>Instagram</span
+												>
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</section>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer" class="wrapper style1-alt">
+			<div class="inner">
+				<ul class="menu">
+					<li>&copy; Rawlabs Studios. Alle Rechte vorbehalten.</li><li
+					>
+						<a href="/generic">Impressum</a>
+					</li>
+				</ul>
+			</div>
+		</footer>
 
 		<!-- Scripts -->
-			<script is:inline src="/assets/js/jquery.min.js"></script>
-			<script is:inline src="/assets/js/jquery.scrollex.min.js"></script>
-			<script is:inline src="/assets/js/jquery.scrolly.min.js"></script>
-			<script is:inline src="/assets/js/browser.min.js"></script>
-			<script is:inline src="/assets/js/breakpoints.min.js"></script>
-			<script is:inline src="/assets/js/util.js"></script>
-			<script is:inline src="/assets/js/main.js"></script>
-
+		<script is:inline src="/assets/js/jquery.min.js"></script>
+		<script is:inline src="/assets/js/jquery.scrollex.min.js"></script>
+		<script is:inline src="/assets/js/jquery.scrolly.min.js"></script>
+		<script is:inline src="/assets/js/browser.min.js"></script>
+		<script is:inline src="/assets/js/breakpoints.min.js"></script>
+		<script is:inline src="/assets/js/util.js"></script>
+		<script is:inline src="/assets/js/main.js"></script>
 	</body>
 </html>
-
