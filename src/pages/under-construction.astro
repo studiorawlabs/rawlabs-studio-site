@@ -1,0 +1,90 @@
+---
+import logo from '../assets/rawlabs logo.png';
+---
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>In Arbeit - Rawlabs Studios</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" type="image/png" href="/logo.png" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+		<style>
+			.construction-container {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				padding: 4em 2em;
+				min-height: 60vh;
+			}
+			.construction-icon {
+				font-size: 4em;
+				color: #a891ff;
+				margin-bottom: 0.5em;
+				animation: pulse 2s infinite ease-in-out;
+			}
+			@keyframes pulse {
+				0% { transform: scale(1); opacity: 0.8; }
+				50% { transform: scale(1.05); opacity: 1; text-shadow: 0 0 15px rgba(168, 145, 255, 0.6); }
+				100% { transform: scale(1); opacity: 0.8; }
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="/" class="title" style="border-bottom: none;"><img src={logo.src} alt="Rawlabs Logo" style="height: 2.5em; vertical-align: middle;" /></a>
+				<nav>
+					<ul>
+						<li><a href="/" class="button small icon solid fa-chevron-left">Zurück zum Studio</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<div class="construction-container">
+								<span class="icon solid fa-tools construction-icon"></span>
+								<h1 class="major">In Bearbeitung</h1>
+								<p style="max-width: 600px; margin-bottom: 2em; color: rgba(255, 255, 255, 0.7);">
+									Wir bereiten aktuell unsere besten Projekte und Soundbeispiele für dich vor. <br />
+									Schau bald wieder vorbei, um unsere neuesten Mixes, Beats und Künstler-Features anzuhören!
+								</p>
+								<ul class="actions">
+									<li><a href="/" class="button primary">Zurück zur Hauptseite</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Rawlabs Studios. Alle Rechte vorbehalten.</li>
+						<li><a href="/impressum">Impressum</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script is:inline src="/assets/js/jquery.min.js"></script>
+			<script is:inline src="/assets/js/jquery.scrollex.min.js"></script>
+			<script is:inline src="/assets/js/jquery.scrolly.min.js"></script>
+			<script is:inline src="/assets/js/browser.min.js"></script>
+			<script is:inline src="/assets/js/breakpoints.min.js"></script>
+			<script is:inline src="/assets/js/util.js"></script>
+			<script is:inline src="/assets/js/main.js"></script>
+
+	</body>
+</html>
