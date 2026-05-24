@@ -350,6 +350,99 @@ import CookieBanner from "../components/CookieBanner.astro";
 										required
 									/>
 								</div>
+
+								<!-- B2B Toggle -->
+								<div class="field">
+									<div class="checkbox-item">
+										<input
+											type="checkbox"
+											id="is-b2b"
+											name="is_b2b"
+											class="addon-checkbox"
+										/>
+										<label for="is-b2b">Ich bestelle als Unternehmen (B2B)</label>
+									</div>
+								</div>
+
+								<!-- B2B Fields (Conditional Wrapper with Grid slide animation) -->
+								<div id="b2b-fields-wrapper">
+									<div id="b2b-fields" style="border-left: 2px solid #a891ff; padding-left: 1.5em; overflow: hidden;">
+										<div class="field" style="padding-top: 10px;">
+											<label for="company_name">Firmenname *</label>
+											<input
+												type="text"
+												name="company_name"
+												id="company_name"
+											/>
+										</div>
+										<div class="field" style="padding-bottom: 10px;">
+											<label for="vat_number">USt-IdNr. (VAT ID) <span style="font-size:0.8em; opacity:0.7;">- Für steuerfreie EU-Lieferung</span></label>
+											<input
+												type="text"
+												name="vat_number"
+												id="vat_number"
+												placeholder="z.B. DE123456789"
+											/>
+										</div>
+									</div>
+								</div>
+
+								<!-- Address Toggle -->
+								<div class="field">
+									<div class="checkbox-item">
+										<input
+											type="checkbox"
+											id="has-address"
+											name="has_address"
+											class="addon-checkbox"
+										/>
+										<label id="address-toggle-label" for="has-address">Rechnungsadresse angeben <span style="font-weight: normal; font-size: 0.85em; opacity: 0.6;">(erforderlich ab 250€)</span></label>
+									</div>
+								</div>
+
+								<!-- Address Fields (Conditional Wrapper with Grid slide animation) -->
+								<div id="address-fields-wrapper">
+									<div id="address-fields" style="border-left: 2px solid #a891ff; padding-left: 1.5em; overflow: hidden;">
+										<div class="field" style="padding-top: 10px;">
+											<label for="street">Straße & Hausnummer *</label>
+											<input
+												type="text"
+												name="street"
+												id="street"
+												placeholder="z.B. Hauptstraße 12"
+											/>
+										</div>
+										<div class="field half">
+											<label for="zip">PLZ *</label>
+											<input
+												type="text"
+												name="zip"
+												id="zip"
+												placeholder="12345"
+											/>
+										</div>
+										<div class="field half">
+											<label for="city">Stadt *</label>
+											<input
+												type="text"
+												name="city"
+												id="city"
+												placeholder="z.B. Berlin"
+											/>
+										</div>
+										<div class="field" style="padding-bottom: 10px;">
+											<label for="country">Land *</label>
+											<select name="country" id="country">
+												<option value="DE">Deutschland</option>
+												<option value="AT">Österreich</option>
+												<option value="CH">Schweiz</option>
+												<option value="GB">Vereinigtes Königreich (UK)</option>
+												<option value="US">Vereinigte Staaten (US)</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
 								<div class="field">
 									<label for="message"
 										>Gibt es noch etwas was wir wissen
@@ -821,6 +914,72 @@ import CookieBanner from "../components/CookieBanner.astro";
 										width: 100%;
 									}
 
+									/* Loading Bar Styling */
+									.loading-container {
+										width: 100%;
+										background: rgba(255, 255, 255, 0.03);
+										border-radius: 4px;
+										height: 6px;
+										overflow: hidden;
+										margin-top: 1em;
+										display: none;
+										position: relative;
+										border: 1px solid rgba(255, 255, 255, 0.05);
+									}
+
+									.loading-bar {
+										width: 100%;
+										height: 100%;
+										background: linear-gradient(90deg, transparent 0%, rgba(168, 145, 255, 0.4) 50%, transparent 100%);
+										background-size: 200% 100%;
+										animation: loading-animation 1.5s infinite linear;
+									}
+
+									@keyframes loading-animation {
+										0% {
+											background-position: 200% 0;
+										}
+										100% {
+											background-position: -200% 0;
+										}
+									}
+
+									/* B2B conditional container with CSS Grid transition */
+									#b2b-fields-wrapper {
+										display: grid;
+										grid-template-rows: 0fr;
+										transition: grid-template-rows 0.3s ease-out, margin-bottom 0.3s ease-out;
+										margin-bottom: 0;
+										overflow: hidden; /* Hides elements and borders when collapsed */
+									}
+
+									#b2b-fields-wrapper.open {
+										grid-template-rows: 1fr;
+										margin-bottom: 1.5em;
+									}
+
+									#b2b-fields {
+										min-height: 0; /* Required to allow the grid track to collapse to 0 height */
+									}
+
+									/* Address conditional container with CSS Grid transition */
+									#address-fields-wrapper {
+										display: grid;
+										grid-template-rows: 0fr;
+										transition: grid-template-rows 0.3s ease-out, margin-bottom 0.3s ease-out;
+										margin-bottom: 0;
+										overflow: hidden; /* Hides elements and borders when collapsed */
+									}
+
+									#address-fields-wrapper.open {
+										grid-template-rows: 1fr;
+										margin-bottom: 1.5em;
+									}
+
+									#address-fields {
+										min-height: 0; /* Required to allow the grid track to collapse to 0 height */
+									}
+
 									@media screen and (max-width: 736px) {
 										.grid-checkboxes {
 											grid-template-columns: 1fr;
@@ -1227,6 +1386,11 @@ import CookieBanner from "../components/CookieBanner.astro";
 									>
 								</li>
 							</ul>
+							<div id="loading-wrapper" style="display: none; margin-top: 1em;">
+								<div class="loading-container" style="display: block;">
+									<div class="loading-bar"></div>
+								</div>
+							</div>
 							<div
 								id="form-status"
 								style="margin-top: 1em; display: none;"
@@ -1412,6 +1576,25 @@ import CookieBanner from "../components/CookieBanner.astro";
 									breakdownDisplay.innerHTML = breakdownHtml;
 									breakdownDisplay.style.display = "block";
 								}
+
+								// Check if total is >= 250 to enforce billing address
+								const hasAddressCheckbox = document.getElementById("has-address");
+								const addressFieldsWrapper = document.getElementById("address-fields-wrapper");
+								
+								if (hasAddressCheckbox && addressFieldsWrapper) {
+									if (total >= 250) {
+										hasAddressCheckbox.checked = true;
+										hasAddressCheckbox.disabled = true;
+										addressFieldsWrapper.classList.add("open");
+										document.getElementById("address-toggle-label").innerHTML = `Rechnungsadresse angeben <span style="font-weight: bold; font-size: 0.85em; color: #f44336;">(Erforderlich, da über 250€)</span>`;
+									} else {
+										hasAddressCheckbox.disabled = false;
+										if (!hasAddressCheckbox.checked) {
+											addressFieldsWrapper.classList.remove("open");
+										}
+										document.getElementById("address-toggle-label").innerHTML = `Rechnungsadresse angeben <span style="font-weight: normal; font-size: 0.85em; opacity: 0.6;">(erforderlich ab 250€)</span>`;
+									}
+								}
 							}
 
 							packageButtonsForm.forEach((btn) => {
@@ -1528,6 +1711,38 @@ import CookieBanner from "../components/CookieBanner.astro";
 								});
 							});
 
+							const isB2bCheckbox = document.getElementById("is-b2b");
+							const b2bFieldsWrapper = document.getElementById("b2b-fields-wrapper");
+							const companyNameInput = document.getElementById("company_name");
+
+							isB2bCheckbox.addEventListener("change", () => {
+								if (isB2bCheckbox.checked) {
+									b2bFieldsWrapper.classList.add("open");
+									companyNameInput.required = true;
+								} else {
+									b2bFieldsWrapper.classList.remove("open");
+									companyNameInput.required = false;
+									companyNameInput.value = "";
+									document.getElementById("vat_number").value = "";
+								}
+							});
+
+							const hasAddressCheckbox = document.getElementById("has-address");
+							const addressFieldsWrapper = document.getElementById("address-fields-wrapper");
+
+							hasAddressCheckbox.addEventListener("change", () => {
+								if (hasAddressCheckbox.checked) {
+									addressFieldsWrapper.classList.add("open");
+								} else {
+									addressFieldsWrapper.classList.remove("open");
+									// Clear address fields if unchecked
+									document.getElementById("street").value = "";
+									document.getElementById("zip").value = "";
+									document.getElementById("city").value = "";
+									document.getElementById("country").value = "DE";
+								}
+							});
+
 							// Calculate initial total
 							updateTotal();
 							updateSongsLabel();
@@ -1539,6 +1754,46 @@ import CookieBanner from "../components/CookieBanner.astro";
 
 							form.addEventListener("submit", async (e) => {
 								e.preventDefault();
+
+								// Disable submit button and show loading bar
+								const submitBtn = form.querySelector('button[type="submit"]');
+								const loadingWrapper = document.getElementById("loading-wrapper");
+								
+								submitBtn.disabled = true;
+								loadingWrapper.style.display = "block";
+
+								// Validation: Billing address is required for amounts >= 250€ or if checkbox is checked
+								const hasAddress = hasAddressCheckbox.checked;
+								const streetVal = document.getElementById("street").value.trim();
+								const zipVal = document.getElementById("zip").value.trim();
+								const cityVal = document.getElementById("city").value.trim();
+
+								if (currentTotal >= 250 && (!hasAddress || !streetVal || !zipVal || !cityVal)) {
+									submitBtn.disabled = false;
+									loadingWrapper.style.display = "none";
+									status.style.display = "block";
+									status.style.color = "#f44336";
+									status.innerText = "Bitte Rechnungsadresse ausfüllen. Bei Beträgen über 250€ ist eine Rechnungsadresse gesetzlich erforderlich.";
+									
+									hasAddressCheckbox.checked = true;
+									addressFieldsWrapper.classList.add("open");
+									
+									const firstEmptyField = !streetVal ? "street" : (!zipVal ? "zip" : "city");
+									document.getElementById(firstEmptyField).focus();
+									return;
+								}
+
+								if (hasAddress && (!streetVal || !zipVal || !cityVal)) {
+									submitBtn.disabled = false;
+									loadingWrapper.style.display = "none";
+									status.style.display = "block";
+									status.style.color = "#f44336";
+									status.innerText = "Bitte fülle alle Pflichtfelder der Rechnungsadresse aus.";
+									
+									const firstEmptyField = !streetVal ? "street" : (!zipVal ? "zip" : "city");
+									document.getElementById(firstEmptyField).focus();
+									return;
+								}
 
 								status.style.display = "block";
 								status.style.color = "#fff";
@@ -1562,6 +1817,15 @@ import CookieBanner from "../components/CookieBanner.astro";
 										status.innerText =
 											"Erfolgreich gesendet! Wir melden uns bei dir.";
 										form.reset();
+										
+										// Reset B2B state
+										b2bFieldsWrapper.classList.remove("open");
+										companyNameInput.required = false;
+
+										// Reset Address state
+										addressFieldsWrapper.classList.remove("open");
+										hasAddressCheckbox.disabled = false;
+										document.getElementById("address-toggle-label").innerHTML = `Rechnungsadresse angeben <span style="font-weight: normal; font-size: 0.85em; opacity: 0.6;">(erforderlich ab 250€)</span>`;
 									} else {
 										status.style.color = "#f44336";
 										status.innerText =
@@ -1572,6 +1836,10 @@ import CookieBanner from "../components/CookieBanner.astro";
 									status.style.color = "#f44336";
 									status.innerText =
 										"Fehler bei der Verbindung zum Server.";
+								} finally {
+									// Re-enable button and hide loading bar
+									submitBtn.disabled = false;
+									loadingWrapper.style.display = "none";
 								}
 							});
 						</script>
