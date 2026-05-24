@@ -388,7 +388,7 @@ import logo from "../assets/rawlabs logo.png";
 									<div class="price-estimate-box">
 										<div class="price-row">
 											<span class="price-label"
-												>Preis Voranschlag:</span
+												>Summe:</span
 											>
 											<span class="price-amount"
 												>~<span id="total-price">0</span
@@ -396,10 +396,7 @@ import logo from "../assets/rawlabs logo.png";
 											>
 										</div>
 										<p class="price-disclaimer">
-											Keine Sorge, das einsenden einer
-											Demo ist völlig unverbindlich. Wir
-											melden uns anschließend mit einem
-											Individuellen Angebot bei dir!
+											Alle Preise inkl. MwSt.
 										</p>
 									</div>
 								</div>
@@ -534,7 +531,7 @@ import logo from "../assets/rawlabs logo.png";
 									}
 
 									.pricing-card .pricing-features li.plus {
-										font-weight: bold;
+										font-weight: normal;
 										color: #a891ff;
 									}
 
@@ -663,7 +660,7 @@ import logo from "../assets/rawlabs logo.png";
 
 									.price-amount {
 										font-size: 1.5em;
-										font-weight: bold;
+										font-weight: normal;
 										color: #a891ff; /* Accent color matching the theme */
 									}
 
@@ -899,7 +896,7 @@ import logo from "../assets/rawlabs logo.png";
 										padding: 0.4em 0.8em !important;
 										font-size: 0.65em !important;
 										font-family: "Heavitas", sans-serif !important;
-										font-weight: bold !important;
+										font-weight: normal !important;
 										letter-spacing: normal !important;
 										text-align: center !important;
 										cursor: pointer !important;
@@ -926,6 +923,7 @@ import logo from "../assets/rawlabs logo.png";
 										) !important;
 										border-color: #a891ff !important;
 										color: #fff !important;
+										font-weight: bold !important;
 										box-shadow: 0 0 20px 2px
 											rgba(168, 145, 255, 0.7) !important;
 									}
@@ -965,6 +963,7 @@ import logo from "../assets/rawlabs logo.png";
 									input[type="checkbox"].addon-checkbox:checked
 										+ label {
 										color: #fff !important;
+										font-weight: bold !important;
 									}
 
 									/* Custom checkbox outer box */
@@ -1252,7 +1251,7 @@ import logo from "../assets/rawlabs logo.png";
 								if (!label) return;
 
 								if (songsCount === 0) {
-									label.innerHTML = `Zusätzliche Songs (mit 20% Rabatt):<br><strong style="color: rgba(255,255,255,0.4)">Keine</strong>`;
+									label.innerHTML = `Zusätzliche Songs (mit 20% Rabatt):<br><span style="font-weight: normal; color: rgba(255,255,255,0.4)">Keine</span>`;
 								} else {
 									const extraCost = Math.round(
 										songsCount * packagePrice * 0.8
@@ -1261,7 +1260,7 @@ import logo from "../assets/rawlabs logo.png";
 										songsCount === 1
 											? "1 Song"
 											: `${songsCount} Songs`;
-									label.innerHTML = `Zusätzliche Songs (mit 20% Rabatt):<br><span style="display: inline-block; color: #a891ff; font-weight: 800; animation: pulse 0.3s ease;">${songText} (+${extraCost}€)</span>`;
+									label.innerHTML = `Zusätzliche Songs (mit 20% Rabatt):<br><span style="display: inline-block; color: #a891ff; font-weight: normal; animation: pulse 0.3s ease;">${songText} (+${extraCost}€)</span>`;
 								}
 
 								// Dynamically scale Express price label preserving custom HTML modifications

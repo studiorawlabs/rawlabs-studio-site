@@ -63,28 +63,28 @@ export const POST = async ({ request }) => {
 
     try {
         // Prepare Discord Payload
-        const packagePriceMap = {
-            "Raw Labs Essentials": 30,
-            "Raw Labs Advanced": 60,
-            "Raw Labs Ultimate": 150
-        };
+        const packagePriceMap = new Map([
+            ["Raw Labs Essentials", 30],
+            ["Raw Labs Advanced", 60],
+            ["Raw Labs Ultimate", 150]
+        ]);
         
-        const addonPriceMap = {
-            "Express Lieferung (48h)": 20
-        };
+        const addonPriceMap = new Map([
+            ["Express Lieferung (48h)", 20]
+        ]);
 
         let total = 0;
         let packagePrice = 0;
-        if (selectedPackage && packagePriceMap[selectedPackage]) {
-            packagePrice = packagePriceMap[selectedPackage];
+        if (selectedPackage && packagePriceMap.has(selectedPackage)) {
+            packagePrice = packagePriceMap.get(selectedPackage);
             total += packagePrice;
         }
         addons.forEach(addon => {
-            if (addonPriceMap[addon]) {
+            if (addon && addonPriceMap.has(addon)) {
                 if (addon === "Express Lieferung (48h)") {
-                    total += addonPriceMap[addon] * (1 + additionalSongs);
+                    total += addonPriceMap.get(addon) * (1 + additionalSongs);
                 } else {
-                    total += addonPriceMap[addon];
+                    total += addonPriceMap.get(addon);
                 }
             }
         });

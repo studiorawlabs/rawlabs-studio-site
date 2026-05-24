@@ -4262,3 +4262,19 @@ body, html {
 #sidebar {
     background-color: #130f1d !important;
 } 
+
+/* Readability typography overrides: completely white text is bold, rest is normal */
+dl dt,
+.service-link {
+    font-weight: normal !important;
+}
+
+#header>nav>ul>li a,
+#sidebar nav a {
+    font-weight: normal !important;
+}
+
+#header>nav>ul>li a.active,
+#sidebar nav a.active {
+    font-weight: bold !important;
+}
