@@ -269,7 +269,7 @@ a:hover {
 strong,
 b {
 	color: #ffffff;
-	font-weight: bold;
+	font-weight: normal;
 }
 
 em,
@@ -288,7 +288,7 @@ h4,
 h5,
 h6 {
 	color: #ffffff;
-	font-weight: bold;
+	font-weight: normal;
 	line-height: 1.5;
 	margin: 0 0 0.5em 0;
 }
@@ -1956,7 +1956,7 @@ button,
 	cursor: pointer;
 	display: inline-block;
 	font-size: 0.6em;
-	font-weight: bold;
+	font-weight: normal;
 	height: calc(4.75em + 2px);
 	letter-spacing: 0.25em;
 	line-height: 4.75em;
@@ -2414,7 +2414,7 @@ form>.fields>.field.quarter {
 
 label {
 	color: #ffffff;
-	font-weight: bold;
+	font-weight: normal;
 	line-height: 1.5;
 	margin: 0 0 0.7em 0;
 	display: block;
@@ -2776,7 +2776,7 @@ dl {
 
 dl dt {
 	display: block;
-	font-weight: bold;
+	font-weight: normal;
 	margin: 0 0 1em 0;
 }
 
@@ -3283,7 +3283,7 @@ table td {
 table th {
 	color: #ffffff;
 	font-size: 1em;
-	font-weight: bold;
+	font-weight: normal;
 	padding: 0 0.75em 0.75em 0.75em;
 	text-align: left;
 }
@@ -3503,7 +3503,7 @@ body.is-preload .wrapper.fade>.inner {
 	color: #ffffff;
 	display: block;
 	font-size: 1.25em;
-	font-weight: bold;
+	font-weight: normal;
 }
 
 #header>nav {
@@ -3535,7 +3535,7 @@ body.is-preload .wrapper.fade>.inner {
 	color: rgba(255, 255, 255, 0.35);
 	display: inline-block;
 	font-size: 0.6em;
-	font-weight: bold;
+	font-weight: normal;
 	letter-spacing: 0.25em;
 	text-transform: uppercase;
 }
@@ -3863,7 +3863,7 @@ body.is-ie #sidebar>.inner {
 	color: rgba(255, 255, 255, 0.35);
 	display: block;
 	font-size: 0.6em;
-	font-weight: bold;
+	font-weight: normal;
 	letter-spacing: 0.25em;
 	line-height: 1.75;
 	outline: 0;
@@ -4056,6 +4056,8 @@ body,
 input,
 select,
 textarea,
+button,
+.button,
 h1,
 h2,
 h3,
@@ -4150,7 +4152,7 @@ html {
 	color: #cbb2ff !important;
 	text-transform: uppercase;
 	font-size: 0.7em;
-	font-weight: bold;
+	font-weight: normal;
 	letter-spacing: 0.2em;
 	text-decoration: none;
 	border-bottom: none !important;
@@ -4276,5 +4278,5 @@ dl dt,
 
 #header>nav>ul>li a.active,
 #sidebar nav a.active {
-    font-weight: bold !important;
+    font-weight: normal !important;
 }
