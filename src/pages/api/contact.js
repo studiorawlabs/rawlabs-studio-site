@@ -56,6 +56,8 @@ export const POST = async ({ request }) => {
 
     const env = loadEnvFile();
     const discordUrl = import.meta.env.DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL || env.DISCORD_WEBHOOK_URL;
+    const invoiceNinjaUrl = import.meta.env.INVOICE_NINJA_URL || process.env.INVOICE_NINJA_URL || env.INVOICE_NINJA_URL;
+    const invoiceNinjaToken = import.meta.env.INVOICE_NINJA_TOKEN || process.env.INVOICE_NINJA_TOKEN || env.INVOICE_NINJA_TOKEN;
 
     if (!discordUrl) {
         return new Response(JSON.stringify({ message: "Server-Konfiguration fehlt!" }), { status: 500, headers: { "Content-Type": "application/json" } });
@@ -75,27 +77,147 @@ export const POST = async ({ request }) => {
 
         let total = 0;
         let packagePrice = 0;
+        let totalSongs = 1 + additionalSongs;
+        let songsSubtotal = 0;
+        let addonsSubtotal = 0;
+        
         if (selectedPackage && packagePriceMap.has(selectedPackage)) {
             packagePrice = packagePriceMap.get(selectedPackage);
-            total += packagePrice;
+            songsSubtotal = packagePrice * totalSongs;
         }
+        
         addons.forEach(addon => {
             if (addon && addonPriceMap.has(addon)) {
                 if (addon === "Express Lieferung (48h)") {
-                    total += addonPriceMap.get(addon) * (1 + additionalSongs);
+                    addonsSubtotal += addonPriceMap.get(addon) * totalSongs;
                 } else {
-                    total += addonPriceMap.get(addon);
+                    addonsSubtotal += addonPriceMap.get(addon);
                 }
             }
         });
-        if (additionalSongs > 0 && packagePrice > 0) {
-            total += Math.round(additionalSongs * packagePrice * 0.8);
+        
+        let discountPct = 0;
+        if (totalSongs >= 5) discountPct = 0.20;
+        else if (totalSongs >= 3) discountPct = 0.15;
+        else if (totalSongs == 2) discountPct = 0.05;
+        
+        let discountValue = 0;
+        if (discountPct > 0) {
+            discountValue = Math.round(songsSubtotal * discountPct);
         }
+        
+        total = songsSubtotal - discountValue + addonsSubtotal;
+
+        // --- INVOICE NINJA INTEGRATION ---
+        let quoteUrl = "";
+        let quoteNumber = "";
+        
+        if (invoiceNinjaUrl && invoiceNinjaToken) {
+            try {
+                // 1. Create Client
+                const clientRes = await fetch(`${invoiceNinjaUrl}/api/v1/clients`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Api-Token': invoiceNinjaToken,
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        contacts: [{ email: email }]
+                    })
+                });
+                
+                if (clientRes.ok) {
+                    const clientData = await clientRes.json();
+                    const clientId = clientData.data.id;
+                    
+                    // 2. Prepare Line Items
+                    const lineItems = [];
+                    
+                    // Map packages to specific Invoice Ninja Product Keys
+                    const productKeyMap = new Map([
+                        ["Raw Labs Essentials", "pkg_essentials"],
+                        ["Raw Labs Advanced", "pkg_advanced"],
+                        ["Raw Labs Ultimate", "pkg_ultimate"]
+                    ]);
+                    
+                    let payloadDiscount = 0;
+                    if (totalSongs >= 5) payloadDiscount = 20;
+                    else if (totalSongs >= 3) payloadDiscount = 15;
+                    else if (totalSongs == 2) payloadDiscount = 5;
+
+                    if (selectedPackage && packagePrice > 0) {
+                        lineItems.push({
+                            product_key: productKeyMap.get(selectedPackage) || selectedPackage,
+                            notes: "Studio Paket",
+                            cost: packagePrice,
+                            qty: totalSongs,
+                            discount: payloadDiscount > 0 ? payloadDiscount : 0,
+                            is_amount_discount: false // Percentage line discount
+                        });
+                    }
+                    
+                    addons.forEach(addon => {
+                        if (addon && addonPriceMap.has(addon)) {
+                            let addonCost = addonPriceMap.get(addon);
+                            let addonQty = 1;
+                            if (addon === "Express Lieferung (48h)") {
+                                addonQty = totalSongs;
+                            }
+                            
+                            // Map addons to specific Invoice Ninja Product Keys
+                            const addonKey = addon === "Express Lieferung (48h)" ? "addon_express" : addon;
+                            
+                            lineItems.push({
+                                product_key: addonKey,
+                                notes: "Add-on",
+                                cost: addonCost,
+                                qty: addonQty
+                            });
+                        }
+                    });
+                    
+                    const quotePayload = {
+                        client_id: clientId,
+                        line_items: lineItems
+                    };
+                    
+                    // 3. Create Draft Quote
+                    const quoteRes = await fetch(`${invoiceNinjaUrl}/api/v1/quotes`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Api-Token': invoiceNinjaToken,
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: JSON.stringify(quotePayload)
+                    });
+                    
+                    if (quoteRes.ok) {
+                        const quoteData = await quoteRes.json();
+                        quoteNumber = quoteData.data.number;
+                        const quoteId = quoteData.data.id;
+                        
+                        // Construct the admin link
+                        const baseUrl = invoiceNinjaUrl.endsWith('/') ? invoiceNinjaUrl.slice(0, -1) : invoiceNinjaUrl;
+                        quoteUrl = `${baseUrl}/#/quotes/${quoteId}/edit`;
+                    } else {
+                        console.error("Failed to create quote:", await quoteRes.text());
+                    }
+                } else {
+                    console.error("Failed to create client:", await clientRes.text());
+                }
+            } catch (err) {
+                console.error("Invoice Ninja API error:", err);
+            }
+        }
+        // --------------------------------
 
         const discordFormData = new FormData();
         const payload = {
             username: "Studio Bot",
-            content: "🚀 **Neue Studio-Anfrage!**",
+            content: "🚀 **Neue Studio-Anfrage!**" + (quoteUrl ? `\n📄 [Angebots-Entwurf ansehen (${quoteNumber || 'Angebot'})](${quoteUrl})` : ""),
             embeds: [
                 {
                     title: "Anfragedetails",
