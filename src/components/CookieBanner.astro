@@ -1,0 +1,146 @@
+---
+---
+<div id="cookie-banner" class="cookie-banner hidden">
+  <div class="cookie-content">
+    <p>
+      We use tracking technologies (like Google Analytics) to improve our site and your experience. 
+      Do you accept the use of these cookies?
+      Read more in our <a href="/impressum">Datenschutzerklärung</a>.
+    </p>
+    <div class="cookie-buttons">
+      <button id="accept-cookies" class="btn-accept">Accept All</button>
+      <button id="decline-cookies" class="btn-decline">Decline Non-Essential</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Astro runs this script once on the client
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('accept-cookies');
+  const declineBtn = document.getElementById('decline-cookies');
+
+  // Check if consent has already been given or declined
+  const consent = localStorage.getItem('cookie_consent');
+
+  if (consent === null) {
+    // Show banner if no consent state exists
+    if (banner) banner.classList.remove('hidden');
+  } else if (consent === 'true') {
+    // Inject or enable Google Analytics here
+    loadGoogleAnalytics();
+  }
+
+  // Handle Accept
+  if (acceptBtn) {
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie_consent', 'true');
+      if (banner) banner.classList.add('hidden');
+      loadGoogleAnalytics();
+    });
+  }
+
+  // Handle Decline
+  if (declineBtn) {
+    declineBtn.addEventListener('click', () => {
+      localStorage.setItem('cookie_consent', 'false');
+      if (banner) banner.classList.add('hidden');
+    });
+  }
+
+  // Example placeholder for loading GA
+  function loadGoogleAnalytics() {
+    if (window.gaLoaded) return;
+    window.gaLoaded = true;
+    console.log("Google Analytics is now enabled (Mock).");
+    
+    // TODO: When you have your GA measurement ID, uncomment and use this code:
+    /*
+    const script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_MEASUREMENT_ID';
+    script.async = true;
+    document.head.appendChild(script);
+    
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'YOUR_MEASUREMENT_ID');
+    */
+  }
+</script>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #111;
+    color: #fff;
+    padding: 1.5rem;
+    z-index: 2147483647;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  .cookie-banner.hidden {
+    display: none;
+  }
+  .cookie-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .cookie-content {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+  .cookie-content p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .cookie-content a {
+    color: #a891ff;
+    text-decoration: underline;
+  }
+  .cookie-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    line-height: 1;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-accept {
+    background: #a891ff;
+    color: #111;
+  }
+  .btn-accept:hover {
+    background: #b8a5ff;
+  }
+  .btn-decline {
+    background: transparent;
+    color: #ccc;
+    border: 1px solid #555;
+  }
+  .btn-decline:hover {
+    background: #333;
+    color: #fff;
+  }
+</style>
