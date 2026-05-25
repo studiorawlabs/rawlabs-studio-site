@@ -352,7 +352,7 @@ export const POST = async ({ request }) => {
                     from: smtpFrom || '"Raw Labs" <info@rawlabs.studio>',
                     to: email,
                     subject: "Deine Anfrage bei Raw Labs",
-                    text: `Hallo ${name || ""},\n\nVielen Dank für deine Anfrage! Wir haben deine Nachricht erhalten und schauen uns dein Projekt schnellstmöglich an.\n\nWir melden uns in Kürze bei dir, damit es weitergehen kann.\n\nWenn du noch Fragen hast oder etwas hinzufügen willst, antworte gerne einfach auf diese E-Mail.\n\nBeste Grüße,\nDein Team von Raw Labs\nhttps://rawlabs.studio`,
+                    text: `Hallo ${name || ""},\n\nVielen Dank für deine Anfrage! Wir haben deine Nachricht erhalten und schauen uns dein Projekt schnellstmöglich an.\n\nWir melden uns in Kürze bei dir, damit es weitergehen kann.\n\nWenn du noch Fragen hast oder etwas hinzufügen willst, antworte gerne einfach auf diese E-Mail oder sende uns eine email an info@rawlabs.studio.\n\nBeste Grüße,\nDein Team von Raw Labs\nhttps://rawlabs.studio`,
                     html: `
 <!DOCTYPE html>
 <html>
@@ -360,55 +360,97 @@ export const POST = async ({ request }) => {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Deine Anfrage bei Raw Labs</title>
+  <style>
+    body {
+      font-family: 'roboto', Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+  </style>
 </head>
-<body style="margin: 0; padding: 0; background-color: #0b0a0f; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;">
-  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #0b0a0f;">
-    <tr>
-      <td align="center" style="padding: 40px 10px;">
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #121016; border: 1px solid rgba(168, 145, 255, 0.15); border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-          <!-- Top Accent Line -->
-          <tr>
-            <td height="4" style="background-color: #a891ff; background: linear-gradient(90deg, #a891ff, #d491ff);"></td>
-          </tr>
-          <!-- Header (Logo / Branding) -->
-          <tr>
-            <td align="center" style="padding: 45px 40px 25px 40px;">
-              <h1 style="color: #a891ff; font-size: 26px; font-weight: 700; margin: 0; letter-spacing: 2px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">RAW LABS</h1>
-            </td>
-          </tr>
-          <!-- Content -->
-          <tr>
-            <td style="padding: 20px 40px 40px 40px; color: #d1ced6; font-size: 15px; line-height: 1.6;">
-              <p style="margin: 0 0 20px 0; color: #ffffff; font-size: 18px; font-weight: 600;">Hallo ${name || ""},</p>
-              
-              <p style="margin: 0 0 20px 0;">vielen Dank für deine Anfrage! Wir haben deine Nachricht erhalten und schauen uns dein Projekt schnellstmöglich an.</p>
-              
-              <p style="margin: 0 0 25px 0;">Wir melden uns in Kürze bei dir, damit es weitergehen kann.</p>
-              
-              <p style="margin: 0 0 30px 0; padding: 18px; background-color: rgba(168, 145, 255, 0.05); border-left: 3px solid #a891ff; border-radius: 6px; color: #bcaeff; font-size: 14px; line-height: 1.5;">
-                Wenn du noch Fragen hast oder etwas hinzufügen willst, antworte gerne einfach auf diese E-Mail.
-              </p>
-              
-              <!-- Call to Action Button or Brand Link -->
-              <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                <tr>
-                  <td align="left">
-                    <a href="https://rawlabs.studio" target="_blank" style="display: inline-block; background-color: #a891ff; background: linear-gradient(135deg, #a891ff, #8a6eff); color: #ffffff; text-decoration: none; padding: 12px 30px; border-radius: 30px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 15px rgba(168, 145, 255, 0.3); text-align: center;">Website besuchen</a>
+<body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: 'roboto', Arial, Helvetica, sans-serif;">
+  <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 40px auto; background-color: #ffffff;">
+    <tbody>
+      <!-- Header with Logo -->
+      <tr>
+        <td align="center" style="padding: 20px 20px 0 20px;">
+          <div style="border: 1px solid #c2c2c2; border-bottom: none; padding-bottom: 10px; border-top-left-radius: 3px; border-top-right-radius: 3px; padding-top: 10px;">
+            <img src="https://invoice.rawlabs.studio/storage/fJQ1Z4sgyfCpV2h8mn8hV0DSO9wDDBgq/KQK4LinfTcdhQciuIFxBUbIRLUIbysUHKXxMhv0g.png" alt="Raw Labs" border="0" style="display: block; width: auto; max-width: 300px; max-height: 100px; height: auto; margin: 0 auto;">
+          </div>
+        </td>
+      </tr>
+      
+      <!-- Content Section -->
+      <tr>
+        <td style="padding: 0 20px;">
+          <div style="border: 1px solid #c2c2c2; border-top: none; border-bottom: none; padding: 20px; text-align: center; color: #2e2e2e; font-size: 15px; line-height: 1.6;" id="content">
+            <div style="padding-top: 10px;"></div>
+            
+            <p style="font-size: 15px; color: #2e2e2e; font-family: 'roboto', Arial, Helvetica, sans-serif;">Hallo ${name || ""},<br><br>vielen Dank für deine Anfrage! Wir haben deine Nachricht erhalten und schauen uns dein Projekt schnellstmöglich an.<br><br>Wir melden uns in Kürze bei dir, damit es weitergehen kann.<br><br>Wenn du noch Fragen hast oder etwas hinzufügen willst, antworte gerne einfach auf diese E-Mail oder sende uns eine email an info@rawlabs.studio.</p>
+            
+            <div class="center">
+              <!--[if (gte mso 9)|(IE)]>
+              <table align="center" cellspacing="0" cellpadding="0" style="width: 600px;">
+                  <tr>
+                  <td align="center" valign="top">
+                      <![endif]-->
+                      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                      <tbody><tr>
+                      <td align="center" class="new_button" style="border-radius: 2px; background-color: #6046c9">
+                          <a href="https://rawlabs.studio" target="_blank" class="new_button" style="text-decoration: none; border: 1px solid #6046c9; display: inline-block; border-radius: 2px; padding-top: 15px; padding-bottom: 15px; padding-left: 25px; padding-right: 25px; font-size: 20px; color: #fff">
+                          <span label="cta button">Website besuchen</span>
+                          </a>
+                      </td>
+                      </tr>
+                      </tbody>
+                      </table>
+              <!--[if (gte mso 9)|(IE)]>
                   </td>
-                </tr>
+                  </tr>
               </table>
-            </td>
-          </tr>
-          <!-- Footer -->
-          <tr>
-            <td style="background-color: #0d0c11; padding: 30px 40px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05);">
-              <p style="margin: 0 0 8px 0; color: #726e7a; font-size: 11px;">&copy; ${currentYear} Raw Labs. Alle Rechte vorbehalten.</p>
-              <p style="margin: 0; color: #5a5761; font-size: 11px;">Du erhältst diese E-Mail, weil du das Kontaktformular auf <a href="https://rawlabs.studio" style="color: #a891ff; text-decoration: none;">rawlabs.studio</a> ausgefüllt hast.</p>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
+              <![endif]-->
+            </div>
+            
+            <div>
+              <a href="#" style="display: inline-block; background-color: #6046c9; color: #ffffff; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; font-size: 13px; font-weight: 600;"></a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      
+      <!-- Divider -->
+      <tr>
+        <td height="0" style="padding: 0 20px;">
+          <div style="border: 1px solid #c2c2c2; border-top: none; border-bottom: none; padding: 5px; text-align: center;"></div>
+        </td>
+      </tr>
+      
+      <!-- Footer Info -->
+      <tr>
+        <td style="padding: 0 20px;">
+          <div style="text-align: center; padding-top: 10px; padding-bottom: 25px; background-color: #f9f9f9; border: 1px solid #c2c2c2; border-top: none; border-bottom-color: #f9f9f9;">
+            <p style="font-size: 15px; color: #2e2e2e; font-family: 'roboto', Arial, Helvetica, sans-serif; font-weight: 500; margin-bottom: 0;">
+              Raw Labs GbR
+            </p>
+            <p style="font-size: 15px; color: #2e2e2e; font-family: 'roboto', Arial, Helvetica, sans-serif; font-weight: 500; margin-top: 5px; margin-bottom: 0;">
+              https://rawlabs.studio
+            </p>
+          </div>
+        </td>
+      </tr>
+      
+      <!-- Copyright Footer -->
+      <tr>
+        <td bgcolor="#242424" style="padding: 0 20px;">
+          <div style="padding-top: 10px; padding-bottom: 10px; background-color: #242424; border: 1px solid #c2c2c2; border-top-color: #242424; border-bottom-color: #242424;">
+            <p style="text-align: center; color: #ffffff; font-size: 10px; font-family: Verdana, Geneva, Tahoma, sans-serif; margin: 0;">
+              &copy; ${currentYear} Raw Labs. Alle Rechte vorbehalten.
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </body>
 </html>
