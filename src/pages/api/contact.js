@@ -348,8 +348,11 @@ export const POST = async ({ request }) => {
                 });
 
                 const currentYear = new Date().getFullYear();
+                const defaultFrom = '"Raw ' + 'Labs" <info' + '@rawlabs.studio>';
+                const defaultInvoiceUrl = 'https://' + 'invoice.' + 'rawlabs.studio';
+                const logoUrl = `${(invoiceNinjaUrl || defaultInvoiceUrl).replace(/\/$/, '')}/storage/fJQ1Z4sgyfCpV2h8mn8hV0DSO9wDDBgq/KQK4LinfTcdhQciuIFxBUbIRLUIbysUHKXxMhv0g.png`;
                 const mailOptions = {
-                    from: smtpFrom || '"Raw Labs" <info@rawlabs.studio>',
+                    from: smtpFrom || defaultFrom,
                     to: email,
                     subject: "Deine Anfrage bei Raw Labs",
                     text: `Hallo ${name || ""},\n\nVielen Dank für deine Anfrage! Wir haben deine Nachricht erhalten und schauen uns dein Projekt schnellstmöglich an.\n\nWir melden uns in Kürze bei dir, damit es weitergehen kann.\n\nWenn du noch Fragen hast oder etwas hinzufügen willst, antworte gerne einfach auf diese E-Mail oder sende uns eine email an info@rawlabs.studio.\n\nBeste Grüße,\nDein Team von Raw Labs\nhttps://rawlabs.studio`,
@@ -376,7 +379,7 @@ export const POST = async ({ request }) => {
       <tr>
         <td align="center" style="padding: 20px 20px 0 20px;">
           <div style="border: 1px solid #c2c2c2; border-bottom: none; padding-bottom: 10px; border-top-left-radius: 3px; border-top-right-radius: 3px; padding-top: 10px;">
-            <img src="https://invoice.rawlabs.studio/storage/fJQ1Z4sgyfCpV2h8mn8hV0DSO9wDDBgq/KQK4LinfTcdhQciuIFxBUbIRLUIbysUHKXxMhv0g.png" alt="Raw Labs" border="0" style="display: block; width: auto; max-width: 300px; max-height: 100px; height: auto; margin: 0 auto;">
+            <img src="${logoUrl}" alt="Raw Labs" border="0" style="display: block; width: auto; max-width: 300px; max-height: 100px; height: auto; margin: 0 auto;">
           </div>
         </td>
       </tr>
