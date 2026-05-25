@@ -355,7 +355,7 @@ export const POST = async ({ request }) => {
                     from: smtpFrom || defaultFrom,
                     to: email,
                     subject: "Deine Anfrage bei Raw Labs",
-                    text: `Hallo ${name || ""},\n\nVielen Dank für deine Anfrage! Wir haben deine Nachricht erhalten und schauen uns dein Projekt schnellstmöglich an.\n\nWir melden uns in Kürze bei dir, damit es weitergehen kann.\n\nWenn du noch Fragen hast oder etwas hinzufügen willst, antworte gerne einfach auf diese E-Mail oder sende uns eine email an info@rawlabs.studio.\n\nBeste Grüße,\nDein Team von Raw Labs\nhttps://rawlabs.studio`,
+                    text: `Hallo ${name || ""},\n\nVielen Dank für deine Anfrage! Wir haben deine Nachricht erhalten und schauen uns dein Projekt schnellstmöglich an.\n\nWir melden uns in Kürze bei dir, damit es weitergehen kann.\n\nWenn du noch Fragen hast oder etwas hinzufügen willst, antworte gerne einfach auf diese E-Mail oder sende uns eine E-Mail an info@rawlabs.studio\n\nBeste Grüße,\nDein Team von Raw Labs\nhttps://rawlabs.studio`,
                     html: `
 <!DOCTYPE html>
 <html>
@@ -390,7 +390,7 @@ export const POST = async ({ request }) => {
           <div style="border: 1px solid #c2c2c2; border-top: none; border-bottom: none; padding: 20px; text-align: center; color: #2e2e2e; font-size: 15px; line-height: 1.6;" id="content">
             <div style="padding-top: 10px;"></div>
             
-            <p style="font-size: 15px; color: #2e2e2e; font-family: 'roboto', Arial, Helvetica, sans-serif;">Hallo ${name || ""},<br><br>vielen Dank für deine Anfrage! Wir haben deine Nachricht erhalten und schauen uns dein Projekt schnellstmöglich an.<br><br>Wir melden uns in Kürze bei dir, damit es weitergehen kann.<br><br>Wenn du noch Fragen hast oder etwas hinzufügen willst, antworte gerne einfach auf diese E-Mail oder sende uns eine email an info@rawlabs.studio.</p>
+            <p style="font-size: 15px; color: #2e2e2e; font-family: 'roboto', Arial, Helvetica, sans-serif;">Hallo ${name || ""},<br><br>vielen Dank für deine Anfrage! Wir haben deine Nachricht erhalten und schauen uns dein Projekt schnellstmöglich an.<br><br>Wir melden uns in Kürze bei dir, damit es weitergehen kann.<br><br>Wenn du noch Fragen hast oder etwas hinzufügen willst, antworte gerne einfach auf diese E-Mail oder sende uns eine E-Mail an <a href="mailto:info@rawlabs.studio" style="color: #6046c9; text-decoration: underline;">info@rawlabs.studio</a></p>
             
             <div class="center">
               <!--[if (gte mso 9)|(IE)]>
