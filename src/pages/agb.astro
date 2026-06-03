@@ -1,0 +1,250 @@
+---
+import logo from '../assets/rawlabs logo.png';
+import PageTransition from '../components/PageTransition.astro';
+---
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>AGB - Rawlabs Studios</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" type="image/png" href="/logo.png" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+		<style>
+			body, #wrapper, #main, section.wrapper {
+				background: radial-gradient(circle at 50% 0%, #190f33 0%, #0c0818 100%) !important;
+				color: #e2dcf0 !important;
+			}
+			#main.wrapper {
+				background: transparent !important;
+				padding: 4em 0 6em 0 !important;
+			}
+			.inner {
+				max-width: 900px !important;
+				width: 90% !important;
+				margin: 0 auto !important;
+				padding: 0 1.5em !important;
+			}
+			.agb-container-card {
+				background: rgba(255, 255, 255, 0.01);
+				border: 1px solid rgba(168, 145, 255, 0.08);
+				backdrop-filter: blur(10px);
+				padding: 3.5em;
+				border-radius: 20px;
+				box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+				display: flex;
+				flex-direction: column;
+				gap: 2.5em;
+				margin-top: 2em;
+			}
+			@media screen and (max-width: 736px) {
+				.agb-container-card {
+					padding: 1.75em;
+					gap: 1.75em;
+				}
+			}
+			.agb-section {
+				border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+				padding-bottom: 2em;
+			}
+			.agb-section:last-child {
+				border-bottom: none;
+				padding-bottom: 0;
+			}
+			.agb-section h2 {
+				color: #fff;
+				font-size: 1.3em;
+				font-weight: 700;
+				margin-bottom: 1em;
+				letter-spacing: 0.03em;
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+			}
+			.agb-section h2 span {
+				color: #a891ff;
+				font-weight: bold;
+			}
+			.agb-point {
+				margin-bottom: 1.5em;
+			}
+			.agb-point:last-child {
+				margin-bottom: 0;
+			}
+			.agb-point h3 {
+				color: rgba(255, 255, 255, 0.9);
+				font-size: 1em;
+				font-weight: 600;
+				margin-bottom: 0.5em;
+			}
+			.agb-point p {
+				color: rgba(226, 220, 240, 0.75);
+				line-height: 1.7;
+				margin: 0;
+				font-size: 0.95em;
+			}
+			.agb-point strong {
+				color: #fff;
+			}
+			.highlight-box {
+				background: rgba(168, 145, 255, 0.05);
+				border-left: 3px solid #a891ff;
+				padding: 1.25em;
+				border-radius: 0 8px 8px 0;
+				margin-top: 1em;
+			}
+			.highlight-box p {
+				color: #cbb2ff !important;
+				font-weight: 500;
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+		<PageTransition />
+
+		<!-- Header -->
+		<header id="header">
+			<a href="/" class="title" style="border-bottom: none;">
+				<img src={logo.src} alt="Rawlabs Logo" style="height: 2.5em; vertical-align: middle;" />
+			</a>
+			<nav>
+				<ul>
+					<li><a href="/" class="button small icon solid fa-chevron-left">Zurück zum Studio</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+			<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<h1 class="major" style="text-align: center; margin-bottom: 0.3em;">Allgemeine Geschäftsbedingungen (AGB)</h1>
+					<p style="text-align: center; opacity: 0.7; margin-bottom: 2em;">Raw Labs GbR · Stand: Juni 2026</p>
+
+					<div class="agb-container-card">
+						<!-- 1. Geltungsbereich -->
+						<div class="agb-section">
+							<h2><span>1.</span> Geltungsbereich und Fristen (Beginn der Bearbeitung)</h2>
+							<div class="agb-point">
+								<h3>Zahlung als Startpunkt:</h3>
+								<p>Alle angegebenen Fristen und Lieferzeiten beginnen erst nach dem vollständigen Eingang der Zahlung des Kunden auf unserem Konto. Der Zeitpunkt des reinen Auftragseingangs oder der Datenübermittlung ist für den Fristbeginn nicht maßgeblich.</p>
+							</div>
+							<div class="agb-point">
+								<h3>Standard-Lieferung:</h3>
+								<p>Bei einer normalen Bestellung liefern wir das fertige Projekt innerhalb von <strong>7 Werktagen</strong> ab dem Tag des Zahlungseingangs.</p>
+							</div>
+							<div class="agb-point">
+								<h3>Express-Lieferung:</h3>
+								<p>Bei einer Bestellung mit Express-Lieferung erfolgt die Lieferung innerhalb von <strong>2 Werktagen</strong> ab dem Tag des Zahlungseingangs.</p>
+							</div>
+							<div class="agb-point">
+								<h3>Fristüberschreitung:</h3>
+								<p>Sollte die Raw Labs GbR diese vertraglichen Deadlines aus eigenen Stücken nicht einhalten können, ist der Kunde zu einer vollständigen Rückerstattung (Refund) des gezahlten Betrags berechtigt.</p>
+							</div>
+						</div>
+
+						<!-- 2. Mitwirkungspflichten -->
+						<div class="agb-section">
+							<h2><span>2.</span> Mitwirkungspflichten und Qualität des Ausgangsmaterials</h2>
+							<div class="agb-point">
+								<h3>Verantwortung des Kunden:</h3>
+								<p>Der Kunde ist dafür verantwortlich, alle Audiospuren in einem technisch einwandfreien und bearbeitbaren Zustand zu liefern (ordnungsgemäß benannt, ohne unerwünschte Übersteuerungen/Clipping, im korrekten und vereinbarten Format).</p>
+							</div>
+							<div class="agb-point">
+								<h3>Fristenlauf bei fehlerhaftem Material:</h3>
+								<p>Verzögert sich die Bearbeitung des Projekts, weil gelieferte Spuren fehlerhaft sind, unvollständig sind oder durch den Kunden nachgeliefert werden müssen, pausiert die vereinbarte Lieferfrist (sowohl Standard als auch Express). Die Frist läuft erst weiter, sobald das korrekte und vollständige Material vollständig bei der Raw Labs GbR eingegangen ist.</p>
+							</div>
+						</div>
+
+						<!-- 3. Widerrufsrecht -->
+						<div class="agb-section">
+							<h2><span>3.</span> Widerrufsrecht</h2>
+							<div class="agb-point">
+								<h3>Ausschluss des Widerrufsrechts:</h3>
+								<p>Da es sich bei den angebotenen Leistungen um digitale, kundenspezifische Dienstleistungen handelt und die Bearbeitung vertragsgemäß unmittelbar nach Zahlungseingang beginnt, verzichtet der Kunde mit dem Kauf und der Zahlung ausdrücklich auf sein gesetzliches 14-tägiges Widerrufsrecht.</p>
+							</div>
+						</div>
+
+						<!-- 4. Auftragsannahme -->
+						<div class="agb-section">
+							<h2><span>4.</span> Auftragsannahme und Projektabbruch</h2>
+							<div class="agb-point">
+								<h3>Recht zur Ablehnung:</h3>
+								<p>Die Raw Labs GbR ist jederzeit berechtigt, Projekte ohne Angabe von Gründen abzulehnen oder die Bearbeitung abzubrechen.</p>
+							</div>
+							<div class="agb-point">
+								<h3>Erstattung bei Abbruch:</h3>
+								<p>Im Falle eines Abbruchs durch die Raw Labs GbR wird dem Kunden der gezahlte Betrag vollständig zurückerstattet, sofern bis zu diesem Zeitpunkt noch kein erheblicher Arbeitsaufwand unsererseits für das Projekt stattgefunden hat.</p>
+							</div>
+						</div>
+
+						<!-- 5. Abnahme, Zufriedenheit -->
+						<div class="agb-section">
+							<h2><span>5.</span> Abnahme, Zufriedenheit und Rückgaberecht</h2>
+							<div class="agb-point">
+								<h3>Ausschluss von Rückerstattungen bei Nichtgefallen:</h3>
+								<p>Da es sich um eine künstlerische und kreative Dienstleistung handelt und ästhetisches Gefallen subjektiv ist, besteht bei Nichtgefallen des gelieferten Services (Mix/Master) kein Anspruch auf einen Rabatt oder eine Geld-zurück-Erstattung.</p>
+							</div>
+						</div>
+
+						<!-- 6. Revisionen -->
+						<div class="agb-section">
+							<h2><span>6.</span> Revisionen (Änderungswünsche) und Freigabefristen</h2>
+							<div class="agb-point">
+								<h3>Inbegriffene Revision:</h3>
+								<p>Im regulären Paketpreis ist eine (1) Revisionsrunde für das jeweilige Projekt mitinbegriffen.</p>
+							</div>
+							<div class="agb-point">
+								<h3>Weitere Revisionen:</h3>
+								<p>Jede weitere Revisionsrunde über die erste hinaus wird pauschal mit <strong>20,00 Euro</strong> berechnet.</p>
+							</div>
+							<div class="agb-point">
+								<h3>Umfang der Revisionen:</h3>
+								<p>Revisionen beschränken sich ausschließlich auf kleinere, punktuelle Anpassungen (z. B. Lautstärkeverhältnisse, feine EQ-Einstellungen oder leichte Effektanpassungen).</p>
+							</div>
+							<div class="agb-point">
+								<h3>Abgrenzung zu Neuprojekten:</h3>
+								<p>Komplette Neukreationen von großen Teilen des Instrumentals, das nachträgliche Austauschen von tragenden Hauptspuren oder eine grundlegende Änderung der gesamten Effektkette zählen als neues Projekt. Diese müssen dementsprechend als separates Projekt neu gebucht und vergütet werden.</p>
+							</div>
+							<div class="agb-point">
+								<h3>Freigabefrist für Revisionen:</h3>
+								<p>Der Kunde hat nach der Lieferung der ersten Version 7 Tage Zeit, seine Änderungswünsche (Revisionen) gesammelt einzureichen. Meldet sich der Kunde innerhalb dieser 7 Tage nicht, gilt das Projekt als erfolgreich abgeschlossen, abgenommen und freigegeben.</p>
+							</div>
+						</div>
+
+						<!-- 7. Datensicherung -->
+						<div class="agb-section">
+							<h2><span>7.</span> Datensicherung und Archivierung</h2>
+							<div class="agb-point">
+								<h3>Verantwortung zur Datensicherung:</h3>
+								<p>Die Raw Labs GbR ist nicht verpflichtet, Projektdaten, Rohspuren, Zwischenstände (Sessions) oder die finalen Exporte nach dem erfolgreichen Abschluss des Auftrags dauerhaft zu archivieren. Die Verantwortung für die langfristige und sichere Archivierung der gelieferten Daten liegt nach der finalen Übergabe ausschließlich beim Kunden.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer" class="wrapper alt">
+			<div class="inner">
+				<ul class="menu">
+					<li>&copy; Rawlabs Studios. Alle Rechte vorbehalten.</li>
+					<li><a href="/impressum">Impressum</a></li>
+					<li><a href="/agb">AGB</a></li>
+				</ul>
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+		<script is:inline src="/assets/js/jquery.min.js"></script>
+		<script is:inline src="/assets/js/jquery.scrollex.min.js"></script>
+		<script is:inline src="/assets/js/jquery.scrolly.min.js"></script>
+		<script is:inline src="/assets/js/browser.min.js"></script>
+		<script is:inline src="/assets/js/breakpoints.min.js"></script>
+		<script is:inline src="/assets/js/util.js"></script>
+		<script is:inline src="/assets/js/main.js"></script>
+	</body>
+</html>

@@ -4032,9 +4032,6 @@ body.is-preload #sidebar nav ul li {
 
 }
 
-body {
-	background: linear-gradient(to bottom right, #8c52ff, #0000ff) !important;
-}
 
 
 body {
@@ -4255,15 +4252,176 @@ html {
 .reference-content .actions {
 	margin-top: auto;
 }
-/* Dark Purple Theme Override */
-body, html {
-    background-color: #1b1429 !important;
-    background-image: none !important;
+
+/* Sidebar Logo */
+
+.sidebar-logo-link {
+	border-bottom: none !important;
+	display: block;
+	text-align: center;
+	margin-bottom: 1.5em;
 }
 
+.sidebar-logo {
+	max-width: 120px;
+	height: auto;
+	display: block;
+	margin: 0 auto;
+	transition: opacity 0.3s ease;
+}
+
+.sidebar-logo:hover {
+	opacity: 0.8;
+}
+
+@media screen and (max-width: 1280px) {
+	.sidebar-logo-link {
+		margin-bottom: 0;
+		display: flex;
+		align-items: center;
+		height: inherit;
+	}
+	.sidebar-logo {
+		max-width: 36px;
+		max-height: 2.5em;
+		margin: 0;
+	}
+}
+
+@media screen and (max-width: 736px) {
+	.sidebar-logo-link {
+		display: none;
+	}
+}
+
+/* Intro Actions */
+
+.intro-actions {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	flex-wrap: wrap;
+}
+
+.button-separator {
+	color: rgba(255, 255, 255, 0.4);
+	font-size: 0.9em;
+	font-style: italic;
+	list-style: none;
+	padding: 0;
+}
+
+/* Pricing Grid */
+
+.pricing-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2em;
+	margin-top: 2em;
+}
+
+@media screen and (max-width: 980px) {
+	.pricing-grid {
+		grid-template-columns: 1fr;
+		max-width: 500px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.pricing-card {
+	background: rgba(255, 255, 255, 0.04);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 1em;
+	padding: 2em 1.5em;
+	text-align: center;
+	transition: all 0.35s ease;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.pricing-card:hover {
+	transform: translateY(-8px);
+	background: rgba(255, 255, 255, 0.08);
+	border-color: rgba(140, 82, 255, 0.3);
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.pricing-card h3 {
+	color: #fff;
+	font-size: 1.3em;
+	margin-bottom: 0.3em;
+}
+
+.pricing-card.popular {
+	border-color: rgba(140, 82, 255, 0.5);
+	background: rgba(140, 82, 255, 0.08);
+	transform: scale(1.05);
+}
+
+.pricing-card.popular:hover {
+	transform: scale(1.05) translateY(-8px);
+}
+
+.popular-badge {
+	position: absolute;
+	top: -0.8em;
+	left: 50%;
+	transform: translateX(-50%);
+	background: linear-gradient(135deg, #8c52ff, #b74e91);
+	color: #fff;
+	padding: 0.3em 1.2em;
+	border-radius: 50px;
+	font-size: 0.65em;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.pricing-features {
+	list-style: none;
+	padding: 0;
+	margin: 1.5em 0;
+	text-align: left;
+	flex-grow: 1;
+}
+
+.pricing-features li {
+	padding: 0.5em 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+	color: rgba(255, 255, 255, 0.6);
+	font-size: 0.85em;
+	line-height: 1.5;
+}
+
+.pricing-features li:last-child {
+	border-bottom: none;
+}
+
+.pricing-features li.plus {
+	color: #cbb2ff;
+}
+
+.pricing-features li.plus::before {
+	content: '+ ';
+	color: #cbb2ff;
+}
+
+.pricing-features .detail {
+	color: rgba(255, 255, 255, 0.35);
+	font-size: 0.9em;
+}
+
+.pricing-card .button {
+	margin-top: auto;
+	width: 100%;
+}
+
+/* Dark Purple Theme Override */
 #sidebar {
     background-color: #130f1d !important;
-} 
+}
 
 /* Readability typography overrides: completely white text is bold, rest is normal */
 dl dt,
@@ -4280,3 +4438,156 @@ dl dt,
 #sidebar nav a.active {
     font-weight: normal !important;
 }
+
+/* Fix pricing section bottom padding */
+#packages {
+	padding-bottom: 5em !important;
+}
+
+/* Premium Styling and Padding for Homepage Contact split Section */
+.split.style1 {
+	padding: 4em 3em !important;
+	background: rgba(255, 255, 255, 0.01);
+	border: 1px solid rgba(168, 145, 255, 0.08);
+	backdrop-filter: blur(10px);
+	border-radius: 16px;
+	margin: 2em auto 4em auto;
+	max-width: 75em;
+	width: calc(100% - 6em);
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (max-width: 980px) {
+	.split.style1 {
+		width: calc(100% - 4em);
+		padding: 3em 2em !important;
+		margin: 2em auto;
+	}
+}
+
+@media screen and (max-width: 736px) {
+	.split.style1 {
+		width: calc(100% - 2em);
+		padding: 2.5em 1.5em !important;
+		margin: 1.5em auto;
+	}
+	.split.style1 > section {
+		padding-top: 2em !important;
+		margin-top: 2em !important;
+	}
+	.split.style1 > section:first-child {
+		padding-top: 0 !important;
+		margin-top: 0 !important;
+	}
+}
+
+/* Navigation on smaller screens (sidebar at max-width: 1280px) */
+@media screen and (max-width: 1280px) {
+	#sidebar {
+		height: 4em;
+		line-height: 4em;
+		padding: 0 2em !important;
+	}
+	
+	#sidebar > .inner {
+		display: flex !important;
+		flex-direction: row !important;
+		justify-content: space-between !important;
+		align-items: center !important;
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+	
+	.sidebar-logo-link {
+		display: flex !important;
+		align-items: center !important;
+		height: inherit;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	
+	.sidebar-logo {
+		max-width: 95px !important;
+		max-height: 2.5em !important;
+		margin: 0 !important;
+	}
+	
+	#sidebar nav {
+		height: inherit;
+		line-height: inherit;
+		display: flex !important;
+		align-items: center !important;
+	}
+	
+	#sidebar nav ul {
+		display: flex !important;
+		align-items: center !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		height: inherit;
+	}
+	
+	#sidebar nav ul li {
+		margin: 0 0 0 1.5em !important;
+		height: inherit;
+		line-height: inherit;
+		display: flex !important;
+		align-items: center !important;
+	}
+	
+	#sidebar nav a {
+		height: inherit;
+		line-height: inherit;
+		padding: 0 !important;
+		font-size: 0.65em !important;
+	}
+}
+
+@media screen and (max-width: 736px) {
+	#sidebar {
+		display: block !important;
+		height: 4.5em;
+		line-height: 4.5em;
+		padding: 0 1.5em !important;
+	}
+	
+	#sidebar > .inner {
+		justify-content: space-between !important;
+	}
+	
+	.sidebar-logo-link {
+		display: flex !important;
+	}
+	
+	.sidebar-logo {
+		max-width: 80px !important;
+	}
+	
+	#sidebar nav a {
+		font-size: 0.55em !important;
+	}
+	
+	#sidebar nav ul li {
+		margin: 0 0 0 1em !important;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#sidebar {
+		padding: 0 1em !important;
+	}
+	
+	.sidebar-logo {
+		max-width: 65px !important;
+	}
+	
+	#sidebar nav ul li {
+		margin: 0 0 0 0.8em !important;
+	}
+	
+	#sidebar nav a {
+		font-size: 0.5em !important;
+		letter-spacing: 0.15em !important;
+	}
+}
+

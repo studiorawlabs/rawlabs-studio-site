@@ -1,9 +1,10 @@
 ---
 import logo from "../assets/rawlabs logo.png";
 import CookieBanner from "../components/CookieBanner.astro";
+import PageTransition from "../components/PageTransition.astro";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <head>
 	<title>Rawlabs Studios</title>
 	<meta charset="utf-8" />
@@ -18,6 +19,7 @@ import CookieBanner from "../components/CookieBanner.astro";
 	</noscript>
 </head>
 <body class="is-preload">
+	<PageTransition />
 	<!-- Sidebar -->
 	<section id="sidebar">
 		<div class="inner">
@@ -30,7 +32,7 @@ import CookieBanner from "../components/CookieBanner.astro";
 					<li><a href="#two">Referenzen</a></li>
 					<li><a href="#three">Services</a></li>
 					<li><a href="#packages">Pakete</a></li>
-					<li><a href="/contact">Kontaktiere uns</a></li>
+					<li><a href="#contact">Kontaktiere uns</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -79,9 +81,8 @@ import CookieBanner from "../components/CookieBanner.astro";
 							</p>
 							<ul class="actions">
 								<li>
-									<a
-										href="/under-construction"
-										class="button">Details</a
+									<a href="/mixes-masters" class="button"
+										>Details</a
 									>
 								</li>
 							</ul>
@@ -99,9 +100,8 @@ import CookieBanner from "../components/CookieBanner.astro";
 							<p>Beatproduktionen von Rawlabs!</p>
 							<ul class="actions">
 								<li>
-									<a
-										href="/under-construction"
-										class="button">Details</a
+									<a href="/beats-arrangements" class="button"
+										>Details</a
 									>
 								</li>
 							</ul>
@@ -116,9 +116,8 @@ import CookieBanner from "../components/CookieBanner.astro";
 							<p>Künstler mit denen wir gearbeitet haben!</p>
 							<ul class="actions">
 								<li>
-									<a
-										href="/under-construction"
-										class="button">Details</a
+									<a href="/kuenstler" class="button"
+										>Details</a
 									>
 								</li>
 							</ul>
@@ -152,7 +151,7 @@ import CookieBanner from "../components/CookieBanner.astro";
 						</div>
 						<div class="service-details">
 							<h3>Mixing</h3>
-							<p>Professionelles Mixing von bis zu 15 Stems.</p>
+							<p>Professionelles Vocal Mixing & Leveling (abgestimmt auf die Spurenanzahl deines Pakets).</p>
 							<a href="/contact" class="service-link"
 								>Anfrage senden</a
 							>
@@ -166,8 +165,7 @@ import CookieBanner from "../components/CookieBanner.astro";
 						<div class="service-details">
 							<h3>Mastering</h3>
 							<p>
-								Professionelles Mastering um jeden Track radio
-								ready zu machen.
+								Professionelles Mastering um jeden Track für alle Plattformen radio-ready zu machen.
 							</p>
 							<a href="/contact" class="service-link"
 								>Anfrage senden</a
@@ -181,8 +179,7 @@ import CookieBanner from "../components/CookieBanner.astro";
 						<div class="service-details">
 							<h3>Beat Production</h3>
 							<p>
-								Individuelle Beat Produktion für Genres von Hip
-								Hop, Rap, RnB bis hin zu Pop
+								Individuelle Beat-Produktionen und Arrangements, exklusiv für dich angefertigt.
 							</p>
 							<a href="/contact" class="service-link"
 								>Anfrage senden</a
@@ -196,8 +193,7 @@ import CookieBanner from "../components/CookieBanner.astro";
 						<div class="service-details">
 							<h3>Assets</h3>
 							<p>
-								Von Album Artwork bis hin zu Social Media
-								Graphics, wir kümmern uns darum
+								Professionelle Cover Artworks und Social Media Assets, passend zu deinem Release.
 							</p>
 							<a href="/contact" class="service-link"
 								>Anfrage senden</a
@@ -289,13 +285,28 @@ import CookieBanner from "../components/CookieBanner.astro";
 				</div>
 			</div>
 		</section>
-
+		<!-- Contact Split Section -->
+		<section id="contact" class="wrapper style1 fade-up">
+			<div class="inner">
 				<div class="split style1">
 					<section>
-						<h3>Bereit, deinen Sound auf das nächste Level zu bringen?</h3>
-						<p>Nutze unser neues, interaktives Bestellformular, um uns deine Demo zu senden und dein Projekt individuell zu konfigurieren.</p>
+						<h3>
+							Bereit, deinen Sound auf das nächste Level zu
+							bringen?
+						</h3>
+						<p>Sende uns dein Projekt, wähle ein Paket und wir melden uns so schnell wie möglich bei dir zurück!
+							<br />
+							<span style="font-size: 0.9em; opacity: 0.8; display: block; margin-top: 1em; font-style: italic;">
+								Für individuelle Anfragen, schreib uns einfach eine E-Mail oder kontaktiere uns über Social Media.
+							</span>
+						</p>
 						<ul class="actions">
-							<li><a href="/contact" class="button primary glowing-button">Jetzt Projekt anfragen</a></li>
+							<li>
+								<a
+									href="/contact"
+									class="button primary glowing-button"
+									>Jetzt Projekt anfragen</a>
+							</li>
 						</ul>
 					</section>
 
@@ -334,6 +345,7 @@ import CookieBanner from "../components/CookieBanner.astro";
 				<li>&copy; Rawlabs Studios. Alle Rechte vorbehalten.</li><li>
 					<a href="/impressum">Impressum</a>
 				</li>
+				<li><a href="/agb">AGB</a></li>
 			</ul>
 		</div>
 	</footer>
@@ -362,7 +374,9 @@ import CookieBanner from "../components/CookieBanner.astro";
 		letter-spacing: 0.05em;
 	}
 	.glowing-button:hover {
-		box-shadow: 0 0 25px rgba(168, 145, 255, 0.95), 0 0 40px rgba(168, 145, 255, 0.4) !important;
+		box-shadow:
+			0 0 25px rgba(168, 145, 255, 0.95),
+			0 0 40px rgba(168, 145, 255, 0.4) !important;
 		transform: translateY(-2px);
 	}
 </style>
