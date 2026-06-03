@@ -1,0 +1,1602 @@
+---
+import logo from '../assets/rawlabs logo.png';
+import CookieBanner from '../components/CookieBanner.astro';
+---
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Anfrage - Rawlabs Studios</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="icon" type="image/png" href="/logo.png" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+		<style>
+			/* Premium Sleek Dark Purple Theme */
+			body, #wrapper, #main, section.wrapper {
+				background: radial-gradient(circle at 50% 0%, #190f33 0%, #0c0818 100%) !important;
+				color: #e2dcf0 !important;
+			}
+
+			#main.wrapper {
+				background: transparent !important;
+				padding: 3em 0 6em 0 !important;
+			}
+
+			/* Page-wide Progress Bar Stepper (Sticky on scroll) */
+			.progress-container-full {
+				width: 100%;
+				background: rgba(12, 8, 24, 0.9) !important;
+				backdrop-filter: blur(12px) !important;
+				border-bottom: 1px solid rgba(168, 145, 255, 0.15) !important;
+				padding: 1.5em 0;
+				margin-bottom: 4em;
+				position: sticky;
+				top: 0;
+				z-index: 100;
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+			}
+			.progressbar {
+				max-width: 800px;
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				list-style: none;
+				padding: 0 1.5em;
+				position: relative;
+			}
+			.progressbar::before {
+				content: '';
+				position: absolute;
+				top: 20px;
+				left: 10%;
+				right: 10%;
+				height: 3px;
+				background: rgba(255, 255, 255, 0.08);
+				z-index: 0;
+				border-radius: 2px;
+			}
+			.progressbar li {
+				flex: 1;
+				text-align: center;
+				position: relative;
+				z-index: 1;
+				font-size: 0.85em;
+				color: rgba(255, 255, 255, 0.4);
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				cursor: pointer;
+				transition: color 0.3s ease;
+			}
+			.progressbar li:hover {
+				color: rgba(255, 255, 255, 0.8);
+			}
+			.progressbar li .step-num {
+				width: 42px;
+				height: 42px;
+				line-height: 38px;
+				border: 2px solid rgba(255, 255, 255, 0.15);
+				border-radius: 50%;
+				display: block;
+				margin: 0 auto 0.6em auto;
+				background: #0f0a1c;
+				font-weight: bold;
+				color: rgba(255, 255, 255, 0.5);
+				transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+			}
+			.progressbar li.active {
+				color: #a891ff;
+				font-weight: bold;
+			}
+			.progressbar li.active .step-num {
+				border-color: #a891ff;
+				color: #fff;
+				background: #a891ff;
+				box-shadow: 0 0 20px rgba(168, 145, 255, 0.6);
+				transform: scale(1.1);
+			}
+			.progressbar li.completed {
+				color: #4CAF50;
+			}
+			.progressbar li.completed .step-num {
+				border-color: #4CAF50;
+				color: #fff;
+				background: #4CAF50;
+				box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
+			}
+
+			/* Wizard steps logic */
+			.wizard-step {
+				display: none;
+				animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+			}
+			.wizard-step.active {
+				display: block;
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(15px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+
+			/* Spacious, Premium Form Elements */
+			input[type="text"], input[type="email"], textarea, select {
+				background: rgba(255, 255, 255, 0.02) !important;
+				border: 1px solid rgba(255, 255, 255, 0.1) !important;
+				border-radius: 10px !important;
+				padding: 1em 1.25em !important;
+				color: #fff !important;
+				font-size: 0.95em !important;
+				transition: all 0.3s ease !important;
+				width: 100%;
+			}
+			select {
+				padding: 0.75em 1.25em !important;
+				height: auto !important;
+				line-height: 1.5 !important;
+				text-overflow: ellipsis !important;
+			}
+			input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
+				border-color: #a891ff !important;
+				box-shadow: 0 0 15px rgba(168, 145, 255, 0.25) !important;
+				background: rgba(255, 255, 255, 0.04) !important;
+			}
+
+			label {
+				font-weight: 600;
+				letter-spacing: 0.02em;
+				margin-bottom: 0.6em;
+				color: rgba(255, 255, 255, 0.85);
+			}
+
+			.field {
+				margin-bottom: 2em;
+			}
+			
+			.fields {
+				margin-bottom: 0;
+			}
+
+			/* Styled Package Selection Buttons - Sleek Glassmorphism */
+			.package-button-group {
+				display: flex;
+				gap: 1.5em;
+				margin-top: 1.2em;
+				margin-bottom: 2.5em;
+			}
+			@media screen and (max-width: 736px) {
+				.package-button-group {
+					flex-direction: column;
+					gap: 1em;
+				}
+			}
+			.package-btn {
+				flex: 1;
+				background: rgba(255, 255, 255, 0.02) !important;
+				border: 1px solid rgba(255, 255, 255, 0.1) !important;
+				color: rgba(255, 255, 255, 0.75);
+				padding: 2.2em 1.5em !important;
+				border-radius: 16px;
+				cursor: pointer;
+				text-align: center;
+				transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+				height: auto !important;
+				line-height: normal !important;
+			}
+			.package-btn:hover {
+				border-color: rgba(168, 145, 255, 0.4) !important;
+				color: #fff;
+				background: rgba(168, 145, 255, 0.04) !important;
+				transform: translateY(-4px);
+				box-shadow: 0 8px 25px rgba(168, 145, 255, 0.1);
+			}
+			.package-btn.active {
+				background: rgba(168, 145, 255, 0.12) !important;
+				border-color: #a891ff !important;
+				color: #fff;
+				transform: translateY(-4px);
+				box-shadow: 0 0 30px rgba(168, 145, 255, 0.35) !important;
+			}
+			.package-btn h3 {
+				margin: 0 0 0.4em 0;
+				font-size: 1.3em;
+				font-weight: 700;
+				letter-spacing: 0.05em;
+				text-transform: uppercase;
+			}
+			.package-btn p {
+				margin: 0;
+				font-size: 1.5em;
+				font-weight: bold;
+				color: #a891ff;
+			}
+
+			/* Slider improvements */
+			.slider-wrapper {
+				position: relative;
+				padding: 1.5em 0;
+			}
+			.songs-slider {
+				-webkit-appearance: none;
+				appearance: none;
+				width: 100%;
+				height: 22px;
+				background: transparent !important;
+				outline: none;
+				position: relative;
+				z-index: 5;
+				cursor: pointer;
+				margin: 0 !important;
+				padding: 0 !important;
+				border: none !important;
+			}
+			.songs-slider::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				appearance: none;
+				width: 24px;
+				height: 22px;
+				background: transparent;
+				cursor: pointer;
+			}
+			.songs-slider::-moz-range-thumb {
+				width: 24px;
+				height: 22px;
+				background: transparent;
+				border: none;
+				cursor: pointer;
+			}
+			.songs-slider::-moz-range-track {
+				background: transparent;
+				border: none;
+			}
+			.songs-slider::-moz-focus-outer {
+				border: 0;
+			}
+
+			/* Custom Visual Slider Elements */
+			.custom-slider-track {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				height: 8px;
+				background: rgba(255, 255, 255, 0.08);
+				border-radius: 4px;
+				z-index: 1;
+				pointer-events: none;
+				overflow: hidden;
+			}
+			.custom-slider-fill {
+				width: 11px;
+				height: 100%;
+				background: #a891ff;
+				border-radius: 4px;
+				transition: width 0.15s cubic-bezier(0.25, 0.8, 0.25, 1.15);
+			}
+			.custom-slider-thumb {
+				position: absolute;
+				top: 50%;
+				left: 11px;
+				width: 22px;
+				height: 22px;
+				background: #a891ff;
+				border-radius: 50%;
+				box-shadow: 0 0 15px rgba(168, 145, 255, 0.6);
+				transform: translate(-50%, -50%) scale(1);
+				z-index: 2;
+				pointer-events: none;
+				transition: left 0.15s cubic-bezier(0.25, 0.8, 0.25, 1.15),
+				            transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+				            box-shadow 0.25s ease;
+			}
+
+			/* Custom visual states controlled via real input hover/active sibling rules */
+			.songs-slider:hover ~ .custom-slider-thumb {
+				transform: translate(-50%, -50%) scale(1.2);
+				box-shadow: 0 0 20px rgba(168, 145, 255, 0.9);
+			}
+			.songs-slider:active ~ .custom-slider-thumb {
+				transform: translate(-50%, -50%) scale(1.35);
+				box-shadow: 0 0 25px rgba(168, 145, 255, 0.95);
+			}
+
+			/* Widescreen centered single-column layout */
+			.inner {
+				max-width: 900px !important;
+				width: 90% !important;
+				margin: 0 auto !important;
+			}
+			.form-container-card {
+				background: rgba(255, 255, 255, 0.01);
+				border: 1px solid rgba(168, 145, 255, 0.08);
+				backdrop-filter: blur(10px);
+				padding: 3em;
+				border-radius: 20px;
+				box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+				display: flex;
+				flex-direction: column;
+				gap: 1.5em;
+			}
+			@media screen and (max-width: 736px) {
+				.form-container-card {
+					padding: 1.5em;
+				}
+			}
+
+			/* Price Estimate Box */
+			.price-estimate-box {
+				background: rgba(255, 255, 255, 0.02) !important;
+				backdrop-filter: blur(12px) !important;
+				padding: 2em !important;
+				border-radius: 16px !important;
+				border: 1px solid rgba(168, 145, 255, 0.18) !important;
+				display: flex !important;
+				flex-direction: column !important;
+				gap: 0 !important;
+				margin-top: 2em !important;
+				box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2) !important;
+				transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+				width: 100% !important;
+			}
+			.price-row {
+				display: flex !important;
+				justify-content: space-between !important;
+				align-items: center !important;
+				padding: 0.8em 0 !important;
+				font-size: 0.98em !important;
+				width: 100% !important;
+			}
+			.price-row:not(:last-child) {
+				border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+			}
+			.price-row.total-row {
+				border-top: 1px solid rgba(168, 145, 255, 0.3) !important;
+				padding-top: 1.2em !important;
+				font-size: 1.3em !important;
+				font-weight: bold;
+				color: #a891ff !important;
+			}
+			.price-row.total-row .price-amount {
+				font-size: 1.4em !important;
+			}
+			.subtotal-row, .discount-row {
+				max-height: 0px !important;
+				opacity: 0 !important;
+				padding: 0 !important;
+				overflow: hidden !important;
+				border-bottom: 0px solid rgba(255, 255, 255, 0.05) !important;
+				transition: max-height 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+				            opacity 0.35s ease,
+				            padding 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+				            border-bottom-width 0.4s ease !important;
+				visibility: hidden;
+				display: flex !important;
+			}
+			.subtotal-row.show, .discount-row.show {
+				max-height: 60px !important;
+				opacity: 1 !important;
+				padding: 0.8em 0 !important;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+				visibility: visible;
+			}
+			.discount-row {
+				color: #4caf50 !important;
+			}
+			.discount-amount {
+				font-weight: bold !important;
+			}
+			.price-breakdown {
+				margin-bottom: 0.5em !important;
+				width: 100% !important;
+			}
+			.breakdown-row {
+				display: flex !important;
+				flex-direction: row !important;
+				justify-content: space-between !important;
+				align-items: center !important;
+				max-height: 0px !important;
+				opacity: 0 !important;
+				padding: 0 !important;
+				overflow: hidden !important;
+				border-bottom: 0px solid rgba(255, 255, 255, 0.05) !important;
+				transition: max-height 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+				            opacity 0.35s ease,
+				            padding 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+				            border-bottom-width 0.4s ease !important;
+				width: 100% !important;
+				visibility: hidden;
+			}
+			.breakdown-row.show {
+				max-height: 60px !important;
+				opacity: 1 !important;
+				padding: 0.6em 0 !important;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+				visibility: visible;
+			}
+			.breakdown-details {
+				display: flex !important;
+				flex-direction: row !important;
+				align-items: center !important;
+				gap: 0.8em !important;
+			}
+			.breakdown-qty {
+				font-weight: bold !important;
+				color: #a891ff !important;
+				background: rgba(168, 145, 255, 0.1) !important;
+				padding: 0.25em 0.6em !important;
+				border-radius: 6px !important;
+				font-size: 0.85em !important;
+				letter-spacing: 0.02em !important;
+				display: inline-block !important;
+			}
+			.breakdown-name {
+				color: rgba(255, 255, 255, 0.85) !important;
+				font-weight: 500 !important;
+				display: inline-block !important;
+			}
+			.breakdown-price {
+				color: #a891ff !important;
+				font-weight: bold !important;
+				display: inline-block !important;
+				margin-left: auto !important;
+			}
+			.price-disclaimer {
+				font-size: 0.8em !important;
+				opacity: 0.5 !important;
+				text-align: right !important;
+				margin-top: 0.8em !important;
+				margin-bottom: 0 !important;
+			}
+
+			/* Checkboxes & B2B/Address sections */
+			.checkbox-item {
+				display: flex;
+				align-items: center;
+				margin: 0.8em 0;
+			}
+			.checkbox-item input[type="checkbox"] {
+				opacity: 0;
+				position: absolute;
+			}
+			.checkbox-item label {
+				position: relative;
+				padding-left: 2.5em !important;
+				cursor: pointer;
+				user-select: none;
+				color: rgba(255, 255, 255, 0.8) !important;
+				font-weight: 500;
+				display: inline-block;
+				margin-bottom: 0;
+			}
+			.checkbox-item label::before {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 22px;
+				height: 22px;
+				background: rgba(255, 255, 255, 0.04);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				border-radius: 6px;
+				transition: all 0.3s;
+			}
+			.checkbox-item label::after {
+				content: '';
+				position: absolute;
+				left: 8px;
+				top: calc(50% - 6px);
+				width: 6px;
+				height: 11px;
+				border: solid #fff;
+				border-width: 0 2px 2px 0;
+				transform: rotate(45deg) scale(0);
+				transition: all 0.25s;
+			}
+			.checkbox-item input[type="checkbox"]:checked + label::before {
+				background: #a891ff;
+				border-color: #a891ff;
+				box-shadow: 0 0 12px rgba(168, 145, 255, 0.5);
+			}
+			.checkbox-item input[type="checkbox"]:checked + label::after {
+				transform: rotate(45deg) scale(1);
+			}
+
+			/* Conditional toggling container animations */
+			.collapsible-wrapper {
+				display: grid;
+				grid-template-rows: 0fr;
+				transition: grid-template-rows 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+				overflow: hidden;
+			}
+			.collapsible-wrapper.open {
+				grid-template-rows: 1fr;
+				margin-top: 1.5em;
+				margin-bottom: 1.5em;
+			}
+			.collapsible-content {
+				min-height: 0;
+				overflow: hidden;
+				border-left: 2px solid #a891ff;
+				padding-left: 2em;
+			}
+
+			/* Navigation buttons */
+			.navigation-buttons {
+				display: flex;
+				justify-content: space-between;
+				margin-top: 3.5em;
+				gap: 1.5em;
+			}
+			.navigation-buttons button {
+				min-width: 140px;
+				padding: 0.8em 2em !important;
+				height: auto !important;
+				line-height: normal !important;
+				border-radius: 10px !important;
+			}
+
+			/* File upload field styling */
+			.file-upload-wrapper {
+				display: flex;
+				align-items: center;
+				margin-top: 0.8em;
+				gap: 1.5em;
+			}
+			.hidden-file-input {
+				width: 0.1px;
+				height: 0.1px;
+				opacity: 0;
+				overflow: hidden;
+				position: absolute;
+				z-index: -1;
+			}
+			.file-list {
+				margin-top: 0.8em;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5em;
+			}
+			.file-list-item {
+				display: flex;
+				align-items: center;
+				gap: 0.8em;
+				padding: 0.5em 0.8em;
+				background: rgba(168, 145, 255, 0.06);
+				border: 1px solid rgba(168, 145, 255, 0.15);
+				border-radius: 8px;
+				font-size: 0.9em;
+				color: rgba(255,255,255,0.85);
+				animation: fadeIn 0.3s ease forwards;
+			}
+			.file-list-item .file-icon {
+				color: #a891ff;
+				flex-shrink: 0;
+			}
+			.file-list-item .file-name {
+				flex: 1;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.file-list-item .file-size {
+				color: rgba(255,255,255,0.4);
+				font-size: 0.85em;
+				flex-shrink: 0;
+			}
+			.file-list-item .file-remove {
+				background: none;
+				border: none;
+				color: rgba(255,255,255,0.4);
+				cursor: pointer;
+				padding: 0.2em 0.4em;
+				font-size: 1.1em;
+				line-height: 1;
+				border-radius: 4px;
+				transition: all 0.2s ease;
+				flex-shrink: 0;
+				height: auto !important;
+				min-width: auto;
+			}
+			.file-list-item .file-remove:hover {
+				color: #f44336;
+				background: rgba(244, 67, 54, 0.1);
+			}
+
+			/* Summary Table step 4 */
+			.summary-table {
+				width: 100%;
+				margin-top: 2em;
+				margin-bottom: 2.5em;
+				border-collapse: collapse;
+			}
+			.summary-table td {
+				padding: 1em;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+			}
+			.summary-table td:first-child {
+				font-weight: bold;
+				width: 35%;
+				color: rgba(255, 255, 255, 0.6);
+			}
+
+			.loading-bar-wrapper {
+				width: 100%;
+				background: rgba(255, 255, 255, 0.05);
+				height: 4px;
+				border-radius: 2px;
+				overflow: hidden;
+				margin-top: 1.5em;
+				display: none;
+			}
+			.loading-bar {
+				width: 30%;
+				height: 100%;
+				background: #a891ff;
+				animation: loading-pulse 1.5s infinite linear;
+			}
+			@keyframes loading-pulse {
+				0% { transform: translateX(-100%); }
+				100% { transform: translateX(330%); }
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="/" class="title" style="border-bottom: none;"><img src={logo.src} alt="Rawlabs Logo" style="height: 2.5em; vertical-align: middle;" /></a>
+				<nav>
+					<ul>
+						<li><a href="/" class="button small icon solid fa-chevron-left">Zurück zum Studio</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Stepper Progress Bar (Spans full page width) -->
+				<div class="progress-container-full">
+					<ul class="progressbar" id="progressbar">
+						<li class="active" data-step="1">
+							<span class="step-num">1</span>Paket
+						</li>
+						<li data-step="2">
+							<span class="step-num">2</span>Details
+						</li>
+						<li data-step="3">
+							<span class="step-num">3</span>Kontakt
+						</li>
+						<li data-step="4">
+							<span class="step-num">4</span>Übersicht
+						</li>
+					</ul>
+				</div>
+
+				<!-- Main -->
+					<section id="main" class="wrapper style1">
+						<div class="inner">
+							<h1 class="major" style="margin-bottom: 0.3em; text-align: center;">Projekt anfragen</h1>
+							<p style="margin-bottom: 3em; opacity: 0.7; text-align: center; font-size: 1.1em;">Teile uns deine Projekt-Details in wenigen Schritten mit.</p>
+
+							<!-- Form Wizard -->
+							<form id="contact-form" enctype="multipart/form-data">
+								<div class="form-container-card">
+									
+									<!-- STEP 1: Package & Additional Songs -->
+									<div class="wizard-step active" data-step="1">
+										<h3>1. Paket & Song-Anzahl wählen</h3>
+										<label>Wähle dein Studio-Paket:</label>
+										<div class="package-button-group">
+											<button type="button" class="package-btn" data-value="Raw Labs Essentials" data-price="30">
+												<h3>Essentials</h3>
+												<p>30€ / Song</p>
+											</button>
+											<button type="button" class="package-btn active" data-value="Raw Labs Advanced" data-price="60">
+												<h3>Advanced</h3>
+												<p>60€ / Song</p>
+											</button>
+											<button type="button" class="package-btn" data-value="Raw Labs Ultimate" data-price="150">
+												<h3>Ultimate</h3>
+												<p>150€ / Song</p>
+											</button>
+										</div>
+										<input type="hidden" name="package" id="package-input" value="Raw Labs Advanced" />
+
+										<div class="field" style="margin-top: 2em;">
+											<label id="songs-label" for="additional-songs">
+												Zusätzliche Songs (Mengenrabatt ab 2 Songs):<br />
+												<strong style="color: rgba(255,255,255,0.4)">Keine</strong>
+											</label>
+											<div class="slider-wrapper">
+												<input type="range" name="additional_songs" id="additional-songs" min="0" max="6" value="0" step="0.01" class="songs-slider" />
+												<div class="custom-slider-track">
+													<div class="custom-slider-fill" id="custom-fill"></div>
+												</div>
+												<div class="custom-slider-thumb" id="custom-thumb"></div>
+											</div>
+										</div>
+
+										<div class="field" style="margin-top: 1.5em;">
+											<label>Zusätzliche Services (Add-ons):</label>
+											<div class="checkbox-item">
+												<input type="checkbox" id="addon-express" name="addons" value="Express Lieferung (48h)" data-price="20" />
+												<label id="express-label" for="addon-express">Express-Lieferung (48h) (+20€ / Song)</label>
+											</div>
+										</div>
+									</div>
+
+									<!-- STEP 2: Song Info / Upload / Addons -->
+									<div class="wizard-step" data-step="2">
+										<h3>2. Song Details & Anhänge</h3>
+										
+										<div class="field">
+											<label for="song_demo">Song Demos Anhängen (.mp3/.wav, Max. 8MB pro Datei)</label>
+											<div class="file-upload-wrapper">
+												<input type="file" name="song_demo" id="song_demo" accept=".mp3, .wav, audio/mpeg, audio/wav" class="hidden-file-input" multiple />
+												<label for="song_demo" class="button primary icon solid fa-upload">Dateien auswählen</label>
+												<span id="file-name-display" style="margin-left: 1em; opacity: 0.7; font-style: italic;">Keine Dateien ausgewählt</span>
+											</div>
+											<div class="file-list" id="file-list"></div>
+											<p style="font-size: 0.8em; margin-top: 0.8em; opacity: 0.7; line-height: 1.5;">
+												Tipp: Du kannst mehrere Demos auf einmal auswählen. Für größere Dateien sende uns einen Dropbox/WeTransfer Link im Nachrichtenfeld unten.
+											</p>
+										</div>
+
+										<div class="field" style="margin-top: 1.5em;">
+											<label for="message">Gibt es noch etwas was wir wissen sollten? *</label>
+											<textarea name="message" id="message" rows="5" required placeholder="Beschreibe deine Wünsche oder füge Links zu deinen Audiofiles hinzu..."></textarea>
+										</div>
+									</div>
+
+									<!-- STEP 3: Contact Details & B2B -->
+									<div class="wizard-step" data-step="3">
+										<h3>3. Kontakt & Rechnungsadresse</h3>
+
+										<div class="fields">
+											<div class="field half">
+												<label for="name">Name *</label>
+												<input type="text" name="name" id="name" required />
+											</div>
+											<div class="field half">
+												<label for="email">E-Mail *</label>
+												<input type="email" name="email" id="email" required />
+											</div>
+										</div>
+
+										<!-- Honeypot -->
+										<input type="text" name="website" id="website" style="display:none !important;" tabindex="-1" autocomplete="off" />
+										<input type="hidden" name="form_token" id="form-token" />
+
+										<!-- B2B Toggle -->
+										<div class="field" style="margin-top: 1.5em;">
+											<div class="checkbox-item">
+												<input type="checkbox" id="is-b2b" name="is_b2b" />
+												<label for="is-b2b">Ich bestelle als Unternehmen (B2B)</label>
+											</div>
+										</div>
+
+										<!-- B2B Fields -->
+										<div class="collapsible-wrapper" id="b2b-wrapper">
+											<div class="collapsible-content">
+												<div class="field">
+													<label for="company_name">Firmenname *</label>
+													<input type="text" name="company_name" id="company_name" />
+												</div>
+												<div class="field" style="margin-top: 1em;">
+													<label for="vat_number">USt-IdNr. (VAT ID) <span style="font-size:0.8em; opacity:0.7;">- Für steuerfreie EU-Lieferung</span></label>
+													<input type="text" name="vat_number" id="vat_number" placeholder="z.B. DE123456789" />
+												</div>
+											</div>
+										</div>
+
+										<!-- Address Toggle -->
+										<div class="field" style="margin-top: 1.5em;">
+											<div class="checkbox-item">
+												<input type="checkbox" id="has-address" name="has_address" />
+												<label id="address-toggle-label" for="has-address">Rechnungsadresse angeben <span style="font-weight: normal; font-size: 0.85em; opacity: 0.6;">(erforderlich ab 250€)</span></label>
+											</div>
+										</div>
+
+										<!-- Address Fields -->
+										<div class="collapsible-wrapper" id="address-wrapper">
+											<div class="collapsible-content">
+												<div class="field">
+													<label for="street">Straße & Hausnummer *</label>
+													<input type="text" name="street" id="street" placeholder="z.B. Hauptstraße 12" />
+												</div>
+												<div class="fields" style="margin-top: 1em;">
+													<div class="field half">
+														<label for="zip">PLZ *</label>
+														<input type="text" name="zip" id="zip" placeholder="12345" />
+													</div>
+													<div class="field half">
+														<label for="city">Stadt *</label>
+														<input type="text" name="city" id="city" placeholder="z.B. Berlin" />
+													</div>
+												</div>
+												<div class="field" style="margin-top: 1em;">
+													<label for="country">Land *</label>
+													<select name="country" id="country">
+														<option value="DE">Deutschland</option>
+														<option value="AT">Österreich</option>
+														<option value="CH">Schweiz</option>
+														<option value="GB">Vereinigtes Königreich (UK)</option>
+														<option value="US">Vereinigte Staaten (US)</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- STEP 4: Review & Final Submit -->
+									<div class="wizard-step" data-step="4">
+										<h3>4. Zusammenfassung überprüfen</h3>
+										<p>Überprüfe deine Angaben, bevor du deine unverbindliche Anfrage absendest. Wir melden uns mit einem individuellen Angebot bei dir.</p>
+
+										<table class="summary-table">
+											<tbody id="summary-body">
+												<!-- Dynamically populated -->
+											</tbody>
+										</table>
+
+										<div id="form-status" style="margin-top: 1.5em; padding: 1em; border-radius: 6px; display: none;"></div>
+
+										<div class="loading-bar-wrapper" id="loading-wrapper">
+											<div class="loading-bar"></div>
+										</div>
+									</div>
+
+									<!-- Navigation Buttons footer -->
+									<div class="navigation-buttons">
+										<button type="button" class="button" id="prev-btn" style="display: none;">Zurück</button>
+										<button type="button" class="button primary" id="next-btn">Weiter</button>
+										<button type="submit" class="button primary" id="submit-btn" style="display: none;">Unverbindlich anfragen</button>
+									</div>
+
+									<!-- Live Pricing Estimator (Underneath buttons) -->
+									<div class="price-estimate-box">
+										<h3 style="margin-top: 0; margin-bottom: 1.2em; font-size: 1.15em; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.9); border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.5em;">Projektübersicht</h3>
+										<div id="price-breakdown" class="price-breakdown">
+											<div class="breakdown-row show" id="breakdown-package">
+												<div class="breakdown-details">
+													<span class="breakdown-qty" id="qty-pkg">1x</span>
+													<span class="breakdown-name" id="name-pkg">Advanced</span>
+												</div>
+												<span class="breakdown-price" id="price-pkg">0€</span>
+											</div>
+											<div class="breakdown-row" id="breakdown-express">
+												<div class="breakdown-details">
+													<span class="breakdown-qty" id="qty-express">1x</span>
+													<span class="breakdown-name">Express-Lieferung</span>
+												</div>
+												<span class="breakdown-price" id="price-express">0€</span>
+											</div>
+										</div>
+										<div class="price-row subtotal-row" id="subtotal-row">
+											<span>Zwischensumme</span>
+											<span><span id="subtotal-price">0</span>€</span>
+										</div>
+										<div class="price-row discount-row" id="discount-row">
+											<span>Rabatt</span>
+											<span>- <span id="discount-amount">0</span>€</span>
+										</div>
+										<div class="price-row total-row">
+											<span>Voraussichtliche Summe</span>
+											<span>~<span id="total-price">0</span>€</span>
+										</div>
+										<p class="price-disclaimer">Alle Preise inkl. MwSt. · Unverbindliche Preisschätzung</p>
+									</div>
+
+								</div>
+							</form>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Rawlabs Studios. Alle Rechte vorbehalten.</li>
+						<li><a href="/impressum">Impressum</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script is:inline src="/assets/js/jquery.min.js"></script>
+			<script is:inline src="/assets/js/jquery.scrollex.min.js"></script>
+			<script is:inline src="/assets/js/jquery.scrolly.min.js"></script>
+			<script is:inline src="/assets/js/browser.min.js"></script>
+			<script is:inline src="/assets/js/breakpoints.min.js"></script>
+			<script is:inline src="/assets/js/util.js"></script>
+			<script is:inline src="/assets/js/main.js"></script>
+			<CookieBanner />
+
+			<script is:inline>
+				(function() {
+					// State Management
+					let currentStep = 1;
+					let currentTotal = 0;
+					let prevTotal = 0;
+					let prevSubtotal = 0;
+					let prevDiscount = 0;
+
+					function animateValue(element, start, end, duration = 350, suffix = "") {
+						if (!element) return;
+						const startVal = parseInt(start) || 0;
+						const endVal = parseInt(end) || 0;
+						if (startVal === endVal) {
+							element.innerText = endVal + suffix;
+							return;
+						}
+						if (element.dataset.animId) {
+							cancelAnimationFrame(parseInt(element.dataset.animId));
+						}
+						const startTime = performance.now();
+						function update(now) {
+							const elapsed = now - startTime;
+							const progress = Math.min(elapsed / duration, 1);
+							const easeProgress = 1 - Math.pow(1 - progress, 4); // Snappy quartic ease out
+							const current = Math.round(startVal + (endVal - startVal) * easeProgress);
+							element.innerText = current + suffix;
+							if (progress < 1) {
+								element.dataset.animId = requestAnimationFrame(update);
+							} else {
+								delete element.dataset.animId;
+							}
+						}
+						element.dataset.animId = requestAnimationFrame(update);
+					}
+
+					let sliderSnapAnimFrame = null;
+
+					let lastVisualVal = null;
+
+					function updateVisualSlider(force = false) {
+						try {
+							if (!songsSlider || !customFill || !customThumb) {
+								return;
+							}
+							const min = parseFloat(songsSlider.min) || 0;
+							const max = parseFloat(songsSlider.max) || 6;
+							const val = parseFloat(songsSlider.value);
+							
+							// Snapping behavior while dragging: map visual thumb to the rounded integer target!
+							const visualVal = Math.round(val);
+							
+							if (visualVal === lastVisualVal && !force) {
+								return;
+							}
+							lastVisualVal = visualVal;
+							
+							const visualRatio = (visualVal - min) / (max - min);
+							
+							// Pre-calculate percentage and offset in pixels to keep layout 100% browser-safe
+							const pct = visualRatio * 100;
+							const offset = 11 - (22 * visualRatio);
+							
+							const cssValue = `calc(${pct}% + ${offset}px)`;
+							customFill.style.width = cssValue;
+							customThumb.style.left = cssValue;
+						} catch (err) {
+							console.error("Error in updateVisualSlider:", err);
+						}
+					}
+
+					function snapSliderToInteger() {
+						if (!songsSlider) return;
+						const val = parseFloat(songsSlider.value);
+						const target = Math.round(val);
+						if (val === target) return;
+
+						if (sliderSnapAnimFrame) {
+							cancelAnimationFrame(sliderSnapAnimFrame);
+						}
+
+						const startVal = val;
+						const startTime = performance.now();
+						const duration = 250; // Snappy 250ms snap animation
+
+						function step(now) {
+							const elapsed = now - startTime;
+							const progress = Math.min(elapsed / duration, 1);
+							
+							const ease = 1 - Math.pow(1 - progress, 3); // Snappy cubic ease out
+							const current = startVal + (target - startVal) * ease;
+							songsSlider.value = current;
+							
+							updateVisualSlider();
+							updateSongsLabel();
+							updateTotal();
+
+							if (progress < 1) {
+								sliderSnapAnimFrame = requestAnimationFrame(step);
+							} else {
+								songsSlider.value = target;
+								updateVisualSlider();
+								updateSongsLabel();
+								updateTotal();
+							}
+						}
+						sliderSnapAnimFrame = requestAnimationFrame(step);
+					}
+
+					// DOM Elements
+					const form = document.getElementById('contact-form');
+					const steps = document.querySelectorAll('.wizard-step');
+					const progressbarItems = document.querySelectorAll('#progressbar li');
+					const prevBtn = document.getElementById('prev-btn');
+					const nextBtn = document.getElementById('next-btn');
+					const submitBtn = document.getElementById('submit-btn');
+					const formStatus = document.getElementById('form-status');
+					const loadingWrapper = document.getElementById('loading-wrapper');
+
+					const packageInput = document.getElementById('package-input');
+					const packageBtns = document.querySelectorAll('.package-btn');
+					const songsSlider = document.getElementById('additional-songs');
+					const customFill = document.getElementById('custom-fill');
+					const customThumb = document.getElementById('custom-thumb');
+					const songsLabel = document.getElementById('songs-label');
+					const expressCheckbox = document.getElementById('addon-express');
+					const expressLabel = document.getElementById('express-label');
+
+					const fileInput = document.getElementById('song_demo');
+					const fileDisplay = document.getElementById('file-name-display');
+
+					const isB2bCheckbox = document.getElementById('is-b2b');
+					const b2bWrapper = document.getElementById('b2b-wrapper');
+					const companyInput = document.getElementById('company_name');
+					const vatInput = document.getElementById('vat_number');
+
+					const hasAddressCheckbox = document.getElementById('has-address');
+					const addressWrapper = document.getElementById('address-wrapper');
+					const streetInput = document.getElementById('street');
+					const zipInput = document.getElementById('zip');
+					const cityInput = document.getElementById('city');
+					const countryInput = document.getElementById('country');
+					const addressToggleLabel = document.getElementById('address-toggle-label');
+
+					const priceBreakdown = document.getElementById('price-breakdown');
+					const breakdownPkgRow = document.getElementById('breakdown-package');
+					const qtyPkgDisplay = document.getElementById('qty-pkg');
+					const namePkgDisplay = document.getElementById('name-pkg');
+					const pricePkgDisplay = document.getElementById('price-pkg');
+
+					const breakdownExpressRow = document.getElementById('breakdown-express');
+					const qtyExpressDisplay = document.getElementById('qty-express');
+					const priceExpressDisplay = document.getElementById('price-express');
+
+					const subtotalRow = document.getElementById('subtotal-row');
+					const subtotalPriceDisplay = document.getElementById('subtotal-price');
+					const discountRow = document.getElementById('discount-row');
+					const discountAmountDisplay = document.getElementById('discount-amount');
+					const totalPriceDisplay = document.getElementById('total-price');
+
+					// Init token
+					document.getElementById('form-token').value = Date.now();
+
+					// Step 1: Pre-select package from URL parameter
+					const urlParams = new URLSearchParams(window.location.search);
+					const packageParam = urlParams.get('package');
+					if (packageParam) {
+						const cleanParam = packageParam.toLowerCase();
+						let matchedBtn = null;
+						packageBtns.forEach(btn => {
+							const val = btn.dataset.value.toLowerCase();
+							if (val.includes(cleanParam)) {
+								matchedBtn = btn;
+							}
+						});
+						if (matchedBtn) {
+							packageBtns.forEach(b => b.classList.remove('active'));
+							matchedBtn.classList.add('active');
+							packageInput.value = matchedBtn.dataset.value;
+						}
+					}
+
+					// Event Listeners: Packages
+					packageBtns.forEach(btn => {
+						btn.addEventListener('click', () => {
+							packageBtns.forEach(b => b.classList.remove('active'));
+							btn.classList.add('active');
+							packageInput.value = btn.dataset.value;
+							updateTotal();
+						});
+					});
+
+					// Event Listeners: Songs Slider
+					songsSlider.addEventListener('input', () => {
+						if (sliderSnapAnimFrame) {
+							cancelAnimationFrame(sliderSnapAnimFrame);
+						}
+						updateVisualSlider();
+						updateSongsLabel();
+						updateTotal();
+					});
+
+					songsSlider.addEventListener('change', snapSliderToInteger);
+					songsSlider.addEventListener('mouseup', snapSliderToInteger);
+					songsSlider.addEventListener('touchend', snapSliderToInteger);
+
+					// Event Listeners: Express Addon
+					expressCheckbox.addEventListener('change', () => {
+						updateTotal();
+					});
+
+					// Multi-File Input: Accumulate files across selections
+					let accumulatedFiles = [];
+					const fileListContainer = document.getElementById('file-list');
+
+					function formatFileSize(bytes) {
+						if (bytes < 1024) return bytes + ' B';
+						if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+						return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+					}
+
+					function renderFileList() {
+						fileListContainer.innerHTML = '';
+						if (accumulatedFiles.length === 0) {
+							fileDisplay.innerText = 'Keine Dateien ausgewählt';
+							return;
+						}
+						fileDisplay.innerText = accumulatedFiles.length + (accumulatedFiles.length === 1 ? ' Datei' : ' Dateien') + ' ausgewählt';
+						accumulatedFiles.forEach((file, idx) => {
+							const item = document.createElement('div');
+							item.className = 'file-list-item';
+							item.innerHTML = `
+								<span class="file-icon">🎵</span>
+								<span class="file-name">${file.name}</span>
+								<span class="file-size">${formatFileSize(file.size)}</span>
+								<button type="button" class="file-remove" data-idx="${idx}" title="Entfernen">✕</button>
+							`;
+							item.querySelector('.file-remove').addEventListener('click', (e) => {
+								const removeIdx = parseInt(e.currentTarget.dataset.idx);
+								accumulatedFiles.splice(removeIdx, 1);
+								renderFileList();
+							});
+							fileListContainer.appendChild(item);
+						});
+					}
+
+					fileInput.addEventListener('change', () => {
+						const newFiles = Array.from(fileInput.files);
+						newFiles.forEach(f => {
+							// Avoid duplicates by name+size
+							if (!accumulatedFiles.some(existing => existing.name === f.name && existing.size === f.size)) {
+								accumulatedFiles.push(f);
+							}
+						});
+						renderFileList();
+						// Reset native input so the same file(s) can be re-selected
+						fileInput.value = '';
+					});
+
+					// B2B Collapse
+					isB2bCheckbox.addEventListener('change', () => {
+						if (isB2bCheckbox.checked) {
+							b2bWrapper.classList.add('open');
+							companyInput.required = true;
+						} else {
+							b2bWrapper.classList.remove('open');
+							companyInput.required = false;
+							companyInput.value = '';
+							vatInput.value = '';
+						}
+					});
+
+					// Address Collapse
+					hasAddressCheckbox.addEventListener('change', () => {
+						if (hasAddressCheckbox.checked) {
+							addressWrapper.classList.add('open');
+							streetInput.required = true;
+							zipInput.required = true;
+							cityInput.required = true;
+						} else {
+							addressWrapper.classList.remove('open');
+							streetInput.required = false;
+							zipInput.required = false;
+							cityInput.required = false;
+							streetInput.value = '';
+							zipInput.value = '';
+							cityInput.value = '';
+							countryInput.value = 'DE';
+						}
+					});
+
+					// Main Pricing Math matching index.astro exactly
+					function updateTotal() {
+						let total = 0;
+						let packagePrice = 0;
+						let packageName = "Studio Paket";
+
+						const activePkgBtn = document.querySelector('.package-btn.active');
+						if (activePkgBtn) {
+							packagePrice = parseInt(activePkgBtn.dataset.price || 0);
+							packageName = activePkgBtn.querySelector('h3').innerText;
+						}
+
+						const additionalSongsCount = Math.round(parseFloat(songsSlider.value || 0));
+						const totalSongs = 1 + additionalSongsCount;
+						const songsSubtotal = packagePrice * totalSongs;
+						let addonsSubtotal = 0;
+
+						// Update Package Row
+						qtyPkgDisplay.innerText = totalSongs + "x";
+						namePkgDisplay.innerText = packageName;
+						
+						const currentPkgPrice = parseInt(pricePkgDisplay.innerText) || 0;
+						animateValue(pricePkgDisplay, currentPkgPrice, songsSubtotal, 400, "€");
+
+						// Express delivery scales with total number of songs
+						const expressBasePrice = parseInt(expressCheckbox.dataset.price || 20);
+						const expressTotal = expressBasePrice * totalSongs;
+
+						if (expressCheckbox.checked) {
+							addonsSubtotal += expressTotal;
+							qtyExpressDisplay.innerText = totalSongs + "x";
+							
+							const currentExpressPrice = parseInt(priceExpressDisplay.innerText) || 0;
+							animateValue(priceExpressDisplay, currentExpressPrice, expressTotal, 400, "€");
+							
+							breakdownExpressRow.classList.add('show');
+						} else {
+							breakdownExpressRow.classList.remove('show');
+						}
+
+						// Tiered discount on songs subtotal
+						let discountPct = 0;
+						if (totalSongs >= 5) discountPct = 0.20;
+						else if (totalSongs >= 3) discountPct = 0.15;
+						else if (totalSongs === 2) discountPct = 0.05;
+
+						const preDiscountSubtotal = songsSubtotal + addonsSubtotal;
+						let discountValue = 0;
+						if (discountPct > 0) {
+							discountValue = Math.round(songsSubtotal * discountPct);
+						}
+
+						total = preDiscountSubtotal - discountValue;
+						currentTotal = total;
+
+						// Update Displays with Counting Up Animation
+						animateValue(totalPriceDisplay, prevTotal, total, 400);
+						prevTotal = total;
+
+						if (discountValue > 0) {
+							discountRow.classList.add('show');
+							animateValue(discountAmountDisplay, prevDiscount, discountValue, 400);
+							prevDiscount = discountValue;
+
+							subtotalRow.classList.add('show');
+							animateValue(subtotalPriceDisplay, prevSubtotal, preDiscountSubtotal, 400);
+							prevSubtotal = preDiscountSubtotal;
+						} else {
+							discountRow.classList.remove('show');
+							animateValue(discountAmountDisplay, prevDiscount, 0, 400);
+							prevDiscount = 0;
+
+							subtotalRow.classList.remove('show');
+							animateValue(subtotalPriceDisplay, prevSubtotal, 0, 400);
+							prevSubtotal = 0;
+						}
+
+						// Address requirements enforcement for >= 250€
+						if (total >= 250) {
+							hasAddressCheckbox.checked = true;
+							hasAddressCheckbox.disabled = true;
+							addressWrapper.classList.add('open');
+							streetInput.required = true;
+							zipInput.required = true;
+							cityInput.required = true;
+							addressToggleLabel.innerHTML = `Rechnungsadresse angeben <span style="font-weight: normal; font-size: 0.85em; color: #f44336;">(Erforderlich, da über 250€)</span>`;
+						} else {
+							hasAddressCheckbox.disabled = false;
+							addressToggleLabel.innerHTML = `Rechnungsadresse angeben <span style="font-weight: normal; font-size: 0.85em; opacity: 0.6;">(erforderlich ab 250€)</span>`;
+							if (!hasAddressCheckbox.checked) {
+								addressWrapper.classList.remove('open');
+								streetInput.required = false;
+								zipInput.required = false;
+								cityInput.required = false;
+							}
+						}
+					}
+
+					function updateSongsLabel() {
+						const count = Math.round(parseFloat(songsSlider.value || 0));
+						if (count === 0) {
+							songsLabel.innerHTML = `Zusätzliche Songs (Mengenrabatt ab 2 Songs):<br><span style="font-weight: normal; color: rgba(255,255,255,0.4)">Keine</span>`;
+						} else {
+							const totalSongs = 1 + count;
+							let discountStr = "";
+							if (totalSongs >= 5) discountStr = "20%";
+							else if (totalSongs >= 3) discountStr = "15%";
+							else if (totalSongs === 2) discountStr = "5%";
+
+							const text = count === 1 ? "1 zusätzlicher Song" : `${count} zusätzliche Songs`;
+							songsLabel.innerHTML = `Zusätzliche Songs (Mengenrabatt ab 2 Songs):<br><span style="display: inline-block; color: #a891ff; font-weight: normal;">${text} (-${discountStr})</span>`;
+						}
+
+						// Scale Express price label description
+						const expressBasePrice = parseInt(expressCheckbox.dataset.price || 20);
+						const expressTotal = expressBasePrice * (1 + count);
+						expressLabel.innerHTML = `Express-Lieferung (48h) (+${expressTotal}€)`;
+					}
+
+					// Form Stepper Logic
+					function showStep(stepNum) {
+						steps.forEach(step => step.classList.remove('active'));
+						document.querySelector(`.wizard-step[data-step="${stepNum}"]`).classList.add('active');
+
+						progressbarItems.forEach((item, idx) => {
+							item.classList.remove('active', 'completed');
+							const s = idx + 1;
+							if (s === stepNum) item.classList.add('active');
+							else if (s < stepNum) item.classList.add('completed');
+						});
+
+						currentStep = stepNum;
+
+						// Button visibilities
+						prevBtn.style.display = (stepNum === 1) ? 'none' : 'inline-block';
+						if (stepNum === 4) {
+							nextBtn.style.display = 'none';
+							submitBtn.style.display = 'inline-block';
+							buildSummary();
+							// Hide the Projektübersicht box on the summary step to avoid duplication
+							document.querySelector('.price-estimate-box').style.display = 'none';
+						} else {
+							nextBtn.style.display = 'inline-block';
+							submitBtn.style.display = 'none';
+							document.querySelector('.price-estimate-box').style.display = '';
+						}
+					}
+
+					function validateStep(stepNum) {
+						let isValid = true;
+						const stepEl = document.querySelector(`.wizard-step[data-step="${stepNum}"]`);
+
+						if (stepNum === 2) {
+							// Step 2 validation: Message is required
+							const messageInput = document.getElementById('message');
+							if (!messageInput.value.trim()) {
+								messageInput.style.borderColor = '#f44336';
+								messageInput.focus();
+								isValid = false;
+							} else {
+								messageInput.style.borderColor = '';
+							}
+						}
+
+						if (stepNum === 3) {
+							// Step 3 validation: Contact details
+							const nameInput = document.getElementById('name');
+							const emailInput = document.getElementById('email');
+
+							if (!nameInput.value.trim()) {
+								nameInput.style.borderColor = '#f44336';
+								nameInput.focus();
+								isValid = false;
+							} else {
+								nameInput.style.borderColor = '';
+							}
+
+							if (!emailInput.value.trim() || !emailInput.value.includes('@')) {
+								emailInput.style.borderColor = '#f44336';
+								if (isValid) emailInput.focus();
+								isValid = false;
+							} else {
+								emailInput.style.borderColor = '';
+							}
+
+							if (isB2bCheckbox.checked && !companyInput.value.trim()) {
+								companyInput.style.borderColor = '#f44336';
+								if (isValid) companyInput.focus();
+								isValid = false;
+							} else {
+								companyInput.style.borderColor = '';
+							}
+
+							if (hasAddressCheckbox.checked) {
+								[streetInput, zipInput, cityInput].forEach(el => {
+									if (!el.value.trim()) {
+										el.style.borderColor = '#f44336';
+										if (isValid) el.focus();
+										isValid = false;
+									} else {
+										el.style.borderColor = '';
+									}
+								});
+							}
+						}
+
+						return isValid;
+					}
+
+					function buildSummary() {
+						const summaryBody = document.getElementById('summary-body');
+						const additionalSongsCount = Math.round(parseFloat(songsSlider.value || 0));
+
+						let summaryHtml = `
+							<tr>
+								<td>Ausgewähltes Paket:</td>
+								<td>${packageInput.value}</td>
+							</tr>
+							<tr>
+								<td>Songs Gesamt:</td>
+								<td>${1 + additionalSongsCount} (1 Basis + ${additionalSongsCount} zusätzliche)</td>
+							</tr>
+							<tr>
+								<td>Demo Dateien:</td>
+								<td>${accumulatedFiles.length > 0 ? accumulatedFiles.map(f => f.name).join(', ') : 'Keine Dateien hochgeladen'}</td>
+							</tr>
+							<tr>
+								<td>Express Lieferung:</td>
+								<td>${expressCheckbox.checked ? 'Ja (48h)' : 'Nein'}</td>
+							</tr>
+							<tr>
+								<td>Nachricht:</td>
+								<td>${document.getElementById('message').value}</td>
+							</tr>
+							<tr>
+								<td>Kontaktperson:</td>
+								<td>${document.getElementById('name').value} (${document.getElementById('email').value})</td>
+							</tr>
+						`;
+
+						if (isB2bCheckbox.checked) {
+							summaryHtml += `
+								<tr>
+									<td>B2B:</td>
+									<td>${companyInput.value} ${vatInput.value ? `(USt-IdNr: ${vatInput.value})` : ''}</td>
+								</tr>
+							`;
+						}
+
+						if (hasAddressCheckbox.checked) {
+							summaryHtml += `
+								<tr>
+									<td>Rechnungsadresse:</td>
+									<td>${streetInput.value}, ${zipInput.value} ${cityInput.value}, ${countryInput.options[countryInput.selectedIndex].text}</td>
+								</tr>
+							`;
+						}
+
+						summaryHtml += `
+							<tr style="border-top: 2px solid #a891ff; font-weight: bold;">
+								<td style="color:#a891ff;">Gesamtbetrag (geschätzt):</td>
+								<td style="color:#a891ff; font-size: 1.25em;">${currentTotal}€</td>
+							</tr>
+						`;
+
+						summaryBody.innerHTML = summaryHtml;
+					}
+
+					// Clickable Progressbar Navigation
+					progressbarItems.forEach(item => {
+						item.addEventListener('click', () => {
+							const targetStep = parseInt(item.getAttribute('data-step') || 1);
+							if (targetStep === currentStep) return;
+							
+							if (targetStep < currentStep) {
+								// Always allowed to go backward
+								showStep(targetStep);
+							} else {
+								// Going forward: validate all steps up to the targeted step
+								let canNavigate = true;
+								for (let s = currentStep; s < targetStep; s++) {
+									if (!validateStep(s)) {
+										canNavigate = false;
+										break;
+									}
+								}
+								if (canNavigate) {
+									showStep(targetStep);
+								}
+							}
+						});
+					});
+
+					// Button clicks
+					nextBtn.addEventListener('click', () => {
+						if (validateStep(currentStep)) {
+							showStep(currentStep + 1);
+						}
+					});
+
+					prevBtn.addEventListener('click', () => {
+						showStep(currentStep - 1);
+					});
+
+					// Form Submission
+					form.addEventListener('submit', async (e) => {
+						e.preventDefault();
+
+						// Honeypot check
+						if (document.getElementById('website').value.trim()) {
+							formStatus.style.display = 'block';
+							formStatus.style.background = 'rgba(244, 67, 54, 0.1)';
+							formStatus.style.border = '1px solid #f44336';
+							formStatus.style.color = '#f44336';
+							formStatus.innerText = 'Spam-Aktivität erkannt.';
+							return;
+						}
+
+						// Set current timestamp for spam verification
+						document.getElementById('form-token').value = Date.now();
+
+						submitBtn.disabled = true;
+						loadingWrapper.style.display = 'block';
+						formStatus.style.display = 'none';
+
+						const formData = new FormData(form);
+						// Remove the empty native file input entries and append accumulated files
+						formData.delete('song_demo');
+						accumulatedFiles.forEach(f => {
+							formData.append('song_demo', f, f.name);
+						});
+
+						try {
+							const response = await fetch('/api/contact', {
+								method: 'POST',
+								body: formData
+							});
+							const result = await response.json();
+
+							if (response.ok) {
+								formStatus.style.display = 'block';
+								formStatus.style.background = 'rgba(76, 175, 80, 0.1)';
+								formStatus.style.border = '1px solid #4CAF50';
+								formStatus.style.color = '#4CAF50';
+								formStatus.innerText = "Erfolgreich gesendet! Wir haben deine Anfrage erhalten und senden dir in Kürze ein Angebot.";
+								form.reset();
+								
+								// Reset state
+								b2bWrapper.classList.remove('open');
+								addressWrapper.classList.remove('open');
+								songsSlider.value = 0;
+								accumulatedFiles = [];
+								renderFileList();
+								updateSongsLabel();
+								updateTotal();
+								updateVisualSlider(true);
+								
+								// Navigate back to step 1 after 3 seconds
+								setTimeout(() => {
+									showStep(1);
+									formStatus.style.display = 'none';
+								}, 3000);
+
+							} else {
+								formStatus.style.display = 'block';
+								formStatus.style.background = 'rgba(244, 67, 54, 0.1)';
+								formStatus.style.border = '1px solid #f44336';
+								formStatus.style.color = '#f44336';
+								formStatus.innerText = result.message || 'Etwas ist schiefgelaufen. Bitte versuche es erneut.';
+								submitBtn.disabled = false;
+							}
+						} catch (error) {
+							formStatus.style.display = 'block';
+							formStatus.style.background = 'rgba(244, 67, 54, 0.1)';
+							formStatus.style.border = '1px solid #f44336';
+							formStatus.style.color = '#f44336';
+							formStatus.innerText = 'Fehler bei der Verbindung zum Server.';
+							submitBtn.disabled = false;
+						} finally {
+							loadingWrapper.style.display = 'none';
+						}
+					});
+
+					// Initialize
+					updateSongsLabel();
+					updateTotal();
+					updateVisualSlider(true);
+					showStep(1);
+
+				})();
+			</script>
+	</body>
+</html>

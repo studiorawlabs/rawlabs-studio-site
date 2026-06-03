@@ -34,7 +34,7 @@ function loadEnvFile() {
 }
 
 export const POST = async ({ request }) => {
-    let name, email, message, website, formToken, songFile, selectedPackage, addons, additionalSongs;
+    let name, email, message, website, formToken, songFiles, selectedPackage, addons, additionalSongs;
     let isB2b, companyName, vatNumber, street, zip, city, country;
 
     try {
@@ -44,7 +44,7 @@ export const POST = async ({ request }) => {
         message = data.get("message");
         website = data.get("website");
         formToken = data.get("form_token");
-        songFile = data.get("song_demo");
+        songFiles = data.getAll("song_demo");
         selectedPackage = data.get("package");
         addons = data.getAll("addons");
         additionalSongs = parseInt(data.get("additional_songs") || 0);
@@ -308,7 +308,7 @@ export const POST = async ({ request }) => {
                         { name: "🎵 Zusätzliche Songs", value: `${additionalSongs}`, inline: true },
                         { name: "➕ Add-ons", value: addons.length > 0 ? addons.join(", ") : "Keine ausgewählt" },
                         { name: "📝 Nachricht", value: message },
-                        { name: "🎵 Demo", value: songFile && songFile.size > 0 ? `Datei: ${songFile.name}` : "Keine Datei angehängt" }
+                        { name: "🎵 Demo(s)", value: songFiles.filter(f => f && f.size > 0).length > 0 ? songFiles.filter(f => f && f.size > 0).map(f => f.name).join(', ') : "Keine Datei angehängt" }
                     ],
                     footer: { text: "Rawlabs Studios - Website Contact Form" },
                     timestamp: new Date().toISOString(),
@@ -318,10 +318,13 @@ export const POST = async ({ request }) => {
 
         discordFormData.append('payload_json', JSON.stringify(payload));
 
-        // Add file if exists
-        if (songFile && songFile.size > 0) {
-            discordFormData.append('files[0]', songFile, songFile.name);
-        }
+        // Add files if they exist (Discord supports up to 10 attachments)
+        const validFiles = songFiles.filter(f => f && f.size > 0);
+        validFiles.forEach((file, idx) => {
+            if (idx < 10) {
+                discordFormData.append(`files[${idx}]`, file, file.name);
+            }
+        });
 
         const response = await fetch(discordUrl, {
             method: "POST",
