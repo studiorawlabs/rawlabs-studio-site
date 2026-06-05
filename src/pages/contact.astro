@@ -853,9 +853,12 @@ import PageTransition from "../components/PageTransition.astro";
 							<div class="wizard-step" data-step="2">
 								<div class="field">
 									<label for="song_demo"
-										>Song Demos Anhängen (.mp3/.wav, Max.
-										8MB pro Datei)</label
+										>Song Demos anhängen</label
 									>
+									<div style="font-size: 0.8em; margin-bottom: 1em; margin-top: -0.4em; display: flex; gap: 0.8em; flex-wrap: wrap; align-items: center;">
+										<span style="color: #a891ff; border: 1px solid rgba(168, 145, 255, 0.25); padding: 2px 8px; border-radius: 6px; background: rgba(168, 145, 255, 0.04); font-weight: 600;">.mp3 / .wav</span>
+										<span style="color: #ff5e5e; border: 1px solid rgba(255, 94, 94, 0.25); padding: 2px 8px; border-radius: 6px; background: rgba(255, 94, 94, 0.04); font-weight: 600;">Max. 8MB / Datei</span>
+									</div>
 									<div class="file-upload-wrapper">
 										<input
 											type="file"
@@ -876,6 +879,7 @@ import PageTransition from "../components/PageTransition.astro";
 											>Keine Dateien ausgewählt</span
 										>
 									</div>
+									<div id="file-error-message" style="display: none; color: #ff5e5e; font-size: 0.9em; margin-top: 0.5em; font-weight: 600;"></div>
 									<div class="file-list" id="file-list"></div>
 									<p
 										style="font-size: 0.8em; margin-top: 0.8em; opacity: 0.7; line-height: 1.5;"
@@ -1523,7 +1527,20 @@ import PageTransition from "../components/PageTransition.astro";
 
 				fileInput.addEventListener("change", () => {
 					const newFiles = Array.from(fileInput.files);
+					const maxSizeBytes = 8 * 1024 * 1024; // 8MB
+					const rejectedFiles = [];
+					const fileErrorMsg = document.getElementById("file-error-message");
+
+					if (fileErrorMsg) {
+						fileErrorMsg.style.display = "none";
+						fileErrorMsg.innerText = "";
+					}
+
 					newFiles.forEach((f) => {
+						if (f.size > maxSizeBytes) {
+							rejectedFiles.push(f.name);
+							return;
+						}
 						// Avoid duplicates by name+size
 						if (
 							!accumulatedFiles.some(
@@ -1535,6 +1552,14 @@ import PageTransition from "../components/PageTransition.astro";
 							accumulatedFiles.push(f);
 						}
 					});
+
+					if (rejectedFiles.length > 0 && fileErrorMsg) {
+						fileErrorMsg.innerText = rejectedFiles.length === 1
+							? `Die Datei "${rejectedFiles[0]}" überschreitet das Limit von 8MB und wurde nicht hinzugefügt.`
+							: `Folgende Dateien überschreiten das Limit von 8MB und wurden nicht hinzugefügt: ${rejectedFiles.join(", ")}`;
+						fileErrorMsg.style.display = "block";
+					}
+
 					renderFileList();
 					// Reset native input so the same file(s) can be re-selected
 					fileInput.value = "";

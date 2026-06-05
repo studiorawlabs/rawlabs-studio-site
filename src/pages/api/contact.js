@@ -77,6 +77,16 @@ export const POST = async ({ request }) => {
         return new Response(JSON.stringify({ message: "Bitte alle Felder ausfüllen!" }), { status: 400, headers: { "Content-Type": "application/json" } });
     }
 
+    const maxSizeBytes = 8 * 1024 * 1024; // 8MB
+    const hasOverSizedFile = songFiles.some(f => f && f.size > maxSizeBytes);
+    if (hasOverSizedFile) {
+        logDebug("Validation error: One or more files exceed the 8MB limit.");
+        return new Response(
+            JSON.stringify({ message: "Fehler: Eine oder mehrere Dateien überschreiten das Limit von 8MB!" }),
+            { status: 400, headers: { "Content-Type": "application/json" } }
+        );
+    }
+
     const env = loadEnvFile();
     const discordUrl = import.meta.env.DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL || env.DISCORD_WEBHOOK_URL;
     const invoiceNinjaUrl = import.meta.env.INVOICE_NINJA_URL || process.env.INVOICE_NINJA_URL || env.INVOICE_NINJA_URL;

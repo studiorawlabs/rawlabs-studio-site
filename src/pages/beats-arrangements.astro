@@ -1,20 +1,36 @@
 ---
-import logo from '../assets/rawlabs logo.png';
-import PageTransition from '../components/PageTransition.astro';
+import logo from "../assets/rawlabs logo.png";
+import PageTransition from "../components/PageTransition.astro";
 ---
-<!DOCTYPE HTML>
+
+<!doctype html>
 <html>
 	<head>
 		<title>Beats & Arrangements - Rawlabs Studios</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="Entdecke unsere Beat-Produktionen und Song-Arrangements. Trap, Future Bass, Hyperpop und mehr – exklusiv produziert von Rawlabs Studios." />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, user-scalable=no"
+		/>
+		<meta
+			name="description"
+			content="Entdecke unsere Beat-Produktionen und Song-Arrangements. Trap, Future Bass, Hyperpop und mehr – exklusiv produziert von Rawlabs Studios."
+		/>
 		<link rel="icon" type="image/png" href="/logo.png" />
 		<link rel="stylesheet" href="/assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+		<noscript
+			><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript
+		>
 		<style>
-			body, #wrapper, #main, section.wrapper {
-				background: radial-gradient(circle at 50% 0%, #190f33 0%, #0c0818 100%) !important;
+			body,
+			#wrapper,
+			#main,
+			section.wrapper {
+				background: radial-gradient(
+					circle at 50% 0%,
+					#190f33 0%,
+					#0c0818 100%
+				) !important;
 				color: #e2dcf0 !important;
 			}
 			#main.wrapper {
@@ -33,9 +49,9 @@ import PageTransition from '../components/PageTransition.astro';
 			.genre-btn {
 				padding: 0.5em 1.4em !important;
 				border-radius: 50px !important;
-				border: 1px solid rgba(255,255,255,0.2) !important;
+				border: 1px solid rgba(255, 255, 255, 0.2) !important;
 				background: transparent !important;
-				color: rgba(255,255,255,0.7) !important;
+				color: rgba(255, 255, 255, 0.7) !important;
 				font-size: 0.85em !important;
 				cursor: pointer !important;
 				transition: all 0.3s ease !important;
@@ -57,7 +73,7 @@ import PageTransition from '../components/PageTransition.astro';
 				background: #a891ff;
 				border-color: transparent;
 				color: #fff;
-				box-shadow: 0 4px 15px rgba(168,145,255,0.4);
+				box-shadow: 0 4px 15px rgba(168, 145, 255, 0.4);
 			}
 
 			/* ===== Beat Grid ===== */
@@ -67,15 +83,19 @@ import PageTransition from '../components/PageTransition.astro';
 				gap: 1.5em;
 			}
 			@media screen and (max-width: 980px) {
-				.beats-grid { grid-template-columns: repeat(2, 1fr); }
+				.beats-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
 			}
 			@media screen and (max-width: 600px) {
-				.beats-grid { grid-template-columns: 1fr; }
+				.beats-grid {
+					grid-template-columns: 1fr;
+				}
 			}
 
 			/* ===== Beat Card ===== */
 			.beat-card {
-				background: rgba(255,255,255,0.02) !important;
+				background: rgba(255, 255, 255, 0.02) !important;
 				backdrop-filter: blur(12px) !important;
 				-webkit-backdrop-filter: blur(12px) !important;
 				border: 1px solid rgba(168, 145, 255, 0.1) !important;
@@ -87,13 +107,22 @@ import PageTransition from '../components/PageTransition.astro';
 				opacity: 1;
 			}
 			.beat-card::before {
-				content: '';
+				content: "";
 				position: absolute;
-				top: 0; left: 0; right: 0; bottom: 0;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
 				border-radius: 16px;
 				padding: 1px;
-				background: linear-gradient(135deg, rgba(168,145,255,0), rgba(203,178,255,0));
-				-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+				background: linear-gradient(
+					135deg,
+					rgba(168, 145, 255, 0),
+					rgba(203, 178, 255, 0)
+				);
+				-webkit-mask:
+					linear-gradient(#fff 0 0) content-box,
+					linear-gradient(#fff 0 0);
 				-webkit-mask-composite: xor;
 				mask-composite: exclude;
 				transition: background 0.4s ease;
@@ -101,20 +130,33 @@ import PageTransition from '../components/PageTransition.astro';
 			}
 			.beat-card:hover {
 				transform: translateY(-4px) scale(1.015);
-				background: rgba(255,255,255,0.04) !important;
-				border-color: rgba(168,145,255,0.25) !important;
-				box-shadow: 0 8px 32px rgba(168,145,255,0.15);
+				background: rgba(255, 255, 255, 0.04) !important;
+				border-color: rgba(168, 145, 255, 0.25) !important;
+				box-shadow: 0 8px 32px rgba(168, 145, 255, 0.15);
 			}
 			.beat-card:hover::before {
-				background: linear-gradient(135deg, rgba(168,145,255,0.3), rgba(203,178,255,0.3));
+				background: linear-gradient(
+					135deg,
+					rgba(168, 145, 255, 0.3),
+					rgba(203, 178, 255, 0.3)
+				);
 			}
 			.beat-card.playing {
-				border-color: rgba(168,145,255,0.4) !important;
+				border-color: rgba(168, 145, 255, 0.4) !important;
 				animation: cardGlow 2s ease-in-out infinite;
 			}
 			@keyframes cardGlow {
-				0%, 100% { box-shadow: 0 0 15px rgba(168,145,255,0.2), 0 0 30px rgba(203,178,255,0.1); }
-				50% { box-shadow: 0 0 25px rgba(168,145,255,0.35), 0 0 50px rgba(203,178,255,0.2); }
+				0%,
+				100% {
+					box-shadow:
+						0 0 15px rgba(168, 145, 255, 0.2),
+						0 0 30px rgba(203, 178, 255, 0.1);
+				}
+				50% {
+					box-shadow:
+						0 0 25px rgba(168, 145, 255, 0.35),
+						0 0 50px rgba(203, 178, 255, 0.2);
+				}
 			}
 
 			/* Hide filtered cards */
@@ -171,6 +213,8 @@ import PageTransition from '../components/PageTransition.astro';
 				padding: 0 !important;
 				line-height: 1 !important;
 				text-align: center !important;
+
+				letter-spacing: 0 !important;
 			}
 			.play-btn:hover {
 				transform: scale(1.1) !important;
@@ -203,7 +247,7 @@ import PageTransition from '../components/PageTransition.astro';
 				position: relative;
 				width: 100%;
 				height: 6px;
-				background: rgba(255,255,255,0.08);
+				background: rgba(255, 255, 255, 0.08);
 				border-radius: 3px;
 				cursor: pointer;
 				overflow: hidden;
@@ -221,7 +265,10 @@ import PageTransition from '../components/PageTransition.astro';
 			/* ===== Waveform Visualizer ===== */
 			.waveform {
 				position: absolute;
-				top: 0; left: 0; right: 0; bottom: 0;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
 				display: flex;
 				align-items: flex-end;
 				gap: 2px;
@@ -235,13 +282,18 @@ import PageTransition from '../components/PageTransition.astro';
 			}
 			.wave-bar {
 				flex: 1;
-				background: rgba(168,145,255,0.4);
+				background: rgba(168, 145, 255, 0.4);
 				border-radius: 1px;
-				animation: waveAnim var(--wave-duration, 0.8s) ease-in-out infinite alternate;
+				animation: waveAnim var(--wave-duration, 0.8s) ease-in-out
+					infinite alternate;
 			}
 			@keyframes waveAnim {
-				0% { height: 15%; }
-				100% { height: 100%; }
+				0% {
+					height: 15%;
+				}
+				100% {
+					height: 100%;
+				}
 			}
 
 			/* ===== Time Display ===== */
@@ -249,7 +301,7 @@ import PageTransition from '../components/PageTransition.astro';
 				display: flex;
 				justify-content: space-between;
 				font-size: 0.65em;
-				color: rgba(255,255,255,0.4);
+				color: rgba(255, 255, 255, 0.4);
 				font-variant-numeric: tabular-nums;
 			}
 
@@ -261,7 +313,7 @@ import PageTransition from '../components/PageTransition.astro';
 			.beats-intro p {
 				max-width: 700px;
 				margin: 0 auto 2em;
-				color: rgba(255,255,255,0.55);
+				color: rgba(255, 255, 255, 0.55);
 			}
 
 			/* ===== No results ===== */
@@ -269,7 +321,7 @@ import PageTransition from '../components/PageTransition.astro';
 				grid-column: 1 / -1;
 				text-align: center;
 				padding: 3em 1em;
-				color: rgba(255,255,255,0.35);
+				color: rgba(255, 255, 255, 0.35);
 				font-size: 1.1em;
 				display: none;
 			}
@@ -282,296 +334,375 @@ import PageTransition from '../components/PageTransition.astro';
 		<PageTransition />
 
 		<!-- Header -->
-			<header id="header">
-				<a href="/" class="title" style="border-bottom: none;"><img src={logo.src} alt="Rawlabs Logo" style="height: 2.5em; vertical-align: middle;" /></a>
-				<nav>
-					<ul>
-						<li><a href="/" class="button small icon solid fa-chevron-left">Zurück zum Studio</a></li>
-					</ul>
-				</nav>
-			</header>
+		<header id="header">
+			<a href="/" class="title" style="border-bottom: none;"
+				><img
+					src={logo.src}
+					alt="Rawlabs Logo"
+					style="height: 2.5em; vertical-align: middle;"
+				/></a
+			>
+			<nav>
+				<ul>
+					<li>
+						<a
+							href="/"
+							class="button small icon solid fa-chevron-left"
+							>Zurück zum Studio</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
 
 		<!-- Wrapper -->
-			<div id="wrapper">
+		<div id="wrapper">
+			<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div class="beats-intro">
+						<h1 class="major">Beats & Arrangements</h1>
+						<p>
+							Hier findest du eine Auswahl unserer
+							Beat-Produktionen – von melodischem Trap über Future
+							Bass bis hin zu Lofi. Jeder Beat wird exklusiv für
+							dich komponiert und arrangiert.
+						</p>
+					</div>
 
-				<!-- Main -->
-					<section id="main" class="wrapper">
-						<div class="inner">
-							<div class="beats-intro">
-								<h1 class="major">Beats & Arrangements</h1>
-								<p>Hier findest du eine Auswahl unserer Beat-Produktionen – von melodischem Trap über Future Bass bis hin zu Lofi. Jeder Beat wird exklusiv für dich komponiert und arrangiert.</p>
+					<!-- Genre Filters -->
+					<div class="genre-filters" id="genreFilters">
+						<button class="genre-btn active" data-genre="all"
+							>Alle</button
+						>
+						<button class="genre-btn" data-genre="trap">Trap</button
+						>
+						<button class="genre-btn" data-genre="edm"
+							>Future Bass / EDM</button
+						>
+						<button class="genre-btn" data-genre="hyperpop"
+							>Hyperpop</button
+						>
+						<button class="genre-btn" data-genre="soul"
+							>Soul / Chill</button
+						>
+						<button class="genre-btn" data-genre="pop">Pop</button>
+					</div>
+
+					<!-- Beats Grid -->
+					<div class="beats-grid" id="beatsGrid">
+						<!-- 1. Galaxies -->
+						<div class="beat-card" data-genres="trap">
+							<h3 class="beat-title">Galaxies</h3>
+							<div class="beat-meta">
+								<span class="tag">Trap</span>
 							</div>
-
-							<!-- Genre Filters -->
-							<div class="genre-filters" id="genreFilters">
-								<button class="genre-btn active" data-genre="all">Alle</button>
-								<button class="genre-btn" data-genre="trap">Trap</button>
-								<button class="genre-btn" data-genre="edm">Future Bass / EDM</button>
-								<button class="genre-btn" data-genre="hyperpop">Hyperpop</button>
-								<button class="genre-btn" data-genre="soul">Soul / Chill</button>
-								<button class="genre-btn" data-genre="pop">Pop</button>
-							</div>
-
-							<!-- Beats Grid -->
-							<div class="beats-grid" id="beatsGrid">
-
-								<!-- 1. Galaxies -->
-								<div class="beat-card" data-genres="trap">
-									<h3 class="beat-title">Galaxies</h3>
-									<div class="beat-meta">
-										<span class="tag">Trap</span>
+							<div class="player">
+								<button
+									class="play-btn"
+									aria-label="Play Galaxies"
+								>
+									<i class="fas fa-play"></i>
+								</button>
+								<div class="player-body">
+									<div class="progress-wrap">
+										<div class="progress-fill"></div>
+										<div class="waveform"></div>
 									</div>
-									<div class="player">
-										<button class="play-btn" aria-label="Play Galaxies">
-											<i class="fas fa-play"></i>
-										</button>
-										<div class="player-body">
-											<div class="progress-wrap">
-												<div class="progress-fill"></div>
-												<div class="waveform"></div>
-											</div>
-											<div class="time-display">
-												<span class="current-time">0:00</span>
-												<span class="duration">0:00</span>
-											</div>
-										</div>
+									<div class="time-display">
+										<span class="current-time">0:00</span>
+										<span class="duration">0:00</span>
 									</div>
-									<audio preload="metadata" src="/audio/beats/galaxies-sad-melodic-trap-emin-174bpm.mp3"></audio>
-								</div>
-
-								<!-- 2. Cold Nights -->
-								<div class="beat-card" data-genres="trap,soul">
-									<h3 class="beat-title">Cold Nights</h3>
-									<div class="beat-meta">
-										<span class="tag">Soul</span>
-										<span class="tag">Trap</span>
-									</div>
-									<div class="player">
-										<button class="play-btn" aria-label="Play Cold Nights">
-											<i class="fas fa-play"></i>
-										</button>
-										<div class="player-body">
-											<div class="progress-wrap">
-												<div class="progress-fill"></div>
-												<div class="waveform"></div>
-											</div>
-											<div class="time-display">
-												<span class="current-time">0:00</span>
-												<span class="duration">0:00</span>
-											</div>
-										</div>
-									</div>
-									<audio preload="metadata" src="/audio/beats/cold-nights-sad-soul-trap-dmin-200bpm.mp3"></audio>
-								</div>
-
-								<!-- 3. Trying To Hurt -->
-								<div class="beat-card" data-genres="trap,soul">
-									<h3 class="beat-title">Trying To Hurt</h3>
-									<div class="beat-meta">
-										<span class="tag">Soul</span>
-										<span class="tag">Trap</span>
-									</div>
-									<div class="player">
-										<button class="play-btn" aria-label="Play Trying To Hurt">
-											<i class="fas fa-play"></i>
-										</button>
-										<div class="player-body">
-											<div class="progress-wrap">
-												<div class="progress-fill"></div>
-												<div class="waveform"></div>
-											</div>
-											<div class="time-display">
-												<span class="current-time">0:00</span>
-												<span class="duration">0:00</span>
-											</div>
-										</div>
-									</div>
-									<audio preload="metadata" src="/audio/beats/trying-to-hurt-soul-vinyl-trap.mp3"></audio>
-								</div>
-
-								<!-- 4. Love Somehow -->
-								<div class="beat-card" data-genres="edm">
-									<h3 class="beat-title">Love Somehow</h3>
-									<div class="beat-meta">
-										<span class="tag">Future Bass</span>
-									</div>
-									<div class="player">
-										<button class="play-btn" aria-label="Play Love Somehow">
-											<i class="fas fa-play"></i>
-										</button>
-										<div class="player-body">
-											<div class="progress-wrap">
-												<div class="progress-fill"></div>
-												<div class="waveform"></div>
-											</div>
-											<div class="time-display">
-												<span class="current-time">0:00</span>
-												<span class="duration">0:00</span>
-											</div>
-										</div>
-									</div>
-									<audio preload="metadata" src="/audio/beats/love-somehow-edm-future-bass-fsharp-maj-118bpm.mp3"></audio>
-								</div>
-
-								<!-- 5. Silhouettes -->
-								<div class="beat-card" data-genres="edm">
-									<h3 class="beat-title">Silhouettes</h3>
-									<div class="beat-meta">
-										<span class="tag">Future Bass</span>
-									</div>
-									<div class="player">
-										<button class="play-btn" aria-label="Play Silhouettes">
-											<i class="fas fa-play"></i>
-										</button>
-										<div class="player-body">
-											<div class="progress-wrap">
-												<div class="progress-fill"></div>
-												<div class="waveform"></div>
-											</div>
-											<div class="time-display">
-												<span class="current-time">0:00</span>
-												<span class="duration">0:00</span>
-											</div>
-										</div>
-									</div>
-									<audio preload="metadata" src="/audio/beats/silhouettes-future-bass-illenium-bbmaj-175bpm.mp3"></audio>
-								</div>
-
-								<!-- 6. Summers Over -->
-								<div class="beat-card" data-genres="edm,pop">
-									<h3 class="beat-title">Summers Over</h3>
-									<div class="beat-meta">
-										<span class="tag">Pop</span>
-										<span class="tag">EDM</span>
-									</div>
-									<div class="player">
-										<button class="play-btn" aria-label="Play Summers Over">
-											<i class="fas fa-play"></i>
-										</button>
-										<div class="player-body">
-											<div class="progress-wrap">
-												<div class="progress-fill"></div>
-												<div class="waveform"></div>
-											</div>
-											<div class="time-display">
-												<span class="current-time">0:00</span>
-												<span class="duration">0:00</span>
-											</div>
-										</div>
-									</div>
-									<audio preload="metadata" src="/audio/beats/summers-over-emotional-piano-pop-edm.mp3"></audio>
-								</div>
-
-								<!-- 7. Falling Forever -->
-								<div class="beat-card" data-genres="hyperpop">
-									<h3 class="beat-title">Falling Forever</h3>
-									<div class="beat-meta">
-										<span class="tag">Hyperpop</span>
-									</div>
-									<div class="player">
-										<button class="play-btn" aria-label="Play Falling Forever">
-											<i class="fas fa-play"></i>
-										</button>
-										<div class="player-body">
-											<div class="progress-wrap">
-												<div class="progress-fill"></div>
-												<div class="waveform"></div>
-											</div>
-											<div class="time-display">
-												<span class="current-time">0:00</span>
-												<span class="duration">0:00</span>
-											</div>
-										</div>
-									</div>
-									<audio preload="metadata" src="/audio/beats/falling-forever-hyperpop-glitchcore-gmaj-135bpm.mp3"></audio>
-								</div>
-
-								<!-- 8. Until Forever -->
-								<div class="beat-card" data-genres="hyperpop">
-									<h3 class="beat-title">Until Forever</h3>
-									<div class="beat-meta">
-										<span class="tag">Hyperpop</span>
-									</div>
-									<div class="player">
-										<button class="play-btn" aria-label="Play Until Forever">
-											<i class="fas fa-play"></i>
-										</button>
-										<div class="player-body">
-											<div class="progress-wrap">
-												<div class="progress-fill"></div>
-												<div class="waveform"></div>
-											</div>
-											<div class="time-display">
-												<span class="current-time">0:00</span>
-												<span class="duration">0:00</span>
-											</div>
-										</div>
-									</div>
-									<audio preload="metadata" src="/audio/beats/until-forever-hyperpop-electronic-dmaj-170bpm.mp3"></audio>
-								</div>
-
-								<!-- 9. Get You Out My Mind -->
-								<div class="beat-card" data-genres="soul">
-									<h3 class="beat-title">Get You Out My Mind</h3>
-									<div class="beat-meta">
-										<span class="tag">Chill Rap</span>
-									</div>
-									<div class="player">
-										<button class="play-btn" aria-label="Play Get You Out My Mind">
-											<i class="fas fa-play"></i>
-										</button>
-										<div class="player-body">
-											<div class="progress-wrap">
-												<div class="progress-fill"></div>
-												<div class="waveform"></div>
-											</div>
-											<div class="time-display">
-												<span class="current-time">0:00</span>
-												<span class="duration">0:00</span>
-											</div>
-										</div>
-									</div>
-									<audio preload="metadata" src="/audio/beats/get-you-out-my-mind-chill-rap-amin-148bpm.mp3"></audio>
-								</div>
-
-								<div class="no-results" id="noResults">
-									Keine Beats in dieser Kategorie gefunden.
 								</div>
 							</div>
+							<audio
+								preload="metadata"
+								src="/audio/beats/galaxies-sad-melodic-trap-emin-174bpm.mp3"
+							></audio>
 						</div>
-					</section>
 
-			</div>
+						<!-- 2. Cold Nights -->
+						<div class="beat-card" data-genres="trap,soul">
+							<h3 class="beat-title">Cold Nights</h3>
+							<div class="beat-meta">
+								<span class="tag">Soul</span>
+								<span class="tag">Trap</span>
+							</div>
+							<div class="player">
+								<button
+									class="play-btn"
+									aria-label="Play Cold Nights"
+								>
+									<i class="fas fa-play"></i>
+								</button>
+								<div class="player-body">
+									<div class="progress-wrap">
+										<div class="progress-fill"></div>
+										<div class="waveform"></div>
+									</div>
+									<div class="time-display">
+										<span class="current-time">0:00</span>
+										<span class="duration">0:00</span>
+									</div>
+								</div>
+							</div>
+							<audio
+								preload="metadata"
+								src="/audio/beats/cold-nights-sad-soul-trap-dmin-200bpm.mp3"
+							></audio>
+						</div>
+
+						<!-- 3. Trying To Hurt -->
+						<div class="beat-card" data-genres="trap,soul">
+							<h3 class="beat-title">Trying To Hurt</h3>
+							<div class="beat-meta">
+								<span class="tag">Soul</span>
+								<span class="tag">Trap</span>
+							</div>
+							<div class="player">
+								<button
+									class="play-btn"
+									aria-label="Play Trying To Hurt"
+								>
+									<i class="fas fa-play"></i>
+								</button>
+								<div class="player-body">
+									<div class="progress-wrap">
+										<div class="progress-fill"></div>
+										<div class="waveform"></div>
+									</div>
+									<div class="time-display">
+										<span class="current-time">0:00</span>
+										<span class="duration">0:00</span>
+									</div>
+								</div>
+							</div>
+							<audio
+								preload="metadata"
+								src="/audio/beats/trying-to-hurt-soul-vinyl-trap.mp3"
+							></audio>
+						</div>
+
+						<!-- 4. Love Somehow -->
+						<div class="beat-card" data-genres="edm">
+							<h3 class="beat-title">Love Somehow</h3>
+							<div class="beat-meta">
+								<span class="tag">Future Bass</span>
+							</div>
+							<div class="player">
+								<button
+									class="play-btn"
+									aria-label="Play Love Somehow"
+								>
+									<i class="fas fa-play"></i>
+								</button>
+								<div class="player-body">
+									<div class="progress-wrap">
+										<div class="progress-fill"></div>
+										<div class="waveform"></div>
+									</div>
+									<div class="time-display">
+										<span class="current-time">0:00</span>
+										<span class="duration">0:00</span>
+									</div>
+								</div>
+							</div>
+							<audio
+								preload="metadata"
+								src="/audio/beats/love-somehow-edm-future-bass-fsharp-maj-118bpm.mp3"
+							></audio>
+						</div>
+
+						<!-- 5. Silhouettes -->
+						<div class="beat-card" data-genres="edm">
+							<h3 class="beat-title">Silhouettes</h3>
+							<div class="beat-meta">
+								<span class="tag">Future Bass</span>
+							</div>
+							<div class="player">
+								<button
+									class="play-btn"
+									aria-label="Play Silhouettes"
+								>
+									<i class="fas fa-play"></i>
+								</button>
+								<div class="player-body">
+									<div class="progress-wrap">
+										<div class="progress-fill"></div>
+										<div class="waveform"></div>
+									</div>
+									<div class="time-display">
+										<span class="current-time">0:00</span>
+										<span class="duration">0:00</span>
+									</div>
+								</div>
+							</div>
+							<audio
+								preload="metadata"
+								src="/audio/beats/silhouettes-future-bass-illenium-bbmaj-175bpm.mp3"
+							></audio>
+						</div>
+
+						<!-- 6. Summers Over -->
+						<div class="beat-card" data-genres="edm,pop">
+							<h3 class="beat-title">Summers Over</h3>
+							<div class="beat-meta">
+								<span class="tag">Pop</span>
+								<span class="tag">EDM</span>
+							</div>
+							<div class="player">
+								<button
+									class="play-btn"
+									aria-label="Play Summers Over"
+								>
+									<i class="fas fa-play"></i>
+								</button>
+								<div class="player-body">
+									<div class="progress-wrap">
+										<div class="progress-fill"></div>
+										<div class="waveform"></div>
+									</div>
+									<div class="time-display">
+										<span class="current-time">0:00</span>
+										<span class="duration">0:00</span>
+									</div>
+								</div>
+							</div>
+							<audio
+								preload="metadata"
+								src="/audio/beats/summers-over-emotional-piano-pop-edm.mp3"
+							></audio>
+						</div>
+
+						<!-- 7. Falling Forever -->
+						<div class="beat-card" data-genres="hyperpop">
+							<h3 class="beat-title">Falling Forever</h3>
+							<div class="beat-meta">
+								<span class="tag">Hyperpop</span>
+							</div>
+							<div class="player">
+								<button
+									class="play-btn"
+									aria-label="Play Falling Forever"
+								>
+									<i class="fas fa-play"></i>
+								</button>
+								<div class="player-body">
+									<div class="progress-wrap">
+										<div class="progress-fill"></div>
+										<div class="waveform"></div>
+									</div>
+									<div class="time-display">
+										<span class="current-time">0:00</span>
+										<span class="duration">0:00</span>
+									</div>
+								</div>
+							</div>
+							<audio
+								preload="metadata"
+								src="/audio/beats/falling-forever-hyperpop-glitchcore-gmaj-135bpm.mp3"
+							></audio>
+						</div>
+
+						<!-- 8. Until Forever -->
+						<div class="beat-card" data-genres="hyperpop">
+							<h3 class="beat-title">Until Forever</h3>
+							<div class="beat-meta">
+								<span class="tag">Hyperpop</span>
+							</div>
+							<div class="player">
+								<button
+									class="play-btn"
+									aria-label="Play Until Forever"
+								>
+									<i class="fas fa-play"></i>
+								</button>
+								<div class="player-body">
+									<div class="progress-wrap">
+										<div class="progress-fill"></div>
+										<div class="waveform"></div>
+									</div>
+									<div class="time-display">
+										<span class="current-time">0:00</span>
+										<span class="duration">0:00</span>
+									</div>
+								</div>
+							</div>
+							<audio
+								preload="metadata"
+								src="/audio/beats/until-forever-hyperpop-electronic-dmaj-170bpm.mp3"
+							></audio>
+						</div>
+
+						<!-- 9. Get You Out My Mind -->
+						<div class="beat-card" data-genres="soul">
+							<h3 class="beat-title">Get You Out My Mind</h3>
+							<div class="beat-meta">
+								<span class="tag">Chill Rap</span>
+							</div>
+							<div class="player">
+								<button
+									class="play-btn"
+									aria-label="Play Get You Out My Mind"
+								>
+									<i class="fas fa-play"></i>
+								</button>
+								<div class="player-body">
+									<div class="progress-wrap">
+										<div class="progress-fill"></div>
+										<div class="waveform"></div>
+									</div>
+									<div class="time-display">
+										<span class="current-time">0:00</span>
+										<span class="duration">0:00</span>
+									</div>
+								</div>
+							</div>
+							<audio
+								preload="metadata"
+								src="/audio/beats/get-you-out-my-mind-chill-rap-amin-148bpm.mp3"
+							></audio>
+						</div>
+
+						<div class="no-results" id="noResults">
+							Keine Beats in dieser Kategorie gefunden.
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
 
 		<!-- Footer -->
-			<footer id="footer" class="wrapper alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; Rawlabs Studios. Alle Rechte vorbehalten.</li>
-						<li><a href="/impressum">Impressum</a></li>
-						<li><a href="/agb">AGB</a></li>
-					</ul>
-				</div>
-			</footer>
+		<footer id="footer" class="wrapper alt">
+			<div class="inner">
+				<ul class="menu">
+					<li>&copy; Rawlabs Studios. Alle Rechte vorbehalten.</li>
+					<li><a href="/impressum">Impressum</a></li>
+					<li><a href="/agb">AGB</a></li>
+				</ul>
+			</div>
+		</footer>
 
 		<!-- Scripts -->
-			<script is:inline src="/assets/js/jquery.min.js"></script>
-			<script is:inline src="/assets/js/jquery.scrollex.min.js"></script>
-			<script is:inline src="/assets/js/jquery.scrolly.min.js"></script>
-			<script is:inline src="/assets/js/browser.min.js"></script>
-			<script is:inline src="/assets/js/breakpoints.min.js"></script>
-			<script is:inline src="/assets/js/util.js"></script>
-			<script is:inline src="/assets/js/main.js"></script>
+		<script is:inline src="/assets/js/jquery.min.js"></script>
+		<script is:inline src="/assets/js/jquery.scrollex.min.js"></script>
+		<script is:inline src="/assets/js/jquery.scrolly.min.js"></script>
+		<script is:inline src="/assets/js/browser.min.js"></script>
+		<script is:inline src="/assets/js/breakpoints.min.js"></script>
+		<script is:inline src="/assets/js/util.js"></script>
+		<script is:inline src="/assets/js/main.js"></script>
 
-			<script is:inline>
-			(function() {
+		<script is:inline>
+			(function () {
 				// ===== Generate waveform bars =====
-				document.querySelectorAll('.waveform').forEach(function(wf) {
+				document.querySelectorAll(".waveform").forEach(function (wf) {
 					for (var i = 0; i < 30; i++) {
-						var bar = document.createElement('div');
-						bar.className = 'wave-bar';
-						bar.style.setProperty('--wave-duration', (0.4 + Math.random() * 0.6) + 's');
-						bar.style.animationDelay = (Math.random() * 0.5) + 's';
+						var bar = document.createElement("div");
+						bar.className = "wave-bar";
+						bar.style.setProperty(
+							"--wave-duration",
+							0.4 + Math.random() * 0.6 + "s",
+						);
+						bar.style.animationDelay = Math.random() * 0.5 + "s";
 						wf.appendChild(bar);
 					}
 				});
@@ -581,10 +712,10 @@ import PageTransition from '../components/PageTransition.astro';
 
 				// ===== Format time =====
 				function formatTime(sec) {
-					if (isNaN(sec) || !isFinite(sec)) return '0:00';
+					if (isNaN(sec) || !isFinite(sec)) return "0:00";
 					var m = Math.floor(sec / 60);
 					var s = Math.floor(sec % 60);
-					return m + ':' + (s < 10 ? '0' : '') + s;
+					return m + ":" + (s < 10 ? "0" : "") + s;
 				}
 
 				// ===== Stop current =====
@@ -594,129 +725,141 @@ import PageTransition from '../components/PageTransition.astro';
 						currentAudio.currentTime = 0;
 					}
 					if (currentCard) {
-						currentCard.classList.remove('playing');
-						var icon = currentCard.querySelector('.play-btn i');
-						icon.className = 'fas fa-play';
-						var fill = currentCard.querySelector('.progress-fill');
-						fill.style.width = '0%';
-						var ct = currentCard.querySelector('.current-time');
-						ct.textContent = '0:00';
+						currentCard.classList.remove("playing");
+						var icon = currentCard.querySelector(".play-btn i");
+						icon.className = "fas fa-play";
+						var fill = currentCard.querySelector(".progress-fill");
+						fill.style.width = "0%";
+						var ct = currentCard.querySelector(".current-time");
+						ct.textContent = "0:00";
 					}
 					currentAudio = null;
 					currentCard = null;
 				}
 
 				// ===== Initialize each card =====
-				document.querySelectorAll('.beat-card').forEach(function(card) {
-					var audio = card.querySelector('audio');
-					var btn = card.querySelector('.play-btn');
-					var icon = btn.querySelector('i');
-					var progressWrap = card.querySelector('.progress-wrap');
-					var progressFill = card.querySelector('.progress-fill');
-					var currentTimeEl = card.querySelector('.current-time');
-					var durationEl = card.querySelector('.duration');
+				document
+					.querySelectorAll(".beat-card")
+					.forEach(function (card) {
+						var audio = card.querySelector("audio");
+						var btn = card.querySelector(".play-btn");
+						var icon = btn.querySelector("i");
+						var progressWrap = card.querySelector(".progress-wrap");
+						var progressFill = card.querySelector(".progress-fill");
+						var currentTimeEl = card.querySelector(".current-time");
+						var durationEl = card.querySelector(".duration");
 
-					// Set duration when metadata loads
-					audio.addEventListener('loadedmetadata', function() {
-						durationEl.textContent = formatTime(audio.duration);
-					});
+						// Set duration when metadata loads
+						audio.addEventListener("loadedmetadata", function () {
+							durationEl.textContent = formatTime(audio.duration);
+						});
 
-					// Update progress
-					audio.addEventListener('timeupdate', function() {
-						if (audio.duration) {
-							var pct = (audio.currentTime / audio.duration) * 100;
-							progressFill.style.width = pct + '%';
-							currentTimeEl.textContent = formatTime(audio.currentTime);
-						}
-					});
+						// Update progress
+						audio.addEventListener("timeupdate", function () {
+							if (audio.duration) {
+								var pct =
+									(audio.currentTime / audio.duration) * 100;
+								progressFill.style.width = pct + "%";
+								currentTimeEl.textContent = formatTime(
+									audio.currentTime,
+								);
+							}
+						});
 
-					// When audio ends
-					audio.addEventListener('ended', function() {
-						card.classList.remove('playing');
-						icon.className = 'fas fa-play';
-						progressFill.style.width = '0%';
-						currentTimeEl.textContent = '0:00';
-						audio.currentTime = 0;
-						if (currentCard === card) {
-							currentAudio = null;
-							currentCard = null;
-						}
-					});
+						// When audio ends
+						audio.addEventListener("ended", function () {
+							card.classList.remove("playing");
+							icon.className = "fas fa-play";
+							progressFill.style.width = "0%";
+							currentTimeEl.textContent = "0:00";
+							audio.currentTime = 0;
+							if (currentCard === card) {
+								currentAudio = null;
+								currentCard = null;
+							}
+						});
 
-					// Play/Pause toggle
-					btn.addEventListener('click', function() {
-						if (currentAudio && currentAudio !== audio) {
-							stopCurrent();
-						}
-						if (audio.paused) {
-							audio.play();
-							card.classList.add('playing');
-							icon.className = 'fas fa-pause';
-							currentAudio = audio;
-							currentCard = card;
-						} else {
-							audio.pause();
-							card.classList.remove('playing');
-							icon.className = 'fas fa-play';
-						}
-					});
-
-					// Seek on click
-					progressWrap.addEventListener('click', function(e) {
-						if (audio.duration) {
-							var rect = progressWrap.getBoundingClientRect();
-							var x = e.clientX - rect.left;
-							var pct = x / rect.width;
-							audio.currentTime = pct * audio.duration;
+						// Play/Pause toggle
+						btn.addEventListener("click", function () {
+							if (currentAudio && currentAudio !== audio) {
+								stopCurrent();
+							}
 							if (audio.paused) {
-								if (currentAudio && currentAudio !== audio) {
-									stopCurrent();
-								}
 								audio.play();
-								card.classList.add('playing');
-								icon.className = 'fas fa-pause';
+								card.classList.add("playing");
+								icon.className = "fas fa-pause";
 								currentAudio = audio;
 								currentCard = card;
+							} else {
+								audio.pause();
+								card.classList.remove("playing");
+								icon.className = "fas fa-play";
 							}
-						}
+						});
+
+						// Seek on click
+						progressWrap.addEventListener("click", function (e) {
+							if (audio.duration) {
+								var rect = progressWrap.getBoundingClientRect();
+								var x = e.clientX - rect.left;
+								var pct = x / rect.width;
+								audio.currentTime = pct * audio.duration;
+								if (audio.paused) {
+									if (
+										currentAudio &&
+										currentAudio !== audio
+									) {
+										stopCurrent();
+									}
+									audio.play();
+									card.classList.add("playing");
+									icon.className = "fas fa-pause";
+									currentAudio = audio;
+									currentCard = card;
+								}
+							}
+						});
 					});
-				});
 
 				// ===== Genre Filtering with FLIP layout transitions =====
-				var filterBtns = document.querySelectorAll('.genre-btn');
-				var cards = document.querySelectorAll('.beat-card');
-				var noResults = document.getElementById('noResults');
-				var grid = document.getElementById('beatsGrid');
+				var filterBtns = document.querySelectorAll(".genre-btn");
+				var cards = document.querySelectorAll(".beat-card");
+				var noResults = document.getElementById("noResults");
+				var grid = document.getElementById("beatsGrid");
 
-				filterBtns.forEach(function(btn) {
-					btn.addEventListener('click', function() {
+				filterBtns.forEach(function (btn) {
+					btn.addEventListener("click", function () {
 						// Update active button
-						filterBtns.forEach(function(b) { b.classList.remove('active'); });
-						btn.classList.add('active');
+						filterBtns.forEach(function (b) {
+							b.classList.remove("active");
+						});
+						btn.classList.add("active");
 
-						var genre = btn.getAttribute('data-genre');
+						var genre = btn.getAttribute("data-genre");
 
 						// 1. First: Record positions of cards and grid height
 						var firstRects = [];
-						cards.forEach(function(card, idx) {
+						cards.forEach(function (card, idx) {
 							firstRects[idx] = card.getBoundingClientRect();
 						});
 						var gridFirstHeight = grid.offsetHeight;
 
 						// 2. Last: Apply class changes immediately (synchronously)
 						var visibleCount = 0;
-						cards.forEach(function(card) {
-							var cardGenres = card.getAttribute('data-genres');
+						cards.forEach(function (card) {
+							var cardGenres = card.getAttribute("data-genres");
 							if (!cardGenres) return;
-							
-							var isMatch = (genre === 'all' || cardGenres.split(',').indexOf(genre) !== -1);
+
+							var isMatch =
+								genre === "all" ||
+								cardGenres.split(",").indexOf(genre) !== -1;
 							if (isMatch) {
-								card.classList.remove('hidden');
-								card.style.opacity = '1';
-								card.style.transform = 'none';
+								card.classList.remove("hidden");
+								card.style.opacity = "1";
+								card.style.transform = "none";
 								visibleCount++;
 							} else {
-								card.classList.add('hidden');
+								card.classList.add("hidden");
 								if (currentCard === card) {
 									stopCurrent();
 								}
@@ -725,58 +868,64 @@ import PageTransition from '../components/PageTransition.astro';
 
 						// Show/hide no results
 						if (visibleCount === 0) {
-							noResults.classList.add('visible');
+							noResults.classList.add("visible");
 						} else {
-							noResults.classList.remove('visible');
+							noResults.classList.remove("visible");
 						}
 
 						// Record final grid height
-						grid.style.transition = 'none';
+						grid.style.transition = "none";
 						var gridLastHeight = grid.offsetHeight;
-						
+
 						// Set grid height back to first height
-						grid.style.height = gridFirstHeight + 'px';
+						grid.style.height = gridFirstHeight + "px";
 						grid.offsetHeight; // force reflow
-						
+
 						// Transition grid height to final height
-						grid.style.transition = 'height 0.45s cubic-bezier(0.25, 0.8, 0.25, 1)';
-						grid.style.height = gridLastHeight + 'px';
+						grid.style.transition =
+							"height 0.45s cubic-bezier(0.25, 0.8, 0.25, 1)";
+						grid.style.height = gridLastHeight + "px";
 
 						// 3. Invert: Translate cards back to first position
-						cards.forEach(function(card, idx) {
-							if (card.classList.contains('hidden')) return;
+						cards.forEach(function (card, idx) {
+							if (card.classList.contains("hidden")) return;
 
 							var first = firstRects[idx];
 							var last = card.getBoundingClientRect();
-							
+
 							var deltaX = first.left - last.left;
 							var deltaY = first.top - last.top;
 
 							if (deltaX !== 0 || deltaY !== 0) {
-								card.style.transition = 'none';
-								card.style.transform = 'translate3d(' + deltaX + 'px, ' + deltaY + 'px, 0)';
+								card.style.transition = "none";
+								card.style.transform =
+									"translate3d(" +
+									deltaX +
+									"px, " +
+									deltaY +
+									"px, 0)";
 								card.offsetHeight; // force reflow
 							}
 						});
 
 						// 4. Play: Transition cards to final position
-						requestAnimationFrame(function() {
-							cards.forEach(function(card) {
-								if (card.classList.contains('hidden')) return;
-								card.style.transition = 'transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.45s cubic-bezier(0.25, 0.8, 0.25, 1)';
-								card.style.transform = 'none';
+						requestAnimationFrame(function () {
+							cards.forEach(function (card) {
+								if (card.classList.contains("hidden")) return;
+								card.style.transition =
+									"transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.45s cubic-bezier(0.25, 0.8, 0.25, 1)";
+								card.style.transform = "none";
 							});
 						});
 
 						// Reset temporary height styles after transition finishes
-						setTimeout(function() {
-							grid.style.height = '';
-							grid.style.transition = '';
+						setTimeout(function () {
+							grid.style.height = "";
+							grid.style.transition = "";
 						}, 450);
 					});
 				});
 			})();
-			</script>
-
+		</script>
 	</body>
 </html>
