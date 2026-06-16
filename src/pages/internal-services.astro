@@ -1,6 +1,8 @@
 ---
 import logo from "../assets/rawlabs logo.png";
 import PageTransition from "../components/PageTransition.astro";
+
+const invoiceNinjaUrl = import.meta.env.INVOICE_NINJA_URL;
 ---
 
 <!doctype html>
@@ -258,7 +260,7 @@ import PageTransition from "../components/PageTransition.astro";
 								und Rechnungs-Tracking.
 							</p>
 							<a
-								href="https://invoice.rawlabs.studio"
+								href={invoiceNinjaUrl}
 								target="_blank"
 								rel="noopener noreferrer"
 								class="action-btn"
