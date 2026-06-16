@@ -1,16 +1,22 @@
 ---
-import logo from '../assets/rawlabs logo.png';
-import PageTransition from '../components/PageTransition.astro';
+import logo from "../assets/rawlabs logo.png";
+import PageTransition from "../components/PageTransition.astro";
 ---
-<!DOCTYPE HTML>
+
+<!doctype html>
 <html>
 	<head>
 		<title>Mixes & Masters - Rawlabs Studios</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, user-scalable=no"
+		/>
 		<link rel="icon" type="image/png" href="/logo.png" />
 		<link rel="stylesheet" href="/assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+		<noscript
+			><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript
+		>
 		<style>
 			.playlist-dropdown {
 				margin: 2rem 0;
@@ -41,7 +47,10 @@ import PageTransition from '../components/PageTransition.astro';
 			.playlist-content {
 				max-height: 0;
 				overflow: hidden;
-				transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+				transition:
+					max-height 0.4s ease,
+					opacity 0.3s ease,
+					margin 0.3s ease;
 				opacity: 0;
 				margin-top: 0;
 			}
@@ -56,61 +65,74 @@ import PageTransition from '../components/PageTransition.astro';
 		<PageTransition />
 
 		<!-- Header -->
-			<header id="header">
-				<a href="/" class="title" style="border-bottom: none;"><img src={logo.src} alt="Rawlabs Logo" style="height: 2.5em; vertical-align: middle;" /></a>
-				<nav>
-					<ul>
-						<li><a href="/" class="button small icon solid fa-chevron-left">Zurück zum Studio</a></li>
-					</ul>
-				</nav>
-			</header>
+		<header id="header">
+			<a href="/" class="title" style="border-bottom: none;"
+				><img
+					src={logo.src}
+					alt="Rawlabs Logo"
+					style="height: 2.5em; vertical-align: middle;"
+				/></a
+			>
+			<nav>
+				<ul>
+					<li>
+						<a
+							href="/"
+							class="button small icon solid fa-chevron-left"
+							>Zurück zum Studio</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
 
 		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Main -->
-					<section id="main" class="wrapper">
-						<div class="inner">
-							<h1 class="major">Mixes & Masters Referenzen</h1>
-							<p>Hier siehst du eine Auswahl unserer Arbeiten im Bereich Mixing und Mastering. Jedes Projekt wurde individuell an den Sound des Künstlers angepasst.</p>
-
-							<!-- Spotify Playlist Dropdown -->
-							<div class="playlist-dropdown">
-								<div class="playlist-toggle">
-									<span class="pm-icon" id="toggle-icon">▼</span>
-									<span>Mix & Master Playlist</span>
-								</div>
-								<div class="playlist-content">
-									<iframe
-										style="border-radius: 12px;"
-										width="100%"
-										height="500"
-										title="Spotify Embed: MIXED BY RAW LABS"
-										frameborder="0"
-										allowfullscreen
-										allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-										loading="lazy"
-										src="https://open.spotify.com/embed/playlist/1WcfpZOFqp77FS7FPZbLD8?utm_source=oembed"
-									></iframe>
-								</div>
+		<div id="wrapper">
+			<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<h1 class="major">Mixes & Masters Referenzen</h1>
+					<p>
+						Hier siehst du eine Auswahl der Arbeiten unserer
+						Engineers. Jedes Projekt wurde individuell an den Sound
+						des Künstlers angepasst.
+						<!-- Spotify Playlist Dropdown -->
+						<div class="playlist-dropdown">
+							<div class="playlist-toggle">
+								<span class="pm-icon" id="toggle-icon">▼</span>
+								<span>Mix & Master Playlist</span>
+							</div>
+							<div class="playlist-content">
+								<iframe
+									style="border-radius: 12px;"
+									width="100%"
+									height="500"
+									title="Spotify Embed: MIXED BY RAW LABS"
+									frameborder="0"
+									allowfullscreen
+									allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+									loading="lazy"
+									src="https://open.spotify.com/embed/playlist/1WcfpZOFqp77FS7FPZbLD8?utm_source=oembed"
+								></iframe>
 							</div>
 						</div>
-					</section>
+					</p>
+				</div>
+			</section>
 
-			</div>
-
-		<!-- Footer -->
+			<!-- Footer -->
 			<footer id="footer" class="wrapper alt">
 				<div class="inner">
 					<ul class="menu">
-						<li>&copy; Rawlabs Studios. Alle Rechte vorbehalten.</li>
+						<li>
+							&copy; Rawlabs Studios. Alle Rechte vorbehalten.
+						</li>
 						<li><a href="/impressum">Impressum</a></li>
 						<li><a href="/agb">AGB</a></li>
 					</ul>
 				</div>
 			</footer>
 
-		<!-- Scripts -->
+			<!-- Scripts -->
 			<script is:inline src="/assets/js/jquery.min.js"></script>
 			<script is:inline src="/assets/js/jquery.scrollex.min.js"></script>
 			<script is:inline src="/assets/js/jquery.scrolly.min.js"></script>
@@ -119,21 +141,26 @@ import PageTransition from '../components/PageTransition.astro';
 			<script is:inline src="/assets/js/util.js"></script>
 			<script is:inline src="/assets/js/main.js"></script>
 			<script is:inline>
-				document.addEventListener('DOMContentLoaded', function() {
-					const toggle = document.querySelector('.playlist-toggle');
-					const content = document.querySelector('.playlist-content');
-					const icon = document.getElementById('toggle-icon');
+				document.addEventListener("DOMContentLoaded", function () {
+					const toggle = document.querySelector(".playlist-toggle");
+					const content = document.querySelector(".playlist-content");
+					const icon = document.getElementById("toggle-icon");
 					if (toggle && content && icon) {
 						// Open by default
-						content.classList.add('open');
-						icon.textContent = '▲';
+						content.classList.add("open");
+						icon.textContent = "▲";
 
-						toggle.addEventListener('click', function() {
-							content.classList.toggle('open');
-							icon.textContent = content.classList.contains('open') ? '▲' : '▼';
+						toggle.addEventListener("click", function () {
+							content.classList.toggle("open");
+							icon.textContent = content.classList.contains(
+								"open",
+							)
+								? "▲"
+								: "▼";
 						});
 					}
 				});
 			</script>
+		</div>
 	</body>
 </html>
