@@ -107,22 +107,7 @@ import PageTransition from "../components/PageTransition.astro";
 							</ul>
 						</div>
 					</div>
-					<div class="reference-item">
-						<div class="reference-image">
-							<img src="/images/kuenstler.png" alt="Künstler" />
-						</div>
-						<div class="reference-content">
-							<h3>Künstler</h3>
-							<p>Künstler mit denen wir gearbeitet haben!</p>
-							<ul class="actions">
-								<li>
-									<a href="/kuenstler" class="button"
-										>Details</a
-									>
-								</li>
-							</ul>
-						</div>
-					</div>
+
 				</div>
 				<ul class="actions special" style="margin-top: 3em;">
 					<li>
@@ -212,6 +197,11 @@ import PageTransition from "../components/PageTransition.astro";
 			<div class="inner">
 				<h2>Unsere Pakete</h2>
 				<p>Wähle das passende Paket für dein Projekt.</p>
+				<div class="offer-banner">
+					<span class="offer-banner-icon">✦</span>
+					<span class="offer-banner-text">Limitiertes Eröffnungsangebot</span>
+					<span class="offer-banner-icon">✦</span>
+				</div>
 				<div class="pricing-grid">
 					<!-- Essentials -->
 					<div class="pricing-card">
@@ -329,14 +319,33 @@ import PageTransition from "../components/PageTransition.astro";
 								>
 							</li>
 							<li>
+								<h3>WhatsApp</h3>
+								<a
+									href="https://wa.me/message/R5ZYIHAY3TCRC1"
+									target="_blank"
+									rel="noopener noreferrer"
+									>Jetzt chatten</a
+								>
+							</li>
+							<li>
 								<h3>Social</h3>
 								<ul class="icons">
 									<li>
 										<a
+											href="https://wa.me/message/R5ZYIHAY3TCRC1"
+											class="icon brands fa-whatsapp"
+											target="_blank"
+											rel="noopener noreferrer"
+											><span class="label">WhatsApp</span>
+										</a>
+									</li>
+									<li>
+										<a
 											href="https://www.instagram.com/rawlabs_studios/"
 											class="icon brands fa-instagram"
-											><span class="label">Instagram</span
-											>
+											target="_blank"
+											rel="noopener noreferrer"
+											><span class="label">Instagram</span>
 										</a>
 									</li>
 								</ul>
@@ -388,5 +397,58 @@ import PageTransition from "../components/PageTransition.astro";
 			0 0 25px rgba(168, 145, 255, 0.95),
 			0 0 40px rgba(168, 145, 255, 0.4) !important;
 		transform: translateY(-2px);
+	}
+
+	/* Premium Limited Opening Offer Banner */
+	@keyframes offerPulse {
+		0%, 100% {
+			box-shadow: 0 0 15px rgba(212, 168, 83, 0.04), inset 0 0 15px rgba(212, 168, 83, 0.02);
+		}
+		50% {
+			box-shadow: 0 0 25px rgba(212, 168, 83, 0.1), inset 0 0 20px rgba(212, 168, 83, 0.04);
+		}
+	}
+	.offer-banner {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.75em;
+		margin: 0.8em 0 2em 0;
+		padding: 0.6em 1.5em;
+		background: linear-gradient(135deg, rgba(212, 168, 83, 0.1), rgba(212, 168, 83, 0.03), rgba(212, 168, 83, 0.06)) !important;
+		border: 1px solid rgba(212, 168, 83, 0.2) !important;
+		border-radius: 10px;
+		color: #f5e6b8 !important;
+		font-size: 0.78em;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		font-weight: 700;
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		box-shadow: 0 0 15px rgba(212, 168, 83, 0.04), inset 0 0 15px rgba(212, 168, 83, 0.02);
+		animation: offerPulse 3s ease-in-out infinite;
+		transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+		width: fit-content;
+		position: relative;
+	}
+	.offer-banner::before,
+	.offer-banner::after {
+		content: "◇";
+		font-size: 0.7em;
+		color: rgba(212, 168, 83, 0.4);
+		opacity: 0.6;
+	}
+	.offer-banner-icon {
+		font-size: 1.1em;
+		color: #f5d68a;
+		opacity: 1;
+		filter: drop-shadow(0 0 4px rgba(212, 168, 83, 0.3));
+	}
+	.offer-banner:hover {
+		background: linear-gradient(135deg, rgba(212, 168, 83, 0.14), rgba(212, 168, 83, 0.05), rgba(212, 168, 83, 0.08)) !important;
+		border-color: rgba(212, 168, 83, 0.35) !important;
+		color: #fff4e0 !important;
+		box-shadow: 0 0 35px rgba(212, 168, 83, 0.15), inset 0 0 25px rgba(212, 168, 83, 0.04);
+		transform: translateY(-1px);
+		animation: none;
 	}
 </style>

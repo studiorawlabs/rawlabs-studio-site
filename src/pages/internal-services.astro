@@ -1,0 +1,313 @@
+---
+import logo from "../assets/rawlabs logo.png";
+import PageTransition from "../components/PageTransition.astro";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Internal Services - Rawlabs Studios</title>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, user-scalable=no"
+		/>
+		<meta name="robots" content="noindex, nofollow" />
+		<link rel="icon" type="image/png" href="/logo.png" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<noscript>
+			<link rel="stylesheet" href="/assets/css/noscript.css" />
+		</noscript>
+		<style>
+			body,
+			#wrapper,
+			#main,
+			section.wrapper {
+				background: radial-gradient(
+					circle at 50% 0%,
+					#150c2c 0%,
+					#07040f 100%
+				) !important;
+				color: #e2dcf0 !important;
+			}
+			#main.wrapper {
+				background: transparent !important;
+				padding: 3em 0 6em 0 !important;
+			}
+
+			.portal-intro {
+				text-align: center;
+				margin-bottom: 3em;
+			}
+			.portal-intro h1 {
+				font-size: 2.5em;
+				font-weight: 700;
+				letter-spacing: -0.02em;
+				color: #fff;
+				margin-bottom: 0.3em;
+				text-shadow: 0 0 20px rgba(168, 145, 255, 0.3);
+			}
+			.portal-intro p {
+				max-width: 600px;
+				margin: 0 auto;
+				color: rgba(255, 255, 255, 0.6);
+				font-size: 1.1em;
+			}
+
+			/* ===== Glassmorphic Grid ===== */
+			.services-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 2em;
+				max-width: 900px;
+				margin: 0 auto;
+			}
+			@media screen and (max-width: 736px) {
+				.services-grid {
+					grid-template-columns: 1fr;
+					gap: 1.5em;
+					padding: 0 1em;
+				}
+			}
+
+			/* ===== Service Card ===== */
+			.service-card {
+				background: rgba(255, 255, 255, 0.02) !important;
+				backdrop-filter: blur(16px) !important;
+				-webkit-backdrop-filter: blur(16px) !important;
+				border: 1px solid rgba(168, 145, 255, 0.08) !important;
+				border-radius: 20px;
+				padding: 2.2em 2em;
+				transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+				position: relative;
+				overflow: hidden;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+			}
+			.service-card::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				border-radius: 20px;
+				padding: 1px;
+				background: linear-gradient(
+					135deg,
+					rgba(168, 145, 255, 0.05),
+					rgba(203, 178, 255, 0.05)
+				);
+				-webkit-mask:
+					linear-gradient(#fff 0 0) content-box,
+					linear-gradient(#fff 0 0);
+				-webkit-mask-composite: xor;
+				mask-composite: exclude;
+				transition: background 0.4s ease;
+				pointer-events: none;
+			}
+			.service-card:hover {
+				transform: translateY(-5px);
+				background: rgba(255, 255, 255, 0.04) !important;
+				border-color: rgba(168, 145, 255, 0.25) !important;
+				box-shadow:
+					0 15px 35px rgba(168, 145, 255, 0.12),
+					0 5px 15px rgba(0, 0, 0, 0.2);
+			}
+			.service-card:hover::before {
+				background: linear-gradient(
+					135deg,
+					rgba(168, 145, 255, 0.3),
+					rgba(203, 178, 255, 0.3)
+				);
+			}
+
+			/* ===== Card Header/Icon ===== */
+			.icon-container {
+				width: 60px;
+				height: 60px;
+				border-radius: 14px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 1.5em;
+				background: rgba(168, 145, 255, 0.1);
+				border: 1px solid rgba(168, 145, 255, 0.2);
+				color: #a891ff;
+				font-size: 1.5em;
+				transition: all 0.3s ease;
+			}
+			.service-card:hover .icon-container {
+				background: #a891ff;
+				color: #fff;
+				box-shadow: 0 0 20px rgba(168, 145, 255, 0.45);
+				border-color: transparent;
+			}
+
+			/* ===== Typography ===== */
+			.service-title {
+				font-size: 1.35em;
+				font-weight: 600;
+				color: #fff;
+				margin-bottom: 0.5em;
+			}
+			.service-desc {
+				font-size: 0.95em;
+				color: rgba(255, 255, 255, 0.55);
+				line-height: 1.5;
+				margin-bottom: 1.8em;
+				flex-grow: 1;
+			}
+
+			/* ===== Action Buttons ===== */
+			.action-btn {
+				width: 100%;
+				text-align: center;
+				padding: 0.75em 1.5em !important;
+				border-radius: 12px !important;
+				font-size: 0.9em !important;
+				font-weight: 600 !important;
+				letter-spacing: 0.02em !important;
+				transition: all 0.3s ease !important;
+				background: rgba(255, 255, 255, 0.05) !important;
+				color: #fff !important;
+				border: 1px solid rgba(255, 255, 255, 0.1) !important;
+				box-shadow: none !important;
+				text-transform: none !important;
+				height: auto !important;
+				line-height: 1.5 !important;
+			}
+			.service-card:hover .action-btn {
+				background: #a891ff !important;
+				border-color: #a891ff !important;
+				box-shadow: 0 0 15px rgba(168, 145, 255, 0.3) !important;
+			}
+
+			/* ===== Footer Styling ===== */
+			#footer {
+				margin-top: 3em;
+				background: transparent !important;
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+		<PageTransition />
+
+		<!-- Header -->
+		<header id="header">
+			<a href="/" class="title" style="border-bottom: none;">
+				<img
+					src={logo.src}
+					alt="Rawlabs Logo"
+					style="height: 2.5em; vertical-align: middle;"
+				/>
+			</a>
+			<nav>
+				<ul>
+					<li>
+						<a
+							href="/"
+							class="button small icon solid fa-chevron-left"
+							>Zurück zur Website</a
+						>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+			<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div class="portal-intro">
+						<h1>Rawlabs Stuff</h1>
+						<p>Alle Rawlabs Tools.</p>
+					</div>
+
+					<!-- Services Grid -->
+					<div class="services-grid">
+						<!-- 1. Nextcloud -->
+						<div class="service-card">
+							<div class="icon-container">
+								<i class="fas fa-cloud"></i>
+							</div>
+							<h3 class="service-title">Cloud</h3>
+							<p class="service-desc">
+								Dateien, Backups, Demos, Projektordner etc.
+							</p>
+							<a
+								href="https://cloud.rawlabs.studio"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="action-btn"
+							>
+								Cloud öffnen
+							</a>
+						</div>
+
+						<!-- 2. Invoice Ninja -->
+						<div class="service-card">
+							<div class="icon-container">
+								<i class="fas fa-file-invoice-dollar"></i>
+							</div>
+							<h3 class="service-title">Invoice Ninja</h3>
+							<p class="service-desc">
+								Rechnungsstellung, Buchhaltung, Kundenverwaltung
+								und Rechnungs-Tracking.
+							</p>
+							<a
+								href="https://invoice.rawlabs.studio"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="action-btn"
+							>
+								Invoicing öffnen
+							</a>
+						</div>
+
+						<!-- 3. Chatwoot -->
+						<div class="service-card">
+							<div class="icon-container">
+								<i class="fas fa-comments"></i>
+							</div>
+							<h3 class="service-title">Chats</h3>
+							<p class="service-desc">
+								Whatsapp, Email und so was.
+							</p>
+							<a
+								href="https://chat.rawlabs.studio"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="action-btn"
+							>
+								Team-Chat öffnen
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer" class="wrapper alt">
+			<div class="inner">
+				<ul class="menu">
+					<li>&copy; Rawlabs Studios. Alle Rechte vorbehalten.</li>
+					<li><a href="/impressum">Impressum</a></li>
+					<li><a href="/agb">AGB</a></li>
+				</ul>
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+		<script is:inline src="/assets/js/jquery.min.js"></script>
+		<script is:inline src="/assets/js/jquery.scrollex.min.js"></script>
+		<script is:inline src="/assets/js/jquery.scrolly.min.js"></script>
+		<script is:inline src="/assets/js/browser.min.js"></script>
+		<script is:inline src="/assets/js/breakpoints.min.js"></script>
+		<script is:inline src="/assets/js/util.js"></script>
+		<script is:inline src="/assets/js/main.js"></script>
+	</body>
+</html>

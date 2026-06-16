@@ -241,6 +241,41 @@ import PageTransition from "../components/PageTransition.astro";
 				font-weight: bold;
 				color: #a891ff;
 			}
+			.offer-banner-contact {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.7em;
+				margin: 0.5em 0 1.2em 0;
+				padding: 0.5em 1.3em;
+				background: linear-gradient(135deg, rgba(212, 168, 83, 0.1), rgba(212, 168, 83, 0.03), rgba(212, 168, 83, 0.06)) !important;
+				border: 1px solid rgba(212, 168, 83, 0.2) !important;
+				border-radius: 9px;
+				color: #f5e6b8 !important;
+				font-size: 0.68em;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				font-weight: 700;
+				backdrop-filter: blur(10px);
+				-webkit-backdrop-filter: blur(10px);
+				box-shadow: 0 0 15px rgba(212, 168, 83, 0.04), inset 0 0 15px rgba(212, 168, 83, 0.02);
+				animation: offerPulse 3s ease-in-out infinite;
+				transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+				width: fit-content;
+				position: relative;
+			}
+			.offer-banner-contact::before,
+			.offer-banner-contact::after {
+				content: "◇";
+				font-size: 0.7em;
+				color: rgba(212, 168, 83, 0.4);
+				opacity: 0.6;
+			}
+			.offer-banner-contact .offer-banner-icon {
+				font-size: 1.1em;
+				color: #f5d68a;
+				opacity: 1;
+				filter: drop-shadow(0 0 4px rgba(212, 168, 83, 0.3));
+			}
 
 			/* Slider improvements */
 			.slider-wrapper {
@@ -685,6 +720,14 @@ import PageTransition from "../components/PageTransition.astro";
 					transform: translateX(330%);
 				}
 			}
+			@keyframes offerPulse {
+				0%, 100% {
+					box-shadow: 0 0 15px rgba(212, 168, 83, 0.04), inset 0 0 15px rgba(212, 168, 83, 0.02);
+				}
+				50% {
+					box-shadow: 0 0 25px rgba(212, 168, 83, 0.1), inset 0 0 20px rgba(212, 168, 83, 0.04);
+				}
+			}
 		</style>
 	</head>
 	<body class="is-preload">
@@ -753,6 +796,11 @@ import PageTransition from "../components/PageTransition.astro";
 							<!-- STEP 1: Package & Additional Songs -->
 							<div class="wizard-step active" data-step="1">
 								<label>Wähle dein Studio-Paket:</label>
+								<div class="offer-banner-contact">
+									<span class="offer-banner-icon">✦</span>
+									<span class="offer-banner-text">Limitiertes Eröffnungsangebot</span>
+									<span class="offer-banner-icon">✦</span>
+								</div>
 								<div class="package-button-group">
 									<button
 										type="button"
